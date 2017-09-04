@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/8 | Lemon Space</title>
+  <title>redis-cli操作（命令） | Lemon Space</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="We are all explorers trying to find ourselves.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lemon Space">
-<meta property="og:url" content="http://yoursite.com/archives/2017/08/index.html">
+  <meta name="description" content="一、入口redis安装后，在linux或windows里redis的安装路径（如：src和/usr/local/bin；D:\Redis）下有几个以redis开头的可执行文件，称为redis shell，这些可执行文件可做很多事情。    可执行文件 作用     redis-server 启动redis   redis-cli redis命令行工具   redis-benchmark 基准测试工">
+<meta name="keywords" content="java,moods,records">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis-cli操作（命令）">
+<meta property="og:url" content="http://yoursite.com/2017/09/04/rediscli command/index.html">
 <meta property="og:site_name" content="Lemon Space">
-<meta property="og:description" content="We are all explorers trying to find ourselves.">
+<meta property="og:description" content="一、入口redis安装后，在linux或windows里redis的安装路径（如：src和/usr/local/bin；D:\Redis）下有几个以redis开头的可执行文件，称为redis shell，这些可执行文件可做很多事情。    可执行文件 作用     redis-server 启动redis   redis-cli redis命令行工具   redis-benchmark 基准测试工">
+<meta property="og:image" content="http://yoursite.com/images/jonyj.JPG">
+<meta property="og:updated_time" content="2017-09-04T09:26:28.326Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lemon Space">
-<meta name="twitter:description" content="We are all explorers trying to find ourselves.">
+<meta name="twitter:title" content="redis-cli操作（命令）">
+<meta name="twitter:description" content="一、入口redis安装后，在linux或windows里redis的安装路径（如：src和/usr/local/bin；D:\Redis）下有几个以redis开头的可执行文件，称为redis shell，这些可执行文件可做很多事情。    可执行文件 作用     redis-server 启动redis   redis-cli redis命令行工具   redis-benchmark 基准测试工">
+<meta name="twitter:image" content="http://yoursite.com/images/jonyj.JPG">
   
     <link rel="alternative" href="/atom.xml" title="Lemon Space" type="application/atom+xml">
   
@@ -152,36 +156,109 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-rediscli command" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/30/printListFromTailToHead/" class="archive-article-date">
-  	<time datetime="2017-08-30T09:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/30/printListFromTailToHead/">从尾到头打印链表</a>
+    <h1 class="article-title" itemprop="name">
+      redis-cli操作（命令）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/04/rediscli command/" class="archive-article-date">
+  	<time datetime="2017-09-04T08:54:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、入口"><a href="#一、入口" class="headerlink" title="一、入口"></a>一、入口</h4><p>redis安装后，在linux或windows里redis的安装路径<br>（如：src和/usr/local/bin；D:\Redis）下有几个以redis开头的可执行文件，称为redis shell，这些可执行文件可做很多事情。</p>
+<table>
+<thead>
+<tr>
+<th>可执行文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>redis-server</td>
+<td>启动redis</td>
+</tr>
+<tr>
+<td>redis-cli</td>
+<td>redis命令行工具</td>
+</tr>
+<tr>
+<td>redis-benchmark</td>
+<td>基准测试工具</td>
+</tr>
+<tr>
+<td>redis-check-aof</td>
+<td>AOF持久化文件检测工具和修复工具</td>
+</tr>
+<tr>
+<td>redis-check-dump</td>
+<td>RDB持久化文件检测工具和修复工具</td>
+</tr>
+<tr>
+<td>redis-sentinel</td>
+<td>启动redis-sentinel  </td>
+</tr>
+</tbody>
+</table>
+<p>我们可以通过redis-cli来连接redis服务器，对其执行操作。<br>如：<br>$redis-cli -h 127.0.0.1 -p 6379<br>$redis-cli -h 192.168.0.248 -p 6379  </p>
+<h4 id="二、redis命令"><a href="#二、redis命令" class="headerlink" title="二、redis命令"></a>二、redis命令</h4><p><strong>连接操作相关的命令</strong></p>
+<p>默认直接连接  远程连接-h 192.168.1.20 -p 6379<br>ping：测试连接是否存活如果正常会返回pong<br>echo：打印<br>select：切换到指定的数据库，数据库索引号index 用数字值指定，以 0 作为起始索引值<br>quit：关闭连接（connection）<br>auth：简单密码认证</p>
+<p><strong>服务端相关命令</strong></p>
+<p>time：返回当前服务器时间<br>client list: 返回所有连接到服务器的客户端信息和统计数据  参见<a href="http://redisdoc.com/server/client_list.html" target="_blank" rel="external">http://redisdoc.com/server/client_list.html</a><br>client kill ip:port：关闭地址为 ip:port 的客户端<br>save：将数据同步保存到磁盘<br>bgsave：将数据异步保存到磁盘<br>lastsave：返回上次成功将数据保存到磁盘的Unix时戳<br>shundown：将数据同步保存到磁盘，然后关闭服务<br>info：提供服务器的信息和统计<br>config resetstat：重置info命令中的某些统计数据<br>config get：获取配置文件信息<br>config set：动态地调整 Redis 服务器的配置(configuration)而无须重启，可以修改的配置参数可以使用命令 CONFIG GET * 来列出<br>config rewrite：Redis 服务器时所指定的 redis.conf 文件进行改写<br>monitor：实时转储收到的请求<br>slaveof：改变复制策略设置</p>
+<p><strong>对KEY操作的命令</strong>  </p>
+<p>exists(key)：确认一个key是否存在<br>del(key)：删除一个key<br>type(key)：返回值的类型<br>keys(pattern)：返回满足给定pattern的所有key<br>randomkey：随机返回key空间的一个<br>keyrename(oldname, newname)：重命名key<br>dbsize：返回当前数据库中key的数目<br>expire：设定一个key的活动时间（s）<br>ttl：获得一个key的活动时间<br>move(key, dbindex)：移动当前数据库中的key到dbindex数据库<br>flushdb：删除当前选择数据库中的所有key<br>flushall：删除所有数据库中的所有key</p>
+<p><strong>对String操作的命令</strong>  </p>
+<p>set(key, value)：给数据库中名称为key的string赋予值value<br>get(key)：返回数据库中名称为key的string的value<br>getset(key, value)：给名称为key的string赋予上一次的value<br>mget(key1, key2,…, key N)：返回库中多个string的value<br>setnx(key, value)：添加string，名称为key，值为value<br>setex(key, time, value)：向库中添加string，设定过期时间time<br>mset(key N, value N)：批量设置多个string的值<br>msetnx(key N, value N)：如果所有名称为key i的string都不存在<br>incr(key)：名称为key的string增1操作<br>incrby(key, integer)：名称为key的string增加integer<br>decr(key)：名称为key的string减1操作<br>decrby(key, integer)：名称为key的string减少integer<br>append(key, value)：名称为key的string的值附加value<br>substr(key, start, end)：返回名称为key的string的value的子串</p>
+<p><strong>对List操作的命令</strong></p>
+<p>rpush(key, value)：在名称为key的list尾添加一个值为value的元素<br>lpush(key, value)：在名称为key的list头添加一个值为value的 元素<br>llen(key)：返回名称为key的list的长度<br>lrange(key, start, end)：返回名称为key的list中start至end之间的元素<br>ltrim(key, start, end)：截取名称为key的list<br>lindex(key, index)：返回名称为key的list中index位置的元素<br>lset(key, index, value)：给名称为key的list中index位置的元素赋值<br>lrem(key, count, value)：删除count个key的list中值为value的元素<br>lpop(key)：返回并删除名称为key的list中的首元素<br>rpop(key)：返回并删除名称为key的list中的尾元素<br>blpop(key1, key2,… key N, timeout)：lpop命令的block版本。<br>brpop(key1, key2,… key N, timeout)：rpop的block版本。<br>rpoplpush(srckey, dstkey)：返回并删除名称为srckey的list的尾元素，并将该元素添加到名称为dstkey的list的头部</p>
+<p><strong>对Set操作的命令</strong></p>
+<p>sadd(key, member)：向名称为key的set中添加元素member<br>srem(key, member) ：删除名称为key的set中的元素member<br>spop(key) ：随机返回并删除名称为key的set中一个元素<br>smove(srckey, dstkey, member) ：移到集合元素<br>scard(key) ：返回名称为key的set的基数<br>sismember(key, member) ：member是否是名称为key的set的元素<br>sinter(key1, key2,…key N) ：求交集<br>sinterstore(dstkey, (keys)) ：求交集并将交集保存到dstkey的集合<br>sunion(key1, (keys)) ：求并集<br>sunionstore(dstkey, (keys)) ：求并集并将并集保存到dstkey的集合<br>sdiff(key1, (keys)) ：求差集<br>sdiffstore(dstkey, (keys)) ：求差集并将差集保存到dstkey的集合<br>smembers(key) ：返回名称为key的set的所有元素<br>srandmember(key) ：随机返回名称为key的set的一个元素</p>
+<p><strong>对Hash操作的命令</strong></p>
+<p>hset(key, field, value)：向名称为key的hash中添加元素field<br>hget(key, field)：返回名称为key的hash中field对应的value<br>hmget(key, (fields))：返回名称为key的hash中field i对应的value<br>hmset(key, (fields))：向名称为key的hash中添加元素field<br>hincrby(key, field, integer)：将名称为key的hash中field的value增加integer<br>hexists(key, field)：名称为key的hash中是否存在键为field的域<br>hdel(key, field)：删除名称为key的hash中键为field的域<br>hlen(key)：返回名称为key的hash中元素个数<br>hkeys(key)：返回名称为key的hash中所有键<br>hvals(key)：返回名称为key的hash中所有键对应的value<br>hgetall(key)：返回名称为key的hash中所有的键（field）及其对应的value</p>
+<p><img src="/images/jonyj.JPG" alt=""></p>
+<blockquote>
+<p>转自博客：<a href="http://www.cnblogs.com/kongzhongqijing/p/6867960.html" target="_blank" rel="external">http://www.cnblogs.com/kongzhongqijing/p/6867960.html</a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,29 +268,114 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">records</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/04/rediscli command/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/30/printListFromTailToHead/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从尾到头打印链表</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -236,8 +398,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
