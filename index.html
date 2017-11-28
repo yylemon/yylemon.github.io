@@ -178,77 +178,183 @@
 <h6 id="0-2-安装pip"><a href="#0-2-安装pip" class="headerlink" title="0.2 安装pip"></a>0.2 安装pip</h6><p>直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip  </span></div><div class="line">The program 'pip' is currently not installed. You can install it by typing:  </div><div class="line">apt install python-pip  </div><div class="line"><span class="meta">$</span><span class="bash"> apt install python-pip</span></div></pre></td></tr></table></figure>
 <h4 id="1-gcc版本降级"><a href="#1-gcc版本降级" class="headerlink" title="1 gcc版本降级"></a>1 gcc版本降级</h4><p>由于cuda8.0不支持ubuntu16.04自带的gcc5.4.0，所以要降级到4.9  </p>
-<h6 id="1-1-查看gcc版本"><a href="#1-1-查看gcc版本" class="headerlink" title="1.1 查看gcc版本"></a>1.1 查看gcc版本</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ gcc --version</div><div class="line">gcc (Ubuntu 5.4.0-6ubuntu1~16.04.5) 5.4.0 20160609  </div><div class="line">Copyright (C) 2015 Free Software Foundation, Inc.</div><div class="line">```  </div><div class="line">###### 1.2 降级操作</div></pre></td></tr></table></figure>
-<p>$ sudo apt-get install g++-4.9<br>$ sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20<br>$ sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-5 10<br>$ sudo update-alternatives –install /usr/bin/g++ g++ /usr/bin/g++-4.9 20<br>$ sudo update-alternatives –install /usr/bin/g++ g++ /usr/bin/g++-5 10<br>$ sudo update-alternatives –install /usr/bin/cc cc /usr/bin/gcc 30<br>$ sudo update-alternatives –set cc /usr/bin/gcc<br>$ sudo update-alternatives –install /usr/bin/c++ c++ /usr/bin/g++ 30<br>$ sudo update-alternatives –set c++ /usr/bin/g++<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">###### 1.3 再次查看版本</div></pre></td></tr></table></figure></p>
-<p>$ gcc –version<br>gcc (Ubuntu 4.9.3-13ubuntu2) 4.9.3<br>Copyright (C) 2015 Free Software Foundation, Inc.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#### 2 cuda8.0安装  </div><div class="line">（cuda安装的步骤主要来源于以下链接，博主写的流程很清晰，一遍过！  </div><div class="line">http://www.jianshu.com/p/35c7fde85968?from=singlemessage）  </div><div class="line">###### 2.1 验证  </div><div class="line">###### 2.1.1 Verify you have a CUDA-Capable GPU</div></pre></td></tr></table></figure></p>
-<p>$ lspci | grep -i nvidia<br>04:00.0 3D controller: NVIDIA Corporation GK110BGL [Tesla K40m] (rev a1)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">###### 2.1.2 Verify you have a Supported Version of Linux</div></pre></td></tr></table></figure></p>
-<p>$ uname -m &amp;&amp; cat /etc/*release<br>x86_64<br>DISTRIB_ID=Ubuntu<br>DISTRIB_RELEASE=16.04<br>…<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">###### 2.1.3 Verify the System Has GCC Installed  </div><div class="line">安装对应的kernels header和开发包：</div></pre></td></tr></table></figure></p>
-<p>$ sudo apt-get install linux-headers-$(uname -r)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">###### 2.2 下载cuda  </div><div class="line">地址：https://developer.nvidia.com/cuda-toolkit-archive  </div><div class="line">选择需要的版本，这里我选择8.0，下载对应的runfile(cuda_8.0.44_linux.run)。  </div><div class="line">（下载还要注册、填一堆问卷也是醉了.......）  </div><div class="line">为了方便其他人，将我下载好的run文件的百度云链接放上。  </div><div class="line">链接：https://pan.baidu.com/s/1jIQUE0I  密码：rma8  </div><div class="line">下载完后，用MD5检验，如果序号不和，得重新下载。</div></pre></td></tr></table></figure></p>
-<p>$ md5sum cuda_8.0.44_linux.run<br>5639ffeb939ee58a81554d06bd084e15  cuda_8.0.44_linux.run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">###### 2.3 禁用Nouveau</div></pre></td></tr></table></figure></p>
-<p>$ lsmod | grep nouveau<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果有内容输出，则需要禁掉nouveau</div></pre></td></tr></table></figure></p>
-<p>$ sudo vi /etc/modprobe.d/blacklist.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">添加如下内容：</div></pre></td></tr></table></figure></p>
-<p>blacklist nouveau<br>options nouveau modeset=0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">保存退出(:wq)，再执行：</div></pre></td></tr></table></figure></p>
-<p>$ lsmod | grep nouveau<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">若无内容输出，则禁用成功。  </div><div class="line">###### 2.4 安装</div><div class="line">切换到cuda_8.0.44_linux.run的目录，执行：</div></pre></td></tr></table></figure></p>
-<p>$ sudo sh cuda_8.0.27_linux.run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">安装的时候，要让你先看一堆文字（EULA)，我们直接不停的按空格键到100%;  </div><div class="line">遇到提示是否安装openGL，选择no,其他的可以一路accept, yes或回车。  </div><div class="line">如图：</div><div class="line">![](/images/tensorflow1.png)  </div><div class="line">安装成功后，会显示installed，否则会显示failed。  </div><div class="line">###### 2.5 验证安装结果</div><div class="line">执行</div></pre></td></tr></table></figure></p>
-<p>$ ls /dev/nvidia*<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">若结果显示</div></pre></td></tr></table></figure></p>
-<p>/dev/nvidia0  /dev/nvidiactl  /dev/nvidia-uvm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">或类似的信息，应该有三个（包含一个类似/dev/nvidia-nvm的），则安装成功。</div><div class="line">但我的没有显示以上信息，显示的是：</div></pre></td></tr></table></figure></p>
-<p>ls: cannot access /dev/nvidia*: No such file or directory<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">下面就要解决这个问题。</div><div class="line">把下面的.sh文件随便命个名(我命名为Nka.sh)</div><div class="line">```python</div><div class="line">#!/bin/bash</div><div class="line"></div><div class="line">/sbin/modprobe nvidia</div><div class="line"></div><div class="line">if [ &quot;$?&quot; -eq 0 ]; then</div><div class="line">  # Count the number of NVIDIA controllers found.</div><div class="line">  NVDEVS=`lspci | grep -i NVIDIA`</div><div class="line">  N3D=`echo &quot;$NVDEVS&quot; | grep &quot;3D controller&quot; | wc -l`</div><div class="line">  NVGA=`echo &quot;$NVDEVS&quot; | grep &quot;VGA compatible controller&quot; | wc -l`</div><div class="line"></div><div class="line">  N=`expr $N3D + $NVGA - 1`</div><div class="line">  for i in `seq 0 $N`; do</div><div class="line">    mknod -m 666 /dev/nvidia$i c 195 $i</div><div class="line">  done</div><div class="line"></div><div class="line">  mknod -m 666 /dev/nvidiactl c 195 255</div><div class="line"></div><div class="line">else</div><div class="line">  exit 1</div><div class="line">fi</div><div class="line"></div><div class="line">/sbin/modprobe nvidia-uvm</div><div class="line"></div><div class="line">if [ &quot;$?&quot; -eq 0 ]; then</div><div class="line">  # Find out the major device number used by the nvidia-uvm driver</div><div class="line">  D=`grep nvidia-uvm /proc/devices | awk &apos;&#123;print $1&#125;&apos;`</div><div class="line"></div><div class="line">  mknod -m 666 /dev/nvidia-uvm c $D 0</div><div class="line">else</div><div class="line">  exit 1</div><div class="line">fi</div></pre></td></tr></table></figure></p>
-<p>然后执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod +x Nka.sh</div><div class="line">$ sudo ./Nka.sh</div><div class="line">$  ls /dev/nvidia*</div><div class="line">/dev/nvidia0  /dev/nvidiactl  /dev/nvidia-uvm</div><div class="line">```  </div><div class="line">成功！  </div><div class="line">but：</div><div class="line">这种做不太友好，因为当下次重启电脑时，你使用ls /dev/nvidia* 指令时，你是看不到那三个nvidia的文件了。所以你又得手动执行sudo ./Nka.sh指令了。这个问题我们可以通过添加启动脚本来解决。  </div><div class="line">执行</div></pre></td></tr></table></figure></p>
-<p>$ sudo vi /etc/rc.local<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果你是第一次打开这个文件，它应该是空的(除了一行又一行的#注释项外)。  </div><div class="line">这文件的第一行是</div></pre></td></tr></table></figure></p>
-<p>#!/bin/sh -e<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">把-e去掉（这步很重要，否则它不会加载这文本的内容）,  </div><div class="line">然后把Nka.sh的内容除了#!/bin/bash外复制到其中，(before exit 0 )保存退出。  </div><div class="line">下次重启时，你应该能直接看到/dev目录下的三个nvidia的文件。  </div><div class="line">###### 2.6 环境配置  </div><div class="line">打开系统配置文件</div></pre></td></tr></table></figure></p>
-<p>$ sudo vi /etc/profile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在文件最后添加</div></pre></td></tr></table></figure></p>
-<p>export PATH=/usr/local/cuda-8.0/bin:$PATH<br>export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">保存退出</div><div class="line">执行下面的语句，让文件立即生效</div></pre></td></tr></table></figure></p>
-<p>$ source /etc/profile</p>
-<pre><code>至此，cuda 8.0安装完毕。
-###### 2.7 验证安装
-###### 2.7.1 Verify the Driver Version
-敲入：
-</code></pre><p>$ cat /proc/driver/nvidia/version</p>
-<pre><code>结果显示：
-</code></pre><p>NVRM version: NVIDIA UNIX x86_64 Kernel Module  367.48  Sat Sep  3 18:21:08 PDT 2016<br>GCC version:  gcc version 4.9.3 (Ubuntu 4.9.3-13ubuntu2) </p>
-<pre><code>###### 2.7.2 Verify CUDA Toolkit  
-敲入：
-</code></pre><p>$ nvcc -V</p>
-<pre><code>结果显示：
-</code></pre><p>nvcc: NVIDIA (R) Cuda compiler driver<br>Copyright (c) 2005-2016 NVIDIA Corporation<br>Built on Sun_Sep__4_22:14:01_CDT_2016<br>Cuda compilation tools, release 8.0, V8.0.44</p>
-<pre><code>###### 2.7.3 Complie sample
-</code></pre><p>$ cd /usr/local/cuda/samples/<br>$ make</p>
-<pre><code>这区间大概需要十几到二十分钟，请耐心等待。  
-运行完后，编译结果会放在samples/bin下面。  
-###### 2.7.4 Running the Binaries
-</code></pre><p>$ cd bin/x86_64/linux/release<br>$ ./deviceQuery</p>
-<pre><code>结果显示：  
-![](/images/tensorflow2.png)  
-最后是 Result = PASS,若失败 Result = FAIL  
-再来一个，执行
-</code></pre><p>$ ./bandwidthTest</p>
-<pre><code>结果显示：  
-![](/images/tensorflow3.png)  
-#### 3 安装cudnn
-###### 3.1 下载Download cuDNN v6.0   
-cuDNN v6.0(Jan 20, 2017), for CUDA 8.0：  
-https://developer.nvidia.com/rdp/cudnn-download  
-这里给出对应的百度云链接  
-链接：https://pan.baidu.com/s/1boSU4A7 密码：73ck  
-###### 3.2 安装：
-</code></pre><p>$ tar -xzvf cudnn-8.0-linux-x64-v6.0.tgz<br>$ sudo cp cuda/include/cudnn.h /usr/local/cuda-8.0/include<br>$ sudo cp cuda/lib64/libcudnn<em> /usr/local/cuda-8.0/lib64<br>$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda-8.0/lib64/libcudnn</em><br>$ sudo ln -sf libcudnn.so.6.0.21 libcudnn.so.6<br>$ sudo ln -sf libcudnn.so.6 libcudnn.so<br>$ sudo ldconfig  </p>
-<pre><code>#### 4 安装tensorflow
-###### 4.1 安装
-</code></pre><p>$ sudo apt-get install libcupti-dev<br>$ pip install tensorflow-gpu</p>
-<pre><code>如果下载很慢或者出现问题，可能是因为国外源太慢，需要更改pip的源地址。  
-修改/root/.pip/pip.conf文件（没有则创建）。
-</code></pre><p>$ vim /root/.pip/pip.conf</p>
-<pre><code>加入以下：
-</code></pre><p>[global]<br>index-url = <a href="http://pypi.douban.com/simple" target="_blank" rel="external">http://pypi.douban.com/simple</a><br>trusted-host = pypi.douban.com#没有这句会包warning<br>disable-pip-version-check = true #版本不检查<br>timeout = 120#超时时间设置</p>
-<pre><code>然后 esc,:wq保存退出。  
-重新执行：
-</code></pre><p>$ pip install tensorflow-gpu</p>
-<pre><code>这里会安装一大堆东西，都是tensorflow需要的。如：
-</code></pre><p>Successfully installed backports.weakref-1.0.post1 bleach-1.5.0 enum34-1.1.6 funcsigs-1.0.2 futures-3.1.1 html5lib-0.9999999 markdown-2.6.9 mock-2.0.0 numpy-1.13.3 pbr-3.1.1 protobuf-3.5.0.post1 six-1.11.0 tensorflow-gpu-1.4.0 tensorflow-tensorboard-0.4.0rc3 werkzeug-0.12.2</p>
-<pre><code>###### 4.2 验证
-安装完成后，直接在命令行中试用，验证是否能成功使用。  
-```python
-$ python
+<h6 id="1-1-查看gcc版本"><a href="#1-1-查看gcc版本" class="headerlink" title="1.1 查看gcc版本"></a>1.1 查看gcc版本</h6><pre><code>$ gcc --version
+gcc (Ubuntu 5.4.0-6ubuntu1~16.04.5) 5.4.0 20160609  
+Copyright (C) 2015 Free Software Foundation, Inc.
+</code></pre><h6 id="1-2-降级操作"><a href="#1-2-降级操作" class="headerlink" title="1.2 降级操作"></a>1.2 降级操作</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo apt-get install g++-4.9  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --<span class="built_in">set</span> cc /usr/bin/gcc  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --<span class="built_in">set</span> c++ /usr/bin/g++</span>
+</code></pre>
+<h6 id="1-3-再次查看版本"><a href="#1-3-再次查看版本" class="headerlink" title="1.3 再次查看版本"></a>1.3 再次查看版本</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> gcc --version</span>
+gcc (Ubuntu 4.9.3-13ubuntu2) 4.9.3
+Copyright (C) 2015 Free Software Foundation, Inc.
+</code></pre>
+<h4 id="2-cuda8-0安装"><a href="#2-cuda8-0安装" class="headerlink" title="2 cuda8.0安装"></a>2 cuda8.0安装</h4><p>（cuda安装的步骤主要来源于以下链接，博主写的流程很清晰，一遍过！<br><a href="http://www.jianshu.com/p/35c7fde85968?from=singlemessage）" target="_blank" rel="external">http://www.jianshu.com/p/35c7fde85968?from=singlemessage）</a>  </p>
+<h6 id="2-1-验证"><a href="#2-1-验证" class="headerlink" title="2.1 验证"></a>2.1 验证</h6><p><strong>2.1.1 Verify you have a CUDA-Capable GPU  </strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> lspci | grep -i nvidia  </span>
+04:00.0 3D controller: NVIDIA Corporation GK110BGL [Tesla K40m] (rev a1)
+</code></pre>
+<p><strong>2.1.2 Verify you have a Supported Version of Linux  </strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> uname -m &amp;&amp; cat /etc/*release</span>
+x86_64  
+DISTRIB_ID=Ubuntu  
+DISTRIB_RELEASE=16.04  
+...
+</code></pre>
+<p><strong>2.1.3 Verify the System Has GCC Installed  </strong><br>安装对应的kernels header和开发包： </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo apt-get install linux-headers-$(uname -r)</span>
+</code></pre>
+<h6 id="2-2-下载cuda"><a href="#2-2-下载cuda" class="headerlink" title="2.2 下载cuda"></a>2.2 下载cuda</h6><p>地址：<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="external">https://developer.nvidia.com/cuda-toolkit-archive</a><br>选择需要的版本，这里我选择8.0，下载对应的runfile(cuda_8.0.44_linux.run)。<br>（下载还要注册、填一堆问卷也是醉了…….）<br>为了方便其他人，将我下载好的run文件的百度云链接放上。<br>链接：<a href="https://pan.baidu.com/s/1jIQUE0I" target="_blank" rel="external">https://pan.baidu.com/s/1jIQUE0I</a>  密码：rma8<br>下载完后，用MD5检验，如果序号不和，得重新下载。  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> md5sum cuda_8.0.44_linux.run</span>
+5639ffeb939ee58a81554d06bd084e15  cuda_8.0.44_linux.run
+</code></pre>
+<h6 id="2-3-禁用Nouveau"><a href="#2-3-禁用Nouveau" class="headerlink" title="2.3 禁用Nouveau"></a>2.3 禁用Nouveau</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> lsmod | grep nouveau</span>
+</code></pre>
+<p>如果有内容输出，则需要禁掉nouveau  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo vi /etc/modprobe.d/blacklist.conf</span>
+</code></pre>
+<p>添加如下内容： </p>
+<pre><code class="shell">blacklist nouveau  
+options nouveau modeset=0
+</code></pre>
+<p>保存退出(:wq)，再执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> lsmod | grep nouveau</span>
+</code></pre>
+<p>若无内容输出，则禁用成功。  </p>
+<h6 id="2-4-安装"><a href="#2-4-安装" class="headerlink" title="2.4 安装"></a>2.4 安装</h6><p>切换到cuda_8.0.44_linux.run的目录，执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo sh cuda_8.0.27_linux.run</span>
+</code></pre>
+<p>安装的时候，要让你先看一堆文字（EULA)，我们直接不停的按空格键到100%;<br>遇到提示是否安装openGL，选择no,其他的可以一路accept, yes或回车。<br>如图：<br><img src="/images/tensorflow1.png" alt=""><br>安装成功后，会显示installed，否则会显示failed。  </p>
+<h6 id="2-5-验证安装结果"><a href="#2-5-验证安装结果" class="headerlink" title="2.5 验证安装结果"></a>2.5 验证安装结果</h6><p>执行  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> ls /dev/nvidia*</span>
+</code></pre>
+<p>若结果显示  </p>
+<pre><code class="shell">/dev/nvidia0  /dev/nvidiactl  /dev/nvidia-uvm
+</code></pre>
+<p>或类似的信息，应该有三个（包含一个类似/dev/nvidia-nvm的），则安装成功。<br>但我的没有显示以上信息，显示的是：  </p>
+<pre><code class="shell">ls: cannot access /dev/nvidia*: No such file or directory
+</code></pre>
+<p>下面就要解决这个问题。<br>把下面的.sh文件随便命个名(我命名为Nka.sh)  </p>
+<pre><code class="python"><span class="comment">#!/bin/bash</span>
+
+/sbin/modprobe nvidia
+
+<span class="keyword">if</span> [ <span class="string">"$?"</span> -eq <span class="number">0</span> ]; then
+  <span class="comment"># Count the number of NVIDIA controllers found.</span>
+  NVDEVS=`lspci | grep -i NVIDIA`
+  N3D=`echo <span class="string">"$NVDEVS"</span> | grep <span class="string">"3D controller"</span> | wc -l`
+  NVGA=`echo <span class="string">"$NVDEVS"</span> | grep <span class="string">"VGA compatible controller"</span> | wc -l`
+
+  N=`expr $N3D + $NVGA - <span class="number">1</span>`
+  <span class="keyword">for</span> i <span class="keyword">in</span> `seq <span class="number">0</span> $N`; do
+    mknod -m <span class="number">666</span> /dev/nvidia$i c <span class="number">195</span> $i
+  done
+
+  mknod -m <span class="number">666</span> /dev/nvidiactl c <span class="number">195</span> <span class="number">255</span>
+
+<span class="keyword">else</span>
+  exit <span class="number">1</span>
+fi
+
+/sbin/modprobe nvidia-uvm
+
+<span class="keyword">if</span> [ <span class="string">"$?"</span> -eq <span class="number">0</span> ]; then
+  <span class="comment"># Find out the major device number used by the nvidia-uvm driver</span>
+  D=`grep nvidia-uvm /proc/devices | awk <span class="string">'{print $1}'</span>`
+
+  mknod -m <span class="number">666</span> /dev/nvidia-uvm c $D <span class="number">0</span>
+<span class="keyword">else</span>
+  exit <span class="number">1</span>
+fi
+</code></pre>
+<p>然后执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo chmod +x Nka.sh</span>
+<span class="meta">$</span><span class="bash"> sudo ./Nka.sh</span>
+<span class="meta">$</span><span class="bash">  ls /dev/nvidia*</span>
+/dev/nvidia0  /dev/nvidiactl  /dev/nvidia-uvm
+</code></pre>
+<p>成功！<br>but：<br>这种做不太友好，因为当下次重启电脑时，你使用ls /dev/nvidia* 指令时，你是看不到那三个nvidia的文件了。所以你又得手动执行sudo ./Nka.sh指令了。这个问题我们可以通过添加启动脚本来解决。<br>执行  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo vi /etc/rc.local</span>
+</code></pre>
+<p>如果你是第一次打开这个文件，它应该是空的(除了一行又一行的#注释项外)。<br>这文件的第一行是  </p>
+<pre><code class="shell"><span class="meta">#</span><span class="bash">!/bin/sh -e</span>
+</code></pre>
+<p>把-e去掉（这步很重要，否则它不会加载这文本的内容）,<br>然后把Nka.sh的内容除了#!/bin/bash外复制到其中，(before exit 0 )保存退出。<br>下次重启时，你应该能直接看到/dev目录下的三个nvidia的文件。  </p>
+<h6 id="2-6-环境配置"><a href="#2-6-环境配置" class="headerlink" title="2.6 环境配置"></a>2.6 环境配置</h6><p>打开系统配置文件  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo vi /etc/profile</span>
+</code></pre>
+<p>在文件最后添加  </p>
+<pre><code class="shell">export PATH=/usr/local/cuda-8.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
+</code></pre>
+<p>保存退出<br>执行下面的语句，让文件立即生效  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<p>至此，cuda 8.0安装完毕。</p>
+<h6 id="2-7-验证安装"><a href="#2-7-验证安装" class="headerlink" title="2.7 验证安装"></a>2.7 验证安装</h6><p><strong>2.7.1 Verify the Driver Version</strong><br>敲入：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> cat /proc/driver/nvidia/version</span>
+</code></pre>
+<p>结果显示：  </p>
+<pre><code class="shell">NVRM version: NVIDIA UNIX x86_64 Kernel Module  367.48  Sat Sep  3 18:21:08 PDT 2016
+GCC version:  gcc version 4.9.3 (Ubuntu 4.9.3-13ubuntu2)
+</code></pre>
+<p><strong>2.7.2 Verify CUDA Toolkit</strong><br>敲入：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> nvcc -V</span>
+</code></pre>
+<p>结果显示：  </p>
+<pre><code class="shell">nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2016 NVIDIA Corporation
+Built on Sun_Sep__4_22:14:01_CDT_2016
+Cuda compilation tools, release 8.0, V8.0.44
+</code></pre>
+<p><strong>2.7.3 Complie sample  </strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/cuda/samples/</span>
+<span class="meta">$</span><span class="bash"> make</span>
+</code></pre>
+<p>这区间大概需要十几到二十分钟，请耐心等待。<br>运行完后，编译结果会放在samples/bin下面。<br><strong>2.7.4 Running the Binaries  </strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> bin/x86_64/linux/release</span>
+<span class="meta">$</span><span class="bash"> ./deviceQuery</span>
+</code></pre>
+<p>结果显示：<br><img src="/images/tensorflow2.png" alt=""><br>最后是 Result = PASS,若失败 Result = FAIL<br>再来一个，执行  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> ./bandwidthTest</span>
+</code></pre>
+<p>结果显示：<br><img src="/images/tensorflow3.png" alt="">  </p>
+<h4 id="3-安装cudnn"><a href="#3-安装cudnn" class="headerlink" title="3 安装cudnn"></a>3 安装cudnn</h4><h6 id="3-1-下载Download-cuDNN-v6-0"><a href="#3-1-下载Download-cuDNN-v6-0" class="headerlink" title="3.1 下载Download cuDNN v6.0"></a>3.1 下载Download cuDNN v6.0</h6><p>cuDNN v6.0(Jan 20, 2017), for CUDA 8.0：<br><a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">https://developer.nvidia.com/rdp/cudnn-download</a><br>这里给出对应的百度云链接<br>链接：<a href="https://pan.baidu.com/s/1boSU4A7" target="_blank" rel="external">https://pan.baidu.com/s/1boSU4A7</a> 密码：73ck  </p>
+<h6 id="3-2-安装："><a href="#3-2-安装：" class="headerlink" title="3.2 安装："></a>3.2 安装：</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> tar -xzvf cudnn-8.0-linux-x64-v6.0.tgz</span>
+<span class="meta">$</span><span class="bash"> sudo cp cuda/include/cudnn.h /usr/<span class="built_in">local</span>/cuda-8.0/include</span>
+<span class="meta">$</span><span class="bash"> sudo cp cuda/lib64/libcudnn* /usr/<span class="built_in">local</span>/cuda-8.0/lib64</span>
+<span class="meta">$</span><span class="bash"> sudo chmod a+r /usr/<span class="built_in">local</span>/cuda/include/cudnn.h /usr/<span class="built_in">local</span>/cuda-8.0/lib64/libcudnn*</span>
+<span class="meta">$</span><span class="bash"> sudo ln -sf libcudnn.so.6.0.21 libcudnn.so.6  </span>
+<span class="meta">$</span><span class="bash"> sudo ln -sf libcudnn.so.6 libcudnn.so  </span>
+<span class="meta">$</span><span class="bash"> sudo ldconfig</span>
+</code></pre>
+<h4 id="4-安装tensorflow"><a href="#4-安装tensorflow" class="headerlink" title="4 安装tensorflow"></a>4 安装tensorflow</h4><h6 id="4-1-安装"><a href="#4-1-安装" class="headerlink" title="4.1 安装"></a>4.1 安装</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo apt-get install libcupti-dev</span>
+<span class="meta">$</span><span class="bash"> pip install tensorflow-gpu</span>
+</code></pre>
+<p>如果下载很慢或者出现问题，可能是因为国外源太慢，需要更改pip的源地址。<br>修改/root/.pip/pip.conf文件（没有则创建）。  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /root/.pip/pip.conf</span>
+</code></pre>
+<p>加入以下：  </p>
+<pre><code class="shell">[global] 
+index-url = http://pypi.douban.com/simple 
+trusted-host = pypi.douban.com#没有这句会包warning 
+disable-pip-version-check = true #版本不检查 
+timeout = 120#超时时间设置
+</code></pre>
+<p>然后 esc,:wq保存退出。<br>重新执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> pip install tensorflow-gpu</span>
+</code></pre>
+<p>这里会安装一大堆东西，都是tensorflow需要的。如：  </p>
+<pre><code class="shell">Successfully installed backports.weakref-1.0.post1 bleach-1.5.0 enum34-1.1.6 funcsigs-1.0.2 futures-3.1.1 html5lib-0.9999999 markdown-2.6.9 mock-2.0.0 numpy-1.13.3 pbr-3.1.1 protobuf-3.5.0.post1 six-1.11.0 tensorflow-gpu-1.4.0 tensorflow-tensorboard-0.4.0rc3 werkzeug-0.12.2
+</code></pre>
+<h6 id="4-2-验证"><a href="#4-2-验证" class="headerlink" title="4.2 验证"></a>4.2 验证</h6><p>安装完成后，直接在命令行中试用，验证是否能成功使用。  </p>
+<pre><code class="python">$ python
 &gt;&gt;&gt; import tensorflow as tf
 &gt;&gt;&gt; a=tf.constant(5.0)
 &gt;&gt;&gt; b=tf.constant(6.0)
@@ -258,13 +364,17 @@ $ python
 &gt;&gt;&gt; print(sess.run(c))
 30.0
 &gt;&gt;&gt;
-</code></pre><p>如上即为安装成功，但也可能会出现一些问题。最常见的是</p>
-<pre><code>ImportError: libcudnn.so.6: cannot open shared object file: No such file or directory
-</code></pre><p>如果出现类似问题，可以先尝试： </p>
-<pre><code>$ source /etc/profile
-</code></pre><p>如果还是没解决，可能就是你安装的cudnn版本和tensorflow的版本不能适应，之前我使用cudnn5.1的时候就是这种情况，tensorflow最新的版本1.4.0用不了。<br>你可以选择安装低版本的tensorflow：  </p>
-<pre><code>$ pip install tensorflow-gpu==1.2
-</code></pre><p>也可以换一个cudnn（换成提示语句中的cudnn6）。  </p>
+</code></pre>
+<p>如上即为安装成功，但也可能会出现一些问题。最常见的是  </p>
+<pre><code class="shell">ImportError: libcudnn.so.6: cannot open shared object file: No such file or directory
+</code></pre>
+<p>如果出现类似问题，可以先尝试：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<p>如果还是没解决，可能就是你安装的cudnn版本和tensorflow的版本不能适应，之前我使用cudnn5.1的时候就是这种情况，tensorflow最新的版本1.4.0用不了。<br>你可以选择安装低版本的tensorflow：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> pip install tensorflow-gpu==1.2</span>
+</code></pre>
+<p>也可以换一个cudnn（换成提示语句中的cudnn6）。  </p>
 <h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h4><p>tensorflow for gpu的安装对于新手来说真的是大坑一个……  网上搜的教程，有一些是有帮助的，但也有很多特别乱的，看到最多的都是吐槽…….许多人装了一周两周的，十天半个月的都有，有的朋友重装几遍系统都没成功（默哀）。<br>我这里这个步骤，是我拿到新的机器（只有ubuntu16.04系统），然后一遍安装成功的，虽然时间也比较长，查了很多教程，但至少探索出目前这个ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4的版本对应，是可以成功的。<br>另，个人不建议用源码安装，非常繁杂并且很容易失败。  </p>
 <p>最后附上参考的一些教程链接，感谢~</p>
 <blockquote>
