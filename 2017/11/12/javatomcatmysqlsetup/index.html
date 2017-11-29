@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>从尾到头打印链表 | Lemon Space</title>
+  <title>java+tomcat+mysql环境配置 | Lemon Space</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述输入一个链表，从尾到头打印链表每个节点的值。   方法1–递归：反向输出链表=每访问到一个节点，先递归输出它后面的节点。12345678910111213141516171819202122232425import java.util.ArrayList;//链表结构定义class ListNode&amp;#123;    int val;    ListNode next= null;">
-<meta name="keywords" content="java,moods,practice">
+  <meta name="description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==   1.java环境(1)在根目录下新建download和java文件夹   $ mkdir /download $ mkdir /usr/java  (2)下载jdk   下载jdk至/download,jdk地址：http://www.oracle.com/techn">
+<meta name="keywords" content="java,tomcat,mysql,install">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从尾到头打印链表">
-<meta property="og:url" content="http://yoursite.com/2017/08/30/printListFromTailToHead/index.html">
+<meta property="og:title" content="java+tomcat+mysql环境配置">
+<meta property="og:url" content="http://yoursite.com/2017/11/12/javatomcatmysqlsetup/index.html">
 <meta property="og:site_name" content="Lemon Space">
-<meta property="og:description" content="题目描述输入一个链表，从尾到头打印链表每个节点的值。   方法1–递归：反向输出链表=每访问到一个节点，先递归输出它后面的节点。12345678910111213141516171819202122232425import java.util.ArrayList;//链表结构定义class ListNode&amp;#123;    int val;    ListNode next= null;">
-<meta property="og:image" content="http://yoursite.com/images/sea2.JPG">
-<meta property="og:updated_time" content="2017-08-30T09:11:16.105Z">
+<meta property="og:description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==   1.java环境(1)在根目录下新建download和java文件夹   $ mkdir /download $ mkdir /usr/java  (2)下载jdk   下载jdk至/download,jdk地址：http://www.oracle.com/techn">
+<meta property="og:image" content="http://yoursite.com/images/tomcat1.png">
+<meta property="og:updated_time" content="2017-11-29T09:02:24.233Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从尾到头打印链表">
-<meta name="twitter:description" content="题目描述输入一个链表，从尾到头打印链表每个节点的值。   方法1–递归：反向输出链表=每访问到一个节点，先递归输出它后面的节点。12345678910111213141516171819202122232425import java.util.ArrayList;//链表结构定义class ListNode&amp;#123;    int val;    ListNode next= null;">
-<meta name="twitter:image" content="http://yoursite.com/images/sea2.JPG">
+<meta name="twitter:title" content="java+tomcat+mysql环境配置">
+<meta name="twitter:description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==   1.java环境(1)在根目录下新建download和java文件夹   $ mkdir /download $ mkdir /usr/java  (2)下载jdk   下载jdk至/download,jdk地址：http://www.oracle.com/techn">
+<meta name="twitter:image" content="http://yoursite.com/images/tomcat1.png">
   
     <link rel="alternative" href="/atom.xml" title="Lemon Space" type="application/atom+xml">
   
@@ -160,33 +160,95 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-printListFromTailToHead" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-javatomcatmysqlsetup" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      从尾到头打印链表
+      java+tomcat+mysql环境配置
     </h1>
   
 
         
-        <a href="/2017/08/30/printListFromTailToHead/" class="archive-article-date">
-  	<time datetime="2017-08-30T09:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
+        <a href="/2017/11/12/javatomcatmysqlsetup/" class="archive-article-date">
+  	<time datetime="2017-11-12T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>输入一个链表，从尾到头打印链表每个节点的值。  </p>
-<p><strong>方法1–递归：</strong><br>反向输出链表=每访问到一个节点，先递归输出它后面的节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="comment">//链表结构定义</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    ListNode next= <span class="keyword">null</span>;</div><div class="line">    ListNode(<span class="keyword">int</span> val)&#123;</div><div class="line">        <span class="keyword">this</span>.val=val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">ArrayList&lt;Integer&gt; arrayList=<span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(listNode!=<span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">this</span>.printListFromTailToHead(listNode.next);</div><div class="line">            arrayList.add(listNode.val);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> arrayList;</div><div class="line">    &#125;</div><div class="line"><span class="comment">//test[1,2]</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        ListNode Node=<span class="keyword">new</span> ListNode(<span class="number">1</span>);</div><div class="line">        Node.next=<span class="keyword">new</span> ListNode(<span class="number">2</span>);</div><div class="line">        System.out.println(<span class="keyword">new</span> printReverseLinklist().printListFromTailToHead(Node));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>方法1–使用Stack：</strong><br>1.遍历链表，将每个节点入栈<br>2.从栈顶逐个弹出<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Stack;</div><div class="line"><span class="comment">//链表结构定义</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    ListNode next= <span class="keyword">null</span>;</div><div class="line">    ListNode(<span class="keyword">int</span> val)&#123;</div><div class="line">        <span class="keyword">this</span>.val=val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">ArrayList&lt;Integer&gt; arrayList=<span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</div><div class="line">        Stack&lt;Integer&gt; stack=<span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        ListNode p=listNode;</div><div class="line">        <span class="keyword">while</span>(p!=<span class="keyword">null</span>)&#123;</div><div class="line">            stack.push(p.val);<span class="comment">//遍历入栈</span></div><div class="line">            p=p.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!stack.empty())&#123;</div><div class="line">            arrayList.add(stack.pop());<span class="comment">//出栈</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> arrayList;</div><div class="line">    &#125;</div><div class="line"><span class="comment">//test[1,2]</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        ListNode Node=<span class="keyword">new</span> ListNode(<span class="number">1</span>);</div><div class="line">        Node.next=<span class="keyword">new</span> ListNode(<span class="number">2</span>);</div><div class="line">        System.out.println(<span class="keyword">new</span> printReverseLinklist().printListFromTailToHead(Node));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="/images/sea2.JPG" alt=""></p>
-<blockquote>
-<p>参考书籍：《剑指offer》</p>
-</blockquote>
+        <p><code>趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。</code>  </p>
+<p>==<strong>系统：ubuntu1 16.04</strong>==  </p>
+<h5 id="1-java环境"><a href="#1-java环境" class="headerlink" title="1.java环境"></a>1.java环境</h5><p><strong>(1)在根目录下新建download和java文件夹</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> mkdir /download</span>
+<span class="meta">$</span><span class="bash"> mkdir /usr/java</span>
+</code></pre>
+<p><strong>(2)下载jdk</strong>  </p>
+<p>下载jdk至/download,jdk地址：<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>  </p>
+<p><strong>(3)将jdk解压至/usr/java</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /download</span>
+<span class="meta">$</span><span class="bash"> tar zxvf jdk-8u144-linux-x64.tar.gz -C /usr/java</span>
+</code></pre>
+<p>修改名称：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> mv jdk1.8.0_25 jdk1.8</span>
+</code></pre>
+<p><strong>(4)配置环境变量</strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/profile</span>
+</code></pre>
+<p>在文件末尾加入：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.8 </span>
+<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> JRE_HOME=<span class="variable">${JAVA_HOME}</span>/jre</span>
+<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> CLASSPATH=.:<span class="variable">${JAVA_HOME}</span>/lib:<span class="variable">${JRE_HOME}</span>/lib  </span>
+<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> PATH=<span class="variable">${JAVA_HOME}</span>/bin:<span class="variable">$PATH</span></span>
+</code></pre>
+<p>使环境变量生效：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<p>查看java环境  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> java -version</span>
+</code></pre>
+<h5 id="2-安装tomcat"><a href="#2-安装tomcat" class="headerlink" title="2.安装tomcat"></a>2.安装tomcat</h5><p><strong>(1)下载tomcat至/download</strong><br><a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">https://tomcat.apache.org/download-90.cgi</a>  </p>
+<p>解压至/usr/java:  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /download</span>
+<span class="meta">$</span><span class="bash"> tar zxvf apache-tomcat-9.0.1.tar.gz -C /usr/java</span>
+</code></pre>
+<p>修改名称：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> mv apache-tomcat-9.0.1 tomcat9</span>
+</code></pre>
+<p><strong>(2)配置环境变量</strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/profile</span>
+</code></pre>
+<p>在文件末尾加入：</p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> CATALINA_HOME=/usr/java/tomcat9</span>
+</code></pre>
+<p>使环境变量生效：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<h5 id="3-启动tomcat"><a href="#3-启动tomcat" class="headerlink" title="(3)启动tomcat"></a>(3)启动tomcat</h5><pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/java/tomcat9</span>
+<span class="meta">$</span><span class="bash"> ./bin/startup.sh</span>
+</code></pre>
+<p>打开浏览器：<a href="http://服务器ip:8080/" target="_blank" rel="external">http://服务器ip:8080/</a><br>可以看到如下界面：<br><img src="/images/tomcat1.png" alt="">  </p>
+<h5 id="3-安装mysql"><a href="#3-安装mysql" class="headerlink" title="3.安装mysql"></a>3.安装mysql</h5><p><strong>(1)安装</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> apt-get update</span>
+<span class="meta">$</span><span class="bash"> apt-get install mysql-server mysql-client libmysqlclient-dev</span>
+</code></pre>
+<p>在此安装过程中会让你输入root用户(管理MySQL数据库用户，非Linux系统用户)密码，按照要求输入即可。  </p>
+<p><strong>(2)测试安装是否成功</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo netstat -tap | grep mysql</span>
+<span class="meta">$</span><span class="bash"> mysql -u root -p</span>
+<span class="meta">$</span><span class="bash"> service mysql start</span>
+<span class="meta">$</span><span class="bash"> service mysql stop</span>
+<span class="meta">$</span><span class="bash"> service mysql restart</span>
+</code></pre>
+<p><strong>(3)修改配置文件，方便远程连接</strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/mysql/mysql.conf.d/mysqld.cnf</span>
+</code></pre>
+<p>将“bind-address = 127.0.0.1”这一行注释掉。  </p>
+<pre><code class="shell"><span class="meta">#</span><span class="bash"><span class="built_in">bind</span>-address = 127.0.0.1</span>
+</code></pre>
 
       
 
@@ -225,11 +287,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">install</a>
         		</li>
       		
 		</ul>
@@ -285,7 +351,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/30/printListFromTailToHead/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/12/javatomcatmysqlsetup/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +365,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/04/rediscli command/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/28/tensorflowinstall/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          redis-cli操作（命令）
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2017/07/14/NIO/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java NIO学习</div>
+    <a href="/2017/11/09/minNumberInRotateArray/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">旋转数组的最小数字</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -338,7 +404,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="printListFromTailToHead" data-title="从尾到头打印链表" data-url="http://yoursite.com/2017/08/30/printListFromTailToHead/"></div>
+	<div class="ds-thread" data-thread-key="javatomcatmysqlsetup" data-title="java+tomcat+mysql环境配置" data-url="http://yoursite.com/2017/11/12/javatomcatmysqlsetup/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

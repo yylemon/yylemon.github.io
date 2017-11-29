@@ -161,41 +161,28 @@
     <article id="post-tensorflowinstall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/tensorflowinstall/">ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/tensorflowinstall/" class="archive-article-date">
-  	<time datetime="2017-11-28T14:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="0-python环境（ubuntu16-04自带2-7-12"><a href="#0-python环境（ubuntu16-04自带2-7-12" class="headerlink" title="0 python环境（ubuntu16.04自带2.7.12)"></a>0 python环境（ubuntu16.04自带2.7.12)</h4><h6 id="0-1-查看python版本与安装路径"><a href="#0-1-查看python版本与安装路径" class="headerlink" title="0.1 查看python版本与安装路径"></a>0.1 查看python版本与安装路径</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> python --version  </span></div><div class="line">Python 2.7.12  </div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> python  </span></div><div class="line">/usr/bin/python</div></pre></td></tr></table></figure>
-<h6 id="0-2-安装pip"><a href="#0-2-安装pip" class="headerlink" title="0.2 安装pip"></a>0.2 安装pip</h6><p>直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip  </span></div><div class="line">The program 'pip' is currently not installed. You can install it by typing:  </div><div class="line">apt install python-pip  </div><div class="line"><span class="meta">$</span><span class="bash"> apt install python-pip</span></div></pre></td></tr></table></figure>
-<h4 id="1-gcc版本降级"><a href="#1-gcc版本降级" class="headerlink" title="1 gcc版本降级"></a>1 gcc版本降级</h4><p>由于cuda8.0不支持ubuntu16.04自带的gcc5.4.0，所以要降级到4.9  </p>
-<h6 id="1-1-查看gcc版本"><a href="#1-1-查看gcc版本" class="headerlink" title="1.1 查看gcc版本"></a>1.1 查看gcc版本</h6><pre><code>$ gcc --version
-gcc (Ubuntu 5.4.0-6ubuntu1~16.04.5) 5.4.0 20160609  
-Copyright (C) 2015 Free Software Foundation, Inc.
-</code></pre><h6 id="1-2-降级操作"><a href="#1-2-降级操作" class="headerlink" title="1.2 降级操作"></a>1.2 降级操作</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo apt-get install g++-4.9  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --<span class="built_in">set</span> cc /usr/bin/gcc  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30  </span>
-<span class="meta">$</span><span class="bash"> sudo update-alternatives --<span class="built_in">set</span> c++ /usr/bin/g++</span>
-</code></pre>
-<h6 id="1-3-再次查看版本"><a href="#1-3-再次查看版本" class="headerlink" title="1.3 再次查看版本"></a>1.3 再次查看版本</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> gcc --version</span>
+        <hr>
+<p>title: ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功<br>date: 2017-11-28 22:00  </p>
+<h2 id="tags-tensorflow-install"><a href="#tags-tensorflow-install" class="headerlink" title="tags: [tensorflow,install]"></a>tags: [tensorflow,install]</h2><h4 id="0-python环境（ubuntu16-04自带2-7-12"><a href="#0-python环境（ubuntu16-04自带2-7-12" class="headerlink" title="0 python环境（ubuntu16.04自带2.7.12)"></a>0 python环境（ubuntu16.04自带2.7.12)</h4><h6 id="0-1-查看python版本与安装路径"><a href="#0-1-查看python版本与安装路径" class="headerlink" title="0.1 查看python版本与安装路径"></a>0.1 查看python版本与安装路径</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> python --version  </span></div><div class="line">Python 2.7.12  </div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> python  </span></div><div class="line">/usr/bin/python</div></pre></td></tr></table></figure>
+<h6 id="0-2-安装pip"><a href="#0-2-安装pip" class="headerlink" title="0.2 安装pip"></a>0.2 安装pip</h6><p>直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。<br>执行安装命令后，再升级pip。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> apt-get update</span></div><div class="line"><span class="meta">$</span><span class="bash"> pip  </span></div><div class="line">The program 'pip' is currently not installed. You can install it by typing:  </div><div class="line">apt install python-pip  </div><div class="line"><span class="meta">$</span><span class="bash"> apt install python-pip</span></div><div class="line"><span class="meta">$</span><span class="bash"> python -m pip install -U pip</span></div><div class="line">```   </div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"><span class="comment">### 1 gcc版本降级  </span></span></div><div class="line">由于cuda8.0不支持ubuntu16.04自带的gcc5.4.0，所以要降级到4.9  </div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##### 1.1 查看gcc版本</span></span></div></pre></td></tr></table></figure>
+<p>$ gcc –version<br>gcc (Ubuntu 5.4.0-6ubuntu1~16.04.5) 5.4.0 20160609<br>Copyright (C) 2015 Free Software Foundation, Inc.</p>
+<pre><code>
+###### 1.2 降级操作
+
+```shell
+$ sudo apt-get install g++-4.9  
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20  
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10  
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20  
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10  
+$ sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30  
+$ sudo update-alternatives --set cc /usr/bin/gcc  
+$ sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30  
+$ sudo update-alternatives --set c++ /usr/bin/g++
+</code></pre><h6 id="1-3-再次查看版本"><a href="#1-3-再次查看版本" class="headerlink" title="1.3 再次查看版本"></a>1.3 再次查看版本</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> gcc --version</span>
 gcc (Ubuntu 4.9.3-13ubuntu2) 4.9.3
 Copyright (C) 2015 Free Software Foundation, Inc.
 </code></pre>
@@ -392,12 +379,151 @@ timeout = 120#超时时间设置
     <div class="article-info article-info-index">
       
       
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/tensorflowinstall/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-javatomcatmysqlsetup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/12/javatomcatmysqlsetup/">java+tomcat+mysql环境配置</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/12/javatomcatmysqlsetup/" class="archive-article-date">
+  	<time datetime="2017-11-12T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。</code>  </p>
+<p>==<strong>系统：ubuntu1 16.04</strong>==  </p>
+<h5 id="1-java环境"><a href="#1-java环境" class="headerlink" title="1.java环境"></a>1.java环境</h5><p><strong>(1)在根目录下新建download和java文件夹</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> mkdir /download</span>
+<span class="meta">$</span><span class="bash"> mkdir /usr/java</span>
+</code></pre>
+<p><strong>(2)下载jdk</strong>  </p>
+<p>下载jdk至/download,jdk地址：<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>  </p>
+<p><strong>(3)将jdk解压至/usr/java</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /download</span>
+<span class="meta">$</span><span class="bash"> tar zxvf jdk-8u144-linux-x64.tar.gz -C /usr/java</span>
+</code></pre>
+<p>修改名称：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> mv jdk1.8.0_25 jdk1.8</span>
+</code></pre>
+<p><strong>(4)配置环境变量</strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/profile</span>
+</code></pre>
+<p>在文件末尾加入：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.8 </span>
+<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> JRE_HOME=<span class="variable">${JAVA_HOME}</span>/jre</span>
+<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> CLASSPATH=.:<span class="variable">${JAVA_HOME}</span>/lib:<span class="variable">${JRE_HOME}</span>/lib  </span>
+<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> PATH=<span class="variable">${JAVA_HOME}</span>/bin:<span class="variable">$PATH</span></span>
+</code></pre>
+<p>使环境变量生效：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<p>查看java环境  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> java -version</span>
+</code></pre>
+<h5 id="2-安装tomcat"><a href="#2-安装tomcat" class="headerlink" title="2.安装tomcat"></a>2.安装tomcat</h5><p><strong>(1)下载tomcat至/download</strong><br><a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">https://tomcat.apache.org/download-90.cgi</a>  </p>
+<p>解压至/usr/java:  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /download</span>
+<span class="meta">$</span><span class="bash"> tar zxvf apache-tomcat-9.0.1.tar.gz -C /usr/java</span>
+</code></pre>
+<p>修改名称：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> mv apache-tomcat-9.0.1 tomcat9</span>
+</code></pre>
+<p><strong>(2)配置环境变量</strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/profile</span>
+</code></pre>
+<p>在文件末尾加入：</p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> CATALINA_HOME=/usr/java/tomcat9</span>
+</code></pre>
+<p>使环境变量生效：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<h5 id="3-启动tomcat"><a href="#3-启动tomcat" class="headerlink" title="(3)启动tomcat"></a>(3)启动tomcat</h5><pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/java/tomcat9</span>
+<span class="meta">$</span><span class="bash"> ./bin/startup.sh</span>
+</code></pre>
+<p>打开浏览器：<a href="http://服务器ip:8080/" target="_blank" rel="external">http://服务器ip:8080/</a><br>可以看到如下界面：<br><img src="/images/tomcat1.png" alt="">  </p>
+<h5 id="3-安装mysql"><a href="#3-安装mysql" class="headerlink" title="3.安装mysql"></a>3.安装mysql</h5><p><strong>(1)安装</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> apt-get update</span>
+<span class="meta">$</span><span class="bash"> apt-get install mysql-server mysql-client libmysqlclient-dev</span>
+</code></pre>
+<p>在此安装过程中会让你输入root用户(管理MySQL数据库用户，非Linux系统用户)密码，按照要求输入即可。  </p>
+<p><strong>(2)测试安装是否成功</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo netstat -tap | grep mysql</span>
+<span class="meta">$</span><span class="bash"> mysql -u root -p</span>
+<span class="meta">$</span><span class="bash"> service mysql start</span>
+<span class="meta">$</span><span class="bash"> service mysql stop</span>
+<span class="meta">$</span><span class="bash"> service mysql restart</span>
+</code></pre>
+<p><strong>(3)修改配置文件，方便远程连接</strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/mysql/mysql.conf.d/mysqld.cnf</span>
+</code></pre>
+<p>将“bind-address = 127.0.0.1”这一行注释掉。  </p>
+<pre><code class="shell"><span class="meta">#</span><span class="bash"><span class="built_in">bind</span>-address = 127.0.0.1</span>
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -411,7 +537,7 @@ timeout = 120#超时时间设置
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/tensorflowinstall/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/12/javatomcatmysqlsetup/">展开全文 >></a>
         </p>
       
 
@@ -485,11 +611,11 @@ timeout = 120#超时时间设置
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
         		</li>
       		
 		</ul>
@@ -708,11 +834,11 @@ timeout = 120#超时时间设置
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
         		</li>
       		
 		</ul>
@@ -942,11 +1068,11 @@ timeout = 120#超时时间设置
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NIO</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NIO</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
         		</li>
       		
 		</ul>
@@ -1154,7 +1280,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">practice</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1162,15 +1288,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">install</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">practice</a>
               </li>
              
               <li class="article-tag-list-item">
