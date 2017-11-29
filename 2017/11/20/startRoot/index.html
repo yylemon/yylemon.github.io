@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: moods | Grace Space</title>
+  <title>开启root账户的SSH登录 | Grace Space</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="We are all explorers trying to find ourselves.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace Space">
-<meta property="og:url" content="http://yoursite.com/tags/moods/index.html">
+  <meta name="description" content="由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html   1 安装openssh：xxx@ubuntu:~$ sudo apt-get install openssh">
+<meta name="keywords" content="install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开启root账户的SSH登录">
+<meta property="og:url" content="http://yoursite.com/2017/11/20/startRoot/index.html">
 <meta property="og:site_name" content="Grace Space">
-<meta property="og:description" content="We are all explorers trying to find ourselves.">
+<meta property="og:description" content="由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html   1 安装openssh：xxx@ubuntu:~$ sudo apt-get install openssh">
+<meta property="og:updated_time" content="2017-11-29T10:04:28.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace Space">
-<meta name="twitter:description" content="We are all explorers trying to find ourselves.">
+<meta name="twitter:title" content="开启root账户的SSH登录">
+<meta name="twitter:description" content="由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html   1 安装openssh：xxx@ubuntu:~$ sudo apt-get install openssh">
   
     <link rel="alternative" href="/atom.xml" title="Grace Space" type="application/atom+xml">
   
@@ -152,206 +154,193 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-startRoot" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开启root账户的SSH登录
+    </h1>
+  
+
+        
+        <a href="/2017/11/20/startRoot/" class="archive-article-date">
+  	<time datetime="2017-11-20T14:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。<br>方法主要借鉴于：<br><a href="https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html" target="_blank" rel="external">https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html</a>  </p>
+<h5 id="1-安装openssh："><a href="#1-安装openssh：" class="headerlink" title="1 安装openssh："></a>1 安装openssh：</h5><pre><code class="shell">xxx@ubuntu:~$ sudo apt-get install openssh-server
+</code></pre>
+<h5 id="2-修改root密码"><a href="#2-修改root密码" class="headerlink" title="2 修改root密码"></a>2 修改root密码</h5><pre><code class="shell">xxx@ubuntu:~$ sudo passwd root
+</code></pre>
+<h5 id="3-切换为root用户，修改config："><a href="#3-切换为root用户，修改config：" class="headerlink" title="3 切换为root用户，修改config："></a>3 切换为root用户，修改config：</h5><pre><code class="shell">xxx@ubuntu:~$ su - root   #切换到root账户
+Password:                 #输入第二步修改的root密码
+root@ubuntu:~# vim /etc/ssh/sshd_config
+</code></pre>
+<p>找到下面这段代码，注释掉“PermitRootLogin prohibit-password”，添加“PermitRootLogin yes”  </p>
+<pre><code class="shell"><span class="meta">#</span><span class="bash"> Authentication: </span>
+LoginGraceTime 120 
+<span class="meta">#</span><span class="bash">PermitRootLogin prohibit-password</span>
+PermitRootLogin yes 
+StrictModes yes
+</code></pre>
+<h5 id="4-重启ssh服务"><a href="#4-重启ssh服务" class="headerlink" title="4 重启ssh服务"></a>4 重启ssh服务</h5><pre><code class="shell">root@ubuntu:~# sudo service ssh restart 
+root@ubuntu:~#
+</code></pre>
+<p>完毕，可以使用root账户直接ssh登录服务器</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/minNumberInRotateArray/" class="archive-article-date">
-  	<time datetime="2017-11-09T13:33:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/09/minNumberInRotateArray/">旋转数组的最小数字</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">install</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/20/startRoot/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/rediscli command/" class="archive-article-date">
-  	<time datetime="2017-09-04T08:54:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/11/28/tensorflowinstall/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/12/javatomcatmysqlsetup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java+tomcat+mysql环境配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/rediscli command/">redis-cli操作（命令）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">records</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/30/printListFromTailToHead/" class="archive-article-date">
-  	<time datetime="2017-08-30T09:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/30/printListFromTailToHead/">从尾到头打印链表</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/14/NIO/" class="archive-article-date">
-  	<time datetime="2017-07-14T06:51:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/14/NIO/">Java NIO学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NIO</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -374,9 +363,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
