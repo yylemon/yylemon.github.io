@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功 | Grace Space</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后你，再升级pip。   123456$ apt-get u">
+  <meta name="description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。   123456$ apt-get up">
 <meta name="keywords" content="install,tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功">
 <meta property="og:url" content="http://yoursite.com/2017/11/28/tensorflowinstall/index.html">
 <meta property="og:site_name" content="Grace Space">
-<meta property="og:description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后你，再升级pip。   123456$ apt-get u">
+<meta property="og:description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。   123456$ apt-get up">
 <meta property="og:image" content="http://yoursite.com/images/tensorflow1.png">
 <meta property="og:image" content="http://yoursite.com/images/tensorflow2.png">
 <meta property="og:image" content="http://yoursite.com/images/tensorflow3.png">
-<meta property="og:updated_time" content="2017-11-29T09:19:46.751Z">
+<meta property="og:updated_time" content="2017-11-29T09:21:19.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功">
-<meta name="twitter:description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后你，再升级pip。   123456$ apt-get u">
+<meta name="twitter:description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。   123456$ apt-get up">
 <meta name="twitter:image" content="http://yoursite.com/images/tensorflow1.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace Space" type="application/atom+xml">
@@ -179,7 +179,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="0-python环境（ubuntu16-04自带2-7-12"><a href="#0-python环境（ubuntu16-04自带2-7-12" class="headerlink" title="0 python环境（ubuntu16.04自带2.7.12)"></a>0 python环境（ubuntu16.04自带2.7.12)</h4><h6 id="0-1-查看python版本与安装路径"><a href="#0-1-查看python版本与安装路径" class="headerlink" title="0.1 查看python版本与安装路径"></a>0.1 查看python版本与安装路径</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> python --version  </span></div><div class="line">Python 2.7.12  </div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> python  </span></div><div class="line">/usr/bin/python</div></pre></td></tr></table></figure>
-<h6 id="0-2-安装pip"><a href="#0-2-安装pip" class="headerlink" title="0.2 安装pip"></a>0.2 安装pip</h6><p>直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后你，再升级pip。  </p>
+<h6 id="0-2-安装pip"><a href="#0-2-安装pip" class="headerlink" title="0.2 安装pip"></a>0.2 安装pip</h6><p>直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> apt-get update</span></div><div class="line"><span class="meta">$</span><span class="bash"> pip  </span></div><div class="line">The program 'pip' is currently not installed. You can install it by typing:  </div><div class="line">apt install python-pip  </div><div class="line"><span class="meta">$</span><span class="bash"> apt install python-pip</span></div><div class="line"><span class="meta">$</span><span class="bash"> python -m pip install -U pip</span></div></pre></td></tr></table></figure>
 <h4 id="1-gcc版本降级"><a href="#1-gcc版本降级" class="headerlink" title="1 gcc版本降级"></a>1 gcc版本降级</h4><p>由于cuda8.0不支持ubuntu16.04自带的gcc5.4.0，所以要降级到4.9  </p>
 <h6 id="1-1-查看gcc版本"><a href="#1-1-查看gcc版本" class="headerlink" title="1.1 查看gcc版本"></a>1.1 查看gcc版本</h6><pre><code>$ gcc --version
@@ -642,11 +642,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">records</a>
+                <a href="javascript:void(0)" class="js-tag color4">practice</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">practice</a>
+                <a href="javascript:void(0)" class="js-tag color3">records</a>
               </li>
              
               <li class="article-tag-list-item">
