@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/images/tensorflow1.png">
 <meta property="og:image" content="http://yoursite.com/images/tensorflow2.png">
 <meta property="og:image" content="http://yoursite.com/images/tensorflow3.png">
-<meta property="og:updated_time" content="2017-11-29T09:21:19.160Z">
+<meta property="og:updated_time" content="2017-11-29T11:14:03.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功">
 <meta name="twitter:description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。   123456$ apt-get up">
@@ -228,6 +228,10 @@ DISTRIB_RELEASE=16.04
 options nouveau modeset=0
 </code></pre>
 <p>保存退出(:wq)，再执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo update-initramfs -u</span>
+<span class="meta">$</span><span class="bash"> sudo reboot</span>
+</code></pre>
+<p>重启后：  </p>
 <pre><code class="shell"><span class="meta">$</span><span class="bash"> lsmod | grep nouveau</span>
 </code></pre>
 <p>若无内容输出，则禁用成功。  </p>
@@ -646,11 +650,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+                <a href="javascript:void(0)" class="js-tag color3">records</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">records</a>
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
             
             <div class="clearfix"></div>

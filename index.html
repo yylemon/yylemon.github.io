@@ -224,6 +224,10 @@ DISTRIB_RELEASE=16.04
 options nouveau modeset=0
 </code></pre>
 <p>保存退出(:wq)，再执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo update-initramfs -u</span>
+<span class="meta">$</span><span class="bash"> sudo reboot</span>
+</code></pre>
+<p>重启后：  </p>
 <pre><code class="shell"><span class="meta">$</span><span class="bash"> lsmod | grep nouveau</span>
 </code></pre>
 <p>若无内容输出，则禁用成功。  </p>
@@ -1421,11 +1425,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+                <a href="javascript:void(0)" class="js-tag color3">records</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">records</a>
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
             
             <div class="clearfix"></div>
