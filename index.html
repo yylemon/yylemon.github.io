@@ -228,29 +228,27 @@
         <span class="keyword">return</span> tree[<span class="number">0</span>];
     }
     <span class="comment">//按层打印二叉树</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTree</span><span class="params">(TreeNode tree)</span> </span>{
-        Queue queue = <span class="keyword">new</span> LinkedList();
-        TreeNode last = <span class="keyword">null</span>;
-        TreeNode nlast = <span class="keyword">null</span>;
-        TreeNode tmpNode = <span class="keyword">null</span>;
-        queue.add(tree);
-        last = tree;
-        <span class="keyword">while</span> (!queue.isEmpty()) {
-            tmpNode = (TreeNode) queue.poll();
-            <span class="keyword">if</span> (<span class="keyword">null</span> != tmpNode.left) {
-                queue.add(tmpNode.left);
-                nlast = tmpNode.left;
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTree2</span><span class="params">(TreeNode root)</span></span>{
+        Queue&lt;TreeNode&gt; queue=<span class="keyword">new</span> LinkedList&lt;&gt;();
+        <span class="keyword">if</span>(root!=<span class="keyword">null</span>) queue.add(root);
+        <span class="keyword">int</span> nextLevel=<span class="number">0</span>;
+        <span class="keyword">int</span> toBePrinted=<span class="number">1</span>;
+        <span class="keyword">while</span>(queue.size()!=<span class="number">0</span>){
+            root=queue.poll();
+            toBePrinted--;
+            System.out.print(root.val+<span class="string">" "</span>);
+            <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>){
+                queue.add(root.left);
+                nextLevel++;
             }
-            <span class="keyword">if</span> (<span class="keyword">null</span> != tmpNode.right) {
-                queue.add(tmpNode.right);
-                nlast = tmpNode.right;
+            <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>){
+                queue.add(root.right);
+                nextLevel++;
             }
-            System.out.print(tmpNode.val+<span class="string">" "</span>);
-            <span class="keyword">if</span> (tmpNode.equals(last)) {
-                System.out.print(<span class="string">"\n"</span>);
-                last = nlast;
-            } <span class="keyword">else</span> {
-                <span class="keyword">continue</span>;
+            <span class="keyword">if</span>(toBePrinted==<span class="number">0</span>){
+                System.out.println();
+                toBePrinted=nextLevel;
+                nextLevel=<span class="number">0</span>;
             }
         }
     }
@@ -1738,14 +1736,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">moods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
@@ -1758,15 +1748,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">moods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">practice</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">records</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
             
             <div class="clearfix"></div>

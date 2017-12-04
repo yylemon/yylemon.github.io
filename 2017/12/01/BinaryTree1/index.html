@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/01/BinaryTree1/index.html">
 <meta property="og:site_name" content="Grace Space">
 <meta property="og:description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做，递归一直都是我的弱项……TT…   在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。   其中，后序遍历的非递归方法是来自这篇文章：http://www.jianshu.com/p/49c">
-<meta property="og:updated_time" content="2017-12-01T14:30:43.761Z">
+<meta property="og:updated_time" content="2017-12-04T13:06:40.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java实现二叉树的创建与四种遍历的递归&#x2F;非递归">
 <meta name="twitter:description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做，递归一直都是我的弱项……TT…   在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。   其中，后序遍历的非递归方法是来自这篇文章：http://www.jianshu.com/p/49c">
@@ -228,29 +228,27 @@
         <span class="keyword">return</span> tree[<span class="number">0</span>];
     }
     <span class="comment">//按层打印二叉树</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTree</span><span class="params">(TreeNode tree)</span> </span>{
-        Queue queue = <span class="keyword">new</span> LinkedList();
-        TreeNode last = <span class="keyword">null</span>;
-        TreeNode nlast = <span class="keyword">null</span>;
-        TreeNode tmpNode = <span class="keyword">null</span>;
-        queue.add(tree);
-        last = tree;
-        <span class="keyword">while</span> (!queue.isEmpty()) {
-            tmpNode = (TreeNode) queue.poll();
-            <span class="keyword">if</span> (<span class="keyword">null</span> != tmpNode.left) {
-                queue.add(tmpNode.left);
-                nlast = tmpNode.left;
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTree2</span><span class="params">(TreeNode root)</span></span>{
+        Queue&lt;TreeNode&gt; queue=<span class="keyword">new</span> LinkedList&lt;&gt;();
+        <span class="keyword">if</span>(root!=<span class="keyword">null</span>) queue.add(root);
+        <span class="keyword">int</span> nextLevel=<span class="number">0</span>;
+        <span class="keyword">int</span> toBePrinted=<span class="number">1</span>;
+        <span class="keyword">while</span>(queue.size()!=<span class="number">0</span>){
+            root=queue.poll();
+            toBePrinted--;
+            System.out.print(root.val+<span class="string">" "</span>);
+            <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>){
+                queue.add(root.left);
+                nextLevel++;
             }
-            <span class="keyword">if</span> (<span class="keyword">null</span> != tmpNode.right) {
-                queue.add(tmpNode.right);
-                nlast = tmpNode.right;
+            <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>){
+                queue.add(root.right);
+                nextLevel++;
             }
-            System.out.print(tmpNode.val+<span class="string">" "</span>);
-            <span class="keyword">if</span> (tmpNode.equals(last)) {
-                System.out.print(<span class="string">"\n"</span>);
-                last = nlast;
-            } <span class="keyword">else</span> {
-                <span class="keyword">continue</span>;
+            <span class="keyword">if</span>(toBePrinted==<span class="number">0</span>){
+                System.out.println();
+                toBePrinted=nextLevel;
+                nextLevel=<span class="number">0</span>;
             }
         }
     }
@@ -672,14 +670,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">moods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
@@ -692,15 +682,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">moods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">practice</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">records</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
             
             <div class="clearfix"></div>
