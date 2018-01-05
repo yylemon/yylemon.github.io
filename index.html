@@ -1635,6 +1635,95 @@ root@ubuntu:~#
 
 
   
+    <article id="post-wangluomianshi1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/wangluomianshi1/">面试常考-计算机网络-1</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/05/wangluomianshi1/" class="archive-article-date">
+  	<time datetime="2017-01-05T02:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面试中有一些常常考到的计算机网络相关知识，今天整理一点。  </p>
+<h5 id="1-三次握手（TCP的连接建立）"><a href="#1-三次握手（TCP的连接建立）" class="headerlink" title="1 三次握手（TCP的连接建立）"></a>1 三次握手（TCP的连接建立）</h5><p><img src="/images/network1.png" width="50%" height="50%">  </p>
+<ol>
+<li>一开始，客户端A和服务器B都是关闭(CLOSED)状态。<br>A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。   </li>
+<li><strong>A向B发送连接请求报文段</strong>：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。<br><strong>(SYN=1的报文段不能携带数据，但会消耗一个序号)</strong></li>
+<li>B收到连接请求报文段后，如果同意连接，<strong>B会向A发送确认报文段</strong>：将同步位SYN置1，确认位ACK置1，确认号ack=x+1，同时选择一个初始序号seq=y。然后B会进入“同步已接收(SYN-RCVD)”状态。<br><strong>(这个报文段同样要消耗一个序号)</strong></li>
+<li>A收到B的确认后，还需要向B给出确认。<strong>A向B发送确认报文段</strong>，报文段的ACK位置1，确认号ack=y+1，自己的序号seq=x+1(前面消耗了一个序号)。然后A会进入“已建立连接”状态。B收到确认后，也会进入“已建立连接”状态。<br><strong>(TCP规定ACK报文段可以携带数据，但如果不携带数据，则不消耗序号，所以这里没有携带数据的话，下一个A发出的数据报文段的序号seq=x+1)</strong><br>这时，连接建立完成。</li>
+</ol>
+<ul>
+<li>ASK：为什么要进行第三次握手（A为什么还要发送一次确认）？</li>
+<li>ANSWER：这是为了防止“已失效的连接请求报文段突然传送到B”。假如第一次A发出的连接请求报文段中途在某些网络节点滞留(并未丢失)，在长时间未接收到B的确认报文后，A会进行重传。假设重传的报文段顺利到达B，与B完成了连接。这时，B收到了A的第一次请求报文，以为是A的一次新的请求，B会再次A发送确认报文，同意建立连接。如果没有第三次握手（A的再一次确认），新的连接(无用的)就会建立，这样会白白浪费B的资源。而有第三次握手，A对于B的确认会不予回应，这时B由于收不到A的再次确认，就知道A并没有要求连接了，连接也就不会建立。</li>
+</ul>
+<h5 id="四次挥手（握手-分手）"><a href="#四次挥手（握手-分手）" class="headerlink" title="四次挥手（握手/分手）"></a>四次挥手（握手/分手）</h5><h5 id="网络有几层协议？"><a href="#网络有几层协议？" class="headerlink" title="网络有几层协议？"></a>网络有几层协议？</h5><h5 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/05/wangluomianshi1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
@@ -1645,7 +1734,7 @@ root@ubuntu:~#
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Gracee
+    		&copy; 2018 Gracee
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1732,7 +1821,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">moods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">practice</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1748,19 +1845,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">moods</a>
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">practice</a>
               </li>
              
               <li class="article-tag-list-item">

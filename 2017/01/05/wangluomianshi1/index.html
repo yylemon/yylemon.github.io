@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/8 | Grace Space</title>
+  <title>面试常考-计算机网络-1 | Grace Space</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="We are all explorers trying to find ourselves.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace Space">
-<meta property="og:url" content="http://yoursite.com/archives/2017/08/index.html">
+  <meta name="description" content="面试中有一些常常考到的计算机网络相关知识，今天整理一点。   1 三次握手（TCP的连接建立）    一开始，客户端A和服务器B都是关闭(CLOSED)状态。A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。    A向B发送连接请求报文段：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。(SYN=1的报文段不能携带数据">
+<meta name="keywords" content="java,tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试常考-计算机网络-1">
+<meta property="og:url" content="http://yoursite.com/2017/01/05/wangluomianshi1/index.html">
 <meta property="og:site_name" content="Grace Space">
-<meta property="og:description" content="We are all explorers trying to find ourselves.">
+<meta property="og:description" content="面试中有一些常常考到的计算机网络相关知识，今天整理一点。   1 三次握手（TCP的连接建立）    一开始，客户端A和服务器B都是关闭(CLOSED)状态。A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。    A向B发送连接请求报文段：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。(SYN=1的报文段不能携带数据">
+<meta property="og:image" content="http://yoursite.com/images/network1.png">
+<meta property="og:updated_time" content="2018-01-05T14:12:53.830Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace Space">
-<meta name="twitter:description" content="We are all explorers trying to find ourselves.">
+<meta name="twitter:title" content="面试常考-计算机网络-1">
+<meta name="twitter:description" content="面试中有一些常常考到的计算机网络相关知识，今天整理一点。   1 三次握手（TCP的连接建立）    一开始，客户端A和服务器B都是关闭(CLOSED)状态。A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。    A向B发送连接请求报文段：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。(SYN=1的报文段不能携带数据">
+<meta name="twitter:image" content="http://yoursite.com/images/network1.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace Space" type="application/atom+xml">
   
@@ -152,36 +156,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-wangluomianshi1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/30/printListFromTailToHead/" class="archive-article-date">
-  	<time datetime="2017-08-30T09:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/30/printListFromTailToHead/">从尾到头打印链表</a>
+    <h1 class="article-title" itemprop="name">
+      面试常考-计算机网络-1
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/01/05/wangluomianshi1/" class="archive-article-date">
+  	<time datetime="2017-01-05T02:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面试中有一些常常考到的计算机网络相关知识，今天整理一点。  </p>
+<h5 id="1-三次握手（TCP的连接建立）"><a href="#1-三次握手（TCP的连接建立）" class="headerlink" title="1 三次握手（TCP的连接建立）"></a>1 三次握手（TCP的连接建立）</h5><p><img src="/images/network1.png" width="50%" height="50%">  </p>
+<ol>
+<li>一开始，客户端A和服务器B都是关闭(CLOSED)状态。<br>A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。   </li>
+<li><strong>A向B发送连接请求报文段</strong>：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。<br><strong>(SYN=1的报文段不能携带数据，但会消耗一个序号)</strong></li>
+<li>B收到连接请求报文段后，如果同意连接，<strong>B会向A发送确认报文段</strong>：将同步位SYN置1，确认位ACK置1，确认号ack=x+1，同时选择一个初始序号seq=y。然后B会进入“同步已接收(SYN-RCVD)”状态。<br><strong>(这个报文段同样要消耗一个序号)</strong></li>
+<li>A收到B的确认后，还需要向B给出确认。<strong>A向B发送确认报文段</strong>，报文段的ACK位置1，确认号ack=y+1，自己的序号seq=x+1(前面消耗了一个序号)。然后A会进入“已建立连接”状态。B收到确认后，也会进入“已建立连接”状态。<br><strong>(TCP规定ACK报文段可以携带数据，但如果不携带数据，则不消耗序号，所以这里没有携带数据的话，下一个A发出的数据报文段的序号seq=x+1)</strong><br>这时，连接建立完成。</li>
+</ol>
+<ul>
+<li>ASK：为什么要进行第三次握手（A为什么还要发送一次确认）？</li>
+<li>ANSWER：这是为了防止“已失效的连接请求报文段突然传送到B”。假如第一次A发出的连接请求报文段中途在某些网络节点滞留(并未丢失)，在长时间未接收到B的确认报文后，A会进行重传。假设重传的报文段顺利到达B，与B完成了连接。这时，B收到了A的第一次请求报文，以为是A的一次新的请求，B会再次A发送确认报文，同意建立连接。如果没有第三次握手（A的再一次确认），新的连接(无用的)就会建立，这样会白白浪费B的资源。而有第三次握手，A对于B的确认会不予回应，这时B由于收不到A的再次确认，就知道A并没有要求连接了，连接也就不会建立。</li>
+</ul>
+<h5 id="四次挥手（握手-分手）"><a href="#四次挥手（握手-分手）" class="headerlink" title="四次挥手（握手/分手）"></a>四次挥手（握手/分手）</h5><h5 id="网络有几层协议？"><a href="#网络有几层协议？" class="headerlink" title="网络有几层协议？"></a>网络有几层协议？</h5><h5 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h5>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,29 +226,114 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">moods</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">practice</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/05/wangluomianshi1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/07/13/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -236,8 +356,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
