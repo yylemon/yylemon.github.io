@@ -157,37 +157,26 @@
     <article id="post-wangluomianshi1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/05/wangluomianshi1/">TCP的三次握手与四次挥手</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/05/wangluomianshi1/" class="archive-article-date">
-  	<time datetime="2018-01-05T02:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-05</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>面试中有一些常常考到的计算机网络相关知识，今天整理一点。  </p>
-<h5 id="三次握手（TCP的连接建立）"><a href="#三次握手（TCP的连接建立）" class="headerlink" title="三次握手（TCP的连接建立）"></a>三次握手（TCP的连接建立）</h5><p><img src="/images/network1.jpg" width="75%" height="75%">  </p>
-<ol>
-<li>一开始，客户端A和服务器B都是关闭(CLOSED)状态。<br>A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。   </li>
-<li><strong>A向B发送连接请求报文段</strong>：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。<br><strong>(SYN=1的报文段不能携带数据，但会消耗一个序号)</strong></li>
-<li>B收到连接请求报文段后，如果同意连接，<strong>B会向A发送确认报文段</strong>：将同步位SYN置1，确认位ACK置1，确认号ack=x+1，同时选择一个初始序号seq=y。然后B会进入“同步已接收(SYN-RCVD)”状态。<br><strong>(这个报文段同样要消耗一个序号)</strong></li>
-<li>A收到B的确认后，还需要向B给出确认。<strong>A向B发送确认报文段</strong>，报文段的ACK位置1，确认号ack=y+1，自己的序号seq=x+1(前面消耗了一个序号)。然后A会进入“已建立连接”状态。B收到确认后，也会进入“已建立连接”状态。<br><strong>(TCP规定ACK报文段可以携带数据，但如果不携带数据，则不消耗序号，所以这里没有携带数据的话，下一个A发出的数据报文段的序号seq=x+1)</strong><br>这时，连接建立完成。</li>
-</ol>
+        <hr>
+<p>title: TCP的三次握手与四次挥手<br>date: 2018-01-05 10:38  </p>
+<h2 id="tags-interview-TCP"><a href="#tags-interview-TCP" class="headerlink" title="tags: [interview,TCP]"></a>tags: [interview,TCP]</h2><h5 id="三次握手（TCP的连接建立）"><a href="#三次握手（TCP的连接建立）" class="headerlink" title="三次握手（TCP的连接建立）"></a>三次握手（TCP的连接建立）</h5><p><img src="/images/network1.jpg" width="75%" height="75%">  </p>
+<p>0.一开始，客户端A和服务器B都是关闭(CLOSED)状态。<br>A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。<br>1.<strong>A向B发送连接请求报文段</strong>：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。<br><strong>(SYN=1的报文段不能携带数据，但会消耗一个序号)</strong>  </p>
+<p>2.B收到连接请求报文段后，如果同意连接，<strong>B会向A发送确认报文段</strong>：将同步位SYN置1，确认位ACK置1，确认号ack=x+1，同时选择一个初始序号seq=y。然后B会进入“同步已接收(SYN-RCVD)”状态。<br><strong>(这个报文段同样要消耗一个序号)</strong>  </p>
+<p>3.A收到B的确认后，还需要向B给出确认。<strong>A向B发送确认报文段</strong>，报文段的ACK位置1，确认号ack=y+1，自己的序号seq=x+1(前面消耗了一个序号)。然后A会进入“已建立连接”状态。B收到确认后，也会进入“已建立连接”状态。<br><strong>(TCP规定ACK报文段可以携带数据，但如果不携带数据，则不消耗序号，所以这里没有携带数据的话，下一个A发出的数据报文段的序号seq=x+1)</strong><br>这时，连接建立完成。</p>
 <ul>
 <li>ASK：为什么要进行第三次握手（A为什么还要发送一次确认）？</li>
 <li>ANSWER：这是为了防止“已失效的连接请求报文段突然传送到B”。假如第一次A发出的连接请求报文段中途在某些网络节点滞留(并未丢失)，在长时间未接收到B的确认报文后，A会进行重传。假设重传的报文段顺利到达B，与B完成了连接。这时，B收到了A的第一次请求报文，以为是A的一次新的请求，B会再次A发送确认报文，同意建立连接。如果没有第三次握手（A的再一次确认），新的连接(无用的)就会建立，这样会白白浪费B的资源。而有第三次握手，A对于B的确认会不予回应，这时B由于收不到A的再次确认，就知道A并没有要求连接了，连接也就不会建立。</li>
 </ul>
 <h5 id="四次挥手-握手-分手（TCP的连接释放）"><a href="#四次挥手-握手-分手（TCP的连接释放）" class="headerlink" title="四次挥手/握手/分手（TCP的连接释放）"></a>四次挥手/握手/分手（TCP的连接释放）</h5><p><img src="/images/network2.jpg" width="75%" height="75%">        </p>
-<p>0.客户端A和服务器端B都为已连接(ESTABLISHED)状态。<br>1.<strong>A向B发出连接释放报文段</strong>，主动关闭TCP连接：将报文段首部的终止位FIN置为1，<strong>seq=u</strong>（假设上一次A传送的数据报的最后一个字节的序号+1=u）。然后A进入终止等待1(FIN-WAIT-1)状态。 (携带FIN=1的报文段会消耗一个序号)<br>2.B收到A发出的连接释放报文段后:<br>–<strong>需向A发送确认报文</strong>：ACK确认位置1，确认号ack=u+1，<strong>seq=v</strong>（假设上一次B传送的数据报的最后一个字节的序号+1=v）。<br>–TCP服务器进程向高层应用进程通知：A-&gt;B的TCP连接释放，TCP处于半关闭状态。A不会再向B发送数据，但B可以向A发送数据，且A仍要接收。  然后：B进入等待关闭(WAIT-CLOSED)状态。<br>3.A收到B的确认报文后，进入终止等待2(FIN-WAIT-2)状态：等待B的释放连接报文。<br>4.当B已经没有数据要向A发送了:<br>–应用进程向TCP服务器进程通知：B已经无数据发送，请释放TCP连接。B被动释放连接。<br>–<strong>B向A发送释放连接报文段</strong>：将FIN位置1，seq-w(B可能又向A发送了数据，设上一次发送数据最后一个字节序号+1=w)；重发ACK=1，ack=u+1。  然后B进入最后确认(LAST-ACK)状态。<br>5.收到B的连接释放报文段后，<strong>A需要向B发出确认</strong>：ACK=1,确认号ack=w+1，序号seq=u+1(上一次A发出连接释放报文段时占用了一个序号)。A进入等待(TIME-WAIT)状态，需要等待2*MSL(最长报文段生命)的时间。<br>6.B收到A的确认报文后，先进入关闭(CLOSED)状态；<br>  A在2MSL时间后，也进入关闭(CLOSED)状态。  </p>
+<p>0.客户端A和服务器端B都为已连接(ESTABLISHED)状态。  </p>
+<p>1.<strong>A向B发出连接释放报文段</strong>，主动关闭TCP连接：将报文段首部的终止位FIN置为1，<strong>seq=u</strong>（假设上一次A传送的数据报的最后一个字节的序号+1=u）。然后A进入终止等待1(FIN-WAIT-1)状态。 (携带FIN=1的报文段会消耗一个序号)  </p>
+<p>2.B收到A发出的连接释放报文段后:<br>==&gt;<strong>需向A发送确认报文</strong>：ACK确认位置1，确认号ack=u+1，<strong>seq=v</strong>（假设上一次B传送的数据报的最后一个字节的序号+1=v）。<br>==&gt;TCP服务器进程向高层应用进程通知：A-&gt;B的TCP连接释放，TCP处于半关闭状态。A不会再向B发送数据，但B可以向A发送数据，且A仍要接收。<br>然后：B进入等待关闭(WAIT-CLOSED)状态。  </p>
+<p>3.A收到B的确认报文后，进入终止等待2(FIN-WAIT-2)状态：等待B的释放连接报文。   </p>
+<p>4.当B已经没有数据要向A发送了:<br>==&gt;应用进程向TCP服务器进程通知：B已经无数据发送，请释放TCP连接。B被动释放连接。<br>==&gt;<strong>B向A发送释放连接报文段</strong>：将FIN位置1，seq-w(B可能又向A发送了数据，设上一次发送数据最后一个字节序号+1=w)；重发ACK=1，ack=u+1。  然后B进入最后确认(LAST-ACK)状态。  </p>
+<p>5.收到B的连接释放报文段后，<strong>A需要向B发出确认</strong>：ACK=1,确认号ack=w+1，序号seq=u+1(上一次A发出连接释放报文段时占用了一个序号)。A进入等待(TIME-WAIT)状态，需要等待2*MSL(最长报文段生命)的时间。  </p>
+<p>6.B收到A的确认报文后，先进入关闭(CLOSED)状态；<br>  A在2MSL时间后，也进入关闭(CLOSED)状态。  </p>
 <ul>
 <li>ASK：为什么A必须等待2MSL时间？</li>
 <li>ANSWER：<br>（1）为了确保A-&gt;B最后发送的ACK报文段能够到达。假设该A向B发送ACK报文段后就立即进入CLOSED状态，而ACK报文段未顺利到达B，在超时未收到A的ACK报文段时，B会重发前面的连接释放报文段，而这时A已经关闭了，这样会导致B无法顺便关闭。<br>（2）防止 “已失效的连接请求报文段”出现在本连接中。A 在发送完最后一个 ACK 报文段后，再经过时间 2MSL，就可以使本连接持续的时间内所产生的所有报文段，都从网络中消失。这样就可以使下一个新的连接中不会出现这种旧的连接请求报文段。</li>
@@ -200,21 +189,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TCP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -1839,10 +1813,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">practice</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
@@ -1855,19 +1825,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">practice</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">records</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">TCP</a>
               </li>
             
             <div class="clearfix"></div>
