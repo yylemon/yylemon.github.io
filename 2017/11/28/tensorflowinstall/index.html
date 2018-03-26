@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功 | Grace Space</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。   123456$ apt-get up">
+<meta name="keywords" content="install,tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功">
+<meta property="og:url" content="http://gracee.xin/2017/11/28/tensorflowinstall/index.html">
+<meta property="og:site_name" content="Grace Space">
+<meta property="og:description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。   123456$ apt-get up">
+<meta property="og:image" content="http://gracee.xin/images/tensorflow1.png">
+<meta property="og:image" content="http://gracee.xin/images/tensorflow2.png">
+<meta property="og:image" content="http://gracee.xin/images/tensorflow3.png">
+<meta property="og:updated_time" content="2017-11-29T11:15:58.787Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功">
+<meta name="twitter:description" content="0 python环境（ubuntu16.04自带2.7.12)0.1 查看python版本与安装路径1234$ python --version  Python 2.7.12  $ which python  /usr/bin/python 0.2 安装pip直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。   123456$ apt-get up">
+<meta name="twitter:image" content="http://gracee.xin/images/tensorflow1.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Grace Space</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar1.JPG" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar1.JPG" />
+            <h2 id="name">Gracee</h2>
+            <h3 id="title">Java &amp; Python</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Wuhan, China</span>
+            <a id="follow" target="_blank" href="https://github.com/GraceYYJ">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                12
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/GraceYYJ" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-tensorflowinstall" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/11/28/tensorflowinstall/">
+            <time datetime="2017-11-28T14:00:00.000Z" itemprop="datePublished">2017-11-28</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/install/">install</a>, <a class="tag-link" href="/tags/tensorflow/">tensorflow</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h4 id="0-python环境（ubuntu16-04自带2-7-12"><a href="#0-python环境（ubuntu16-04自带2-7-12" class="headerlink" title="0 python环境（ubuntu16.04自带2.7.12)"></a>0 python环境（ubuntu16.04自带2.7.12)</h4><h6 id="0-1-查看python版本与安装路径"><a href="#0-1-查看python版本与安装路径" class="headerlink" title="0.1 查看python版本与安装路径"></a>0.1 查看python版本与安装路径</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> python --version  </span></div><div class="line">Python 2.7.12  </div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> python  </span></div><div class="line">/usr/bin/python</div></pre></td></tr></table></figure>
+<h6 id="0-2-安装pip"><a href="#0-2-安装pip" class="headerlink" title="0.2 安装pip"></a>0.2 安装pip</h6><p>直接键入pip，会提示pip未安装，并给出安装命令，按命令执行即可。执行安装命令后，再升级pip。  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> apt-get update</span></div><div class="line"><span class="meta">$</span><span class="bash"> pip  </span></div><div class="line">The program 'pip' is currently not installed. You can install it by typing:  </div><div class="line">apt install python-pip  </div><div class="line"><span class="meta">$</span><span class="bash"> apt install python-pip</span></div><div class="line"><span class="meta">$</span><span class="bash"> python -m pip install -U pip</span></div></pre></td></tr></table></figure>
+<h4 id="1-gcc版本降级"><a href="#1-gcc版本降级" class="headerlink" title="1 gcc版本降级"></a>1 gcc版本降级</h4><p>由于cuda8.0不支持ubuntu16.04自带的gcc5.4.0，所以要降级到4.9  </p>
+<h6 id="1-1-查看gcc版本"><a href="#1-1-查看gcc版本" class="headerlink" title="1.1 查看gcc版本"></a>1.1 查看gcc版本</h6><pre><code>$ gcc --version
+gcc (Ubuntu 5.4.0-6ubuntu1~16.04.5) 5.4.0 20160609  
+Copyright (C) 2015 Free Software Foundation, Inc.
+</code></pre><h6 id="1-2-降级操作"><a href="#1-2-降级操作" class="headerlink" title="1.2 降级操作"></a>1.2 降级操作</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo apt-get install g++-4.9  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --<span class="built_in">set</span> cc /usr/bin/gcc  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30  </span>
+<span class="meta">$</span><span class="bash"> sudo update-alternatives --<span class="built_in">set</span> c++ /usr/bin/g++</span>
+</code></pre>
+<h6 id="1-3-再次查看版本"><a href="#1-3-再次查看版本" class="headerlink" title="1.3 再次查看版本"></a>1.3 再次查看版本</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> gcc --version</span>
+gcc (Ubuntu 4.9.3-13ubuntu2) 4.9.3
+Copyright (C) 2015 Free Software Foundation, Inc.
+</code></pre>
+<h4 id="2-cuda8-0安装"><a href="#2-cuda8-0安装" class="headerlink" title="2 cuda8.0安装"></a>2 cuda8.0安装</h4><p>cuda安装的步骤主要来源于以下链接，博主写的流程很清晰，一遍过！<br><a href="http://www.jianshu.com/p/35c7fde85968?from=singlemessage" target="_blank" rel="external">http://www.jianshu.com/p/35c7fde85968?from=singlemessage</a> </p>
+<h6 id="2-1-验证"><a href="#2-1-验证" class="headerlink" title="2.1 验证"></a>2.1 验证</h6><p><strong>2.1.1 Verify you have a CUDA-Capable GPU  </strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> lspci | grep -i nvidia  </span>
+04:00.0 3D controller: NVIDIA Corporation GK110BGL [Tesla K40m] (rev a1)
+</code></pre>
+<p><strong>2.1.2 Verify you have a Supported Version of Linux  </strong></p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> uname -m &amp;&amp; cat /etc/*release</span>
+x86_64  
+DISTRIB_ID=Ubuntu  
+DISTRIB_RELEASE=16.04  
+...
+</code></pre>
+<p><strong>2.1.3 Verify the System Has GCC Installed  </strong><br>安装对应的kernels header和开发包： </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo apt-get install linux-headers-$(uname -r)</span>
+</code></pre>
+<h6 id="2-2-下载cuda"><a href="#2-2-下载cuda" class="headerlink" title="2.2 下载cuda"></a>2.2 下载cuda</h6><p>地址：<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="external">https://developer.nvidia.com/cuda-toolkit-archive</a><br>选择需要的版本，这里我选择8.0，下载对应的runfile(cuda_8.0.44_linux.run)。<br>（下载还要注册、填一堆问卷也是醉了…….）<br>为了方便其他人，将我下载好的run文件的百度云链接放上。<br>链接：<a href="https://pan.baidu.com/s/1jIQUE0I" target="_blank" rel="external">https://pan.baidu.com/s/1jIQUE0I</a>  密码：rma8<br>下载完后，用MD5检验，如果序号不和，得重新下载。  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> md5sum cuda_8.0.44_linux.run</span>
+5639ffeb939ee58a81554d06bd084e15  cuda_8.0.44_linux.run
+</code></pre>
+<h6 id="2-3-禁用Nouveau"><a href="#2-3-禁用Nouveau" class="headerlink" title="2.3 禁用Nouveau"></a>2.3 禁用Nouveau</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> lsmod | grep nouveau</span>
+</code></pre>
+<p>如果有内容输出，则需要禁掉nouveau  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo vi /etc/modprobe.d/blacklist.conf</span>
+</code></pre>
+<p>添加如下内容： </p>
+<pre><code class="shell">blacklist nouveau  
+options nouveau modeset=0
+</code></pre>
+<p>保存退出(:wq)，再执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo update-initramfs -u</span>
+<span class="meta">$</span><span class="bash"> sudo reboot</span>
+</code></pre>
+<p>重启后：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> lsmod | grep nouveau</span>
+</code></pre>
+<p>若无内容输出，则禁用成功。  </p>
+<h6 id="2-4-安装"><a href="#2-4-安装" class="headerlink" title="2.4 安装"></a>2.4 安装</h6><p>切换到cuda_8.0.44_linux.run的目录，执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo sh cuda_8.0.44_linux.run</span>
+</code></pre>
+<p>安装的时候，要让你先看一堆文字（EULA)，我们直接不停的按空格键到100%;<br>遇到提示是否安装openGL，选择no,其他的可以一路accept, yes或回车。<br>如图：<br><img src="/images/tensorflow1.png" alt=""><br>安装成功后，会显示installed，否则会显示failed。  </p>
+<h6 id="2-5-验证安装结果"><a href="#2-5-验证安装结果" class="headerlink" title="2.5 验证安装结果"></a>2.5 验证安装结果</h6><p>执行  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> ls /dev/nvidia*</span>
+</code></pre>
+<p>若结果显示  </p>
+<pre><code class="shell">/dev/nvidia0  /dev/nvidiactl  /dev/nvidia-uvm
+</code></pre>
+<p>或类似的信息，应该有三个（包含一个类似/dev/nvidia-nvm的），则安装成功。<br>但我的没有显示以上信息，显示的是：  </p>
+<pre><code class="shell">ls: cannot access /dev/nvidia*: No such file or directory
+</code></pre>
+<p>下面就要解决这个问题。<br>把下面的.sh文件随便命个名(我命名为Nka.sh)  </p>
+<pre><code class="python"><span class="comment">#!/bin/bash</span>
+
+/sbin/modprobe nvidia
+
+<span class="keyword">if</span> [ <span class="string">"$?"</span> -eq <span class="number">0</span> ]; then
+  <span class="comment"># Count the number of NVIDIA controllers found.</span>
+  NVDEVS=`lspci | grep -i NVIDIA`
+  N3D=`echo <span class="string">"$NVDEVS"</span> | grep <span class="string">"3D controller"</span> | wc -l`
+  NVGA=`echo <span class="string">"$NVDEVS"</span> | grep <span class="string">"VGA compatible controller"</span> | wc -l`
+
+  N=`expr $N3D + $NVGA - <span class="number">1</span>`
+  <span class="keyword">for</span> i <span class="keyword">in</span> `seq <span class="number">0</span> $N`; do
+    mknod -m <span class="number">666</span> /dev/nvidia$i c <span class="number">195</span> $i
+  done
+
+  mknod -m <span class="number">666</span> /dev/nvidiactl c <span class="number">195</span> <span class="number">255</span>
+
+<span class="keyword">else</span>
+  exit <span class="number">1</span>
+fi
+
+/sbin/modprobe nvidia-uvm
+
+<span class="keyword">if</span> [ <span class="string">"$?"</span> -eq <span class="number">0</span> ]; then
+  <span class="comment"># Find out the major device number used by the nvidia-uvm driver</span>
+  D=`grep nvidia-uvm /proc/devices | awk <span class="string">'{print $1}'</span>`
+
+  mknod -m <span class="number">666</span> /dev/nvidia-uvm c $D <span class="number">0</span>
+<span class="keyword">else</span>
+  exit <span class="number">1</span>
+fi
+</code></pre>
+<p>然后执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo chmod +x Nka.sh</span>
+<span class="meta">$</span><span class="bash"> sudo ./Nka.sh</span>
+<span class="meta">$</span><span class="bash">  ls /dev/nvidia*</span>
+/dev/nvidia0  /dev/nvidiactl  /dev/nvidia-uvm
+</code></pre>
+<p>成功！<br>but：<br>这种做不太友好，因为当下次重启电脑时，你使用ls /dev/nvidia* 指令时，你是看不到那三个nvidia的文件了。所以你又得手动执行sudo ./Nka.sh指令了。这个问题我们可以通过添加启动脚本来解决。<br>执行  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo vi /etc/rc.local</span>
+</code></pre>
+<p>如果你是第一次打开这个文件，它应该是空的(除了一行又一行的#注释项外)。<br>这文件的第一行是  </p>
+<pre><code class="shell"><span class="meta">#</span><span class="bash">!/bin/sh -e</span>
+</code></pre>
+<p>把-e去掉（这步很重要，否则它不会加载这文本的内容）,<br>然后把Nka.sh的内容除了#!/bin/bash外复制到其中，(before exit 0 )保存退出。<br>下次重启时，你应该能直接看到/dev目录下的三个nvidia的文件。  </p>
+<h6 id="2-6-环境配置"><a href="#2-6-环境配置" class="headerlink" title="2.6 环境配置"></a>2.6 环境配置</h6><p>打开系统配置文件  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo vi /etc/profile</span>
+</code></pre>
+<p>在文件最后添加  </p>
+<pre><code class="shell">export PATH=/usr/local/cuda-8.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
+</code></pre>
+<p>保存退出<br>执行下面的语句，让文件立即生效  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<p>至此，cuda 8.0安装完毕。</p>
+<h6 id="2-7-验证安装"><a href="#2-7-验证安装" class="headerlink" title="2.7 验证安装"></a>2.7 验证安装</h6><p><strong>2.7.1 Verify the Driver Version</strong><br>敲入：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> cat /proc/driver/nvidia/version</span>
+</code></pre>
+<p>结果显示：  </p>
+<pre><code class="shell">NVRM version: NVIDIA UNIX x86_64 Kernel Module  367.48  Sat Sep  3 18:21:08 PDT 2016
+GCC version:  gcc version 4.9.3 (Ubuntu 4.9.3-13ubuntu2)
+</code></pre>
+<p><strong>2.7.2 Verify CUDA Toolkit</strong><br>敲入：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> nvcc -V</span>
+</code></pre>
+<p>结果显示：  </p>
+<pre><code class="shell">nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2016 NVIDIA Corporation
+Built on Sun_Sep__4_22:14:01_CDT_2016
+Cuda compilation tools, release 8.0, V8.0.44
+</code></pre>
+<p><strong>2.7.3 Complie sample  </strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/cuda/samples/</span>
+<span class="meta">$</span><span class="bash"> make</span>
+</code></pre>
+<p>这区间大概需要十几到二十分钟，请耐心等待。<br>运行完后，编译结果会放在samples/bin下面。<br><strong>2.7.4 Running the Binaries  </strong>  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> bin/x86_64/linux/release</span>
+<span class="meta">$</span><span class="bash"> ./deviceQuery</span>
+</code></pre>
+<p>结果显示：<br><img src="/images/tensorflow2.png" alt=""><br>最后是 Result = PASS,若失败 Result = FAIL<br>再来一个，执行  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> ./bandwidthTest</span>
+</code></pre>
+<p>结果显示：<br><img src="/images/tensorflow3.png" alt="">  </p>
+<h4 id="3-安装cudnn"><a href="#3-安装cudnn" class="headerlink" title="3 安装cudnn"></a>3 安装cudnn</h4><h6 id="3-1-下载Download-cuDNN-v6-0"><a href="#3-1-下载Download-cuDNN-v6-0" class="headerlink" title="3.1 下载Download cuDNN v6.0"></a>3.1 下载Download cuDNN v6.0</h6><p>cuDNN v6.0(Jan 20, 2017), for CUDA 8.0：<br><a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">https://developer.nvidia.com/rdp/cudnn-download</a><br>这里给出对应的百度云链接<br>链接：<a href="https://pan.baidu.com/s/1boSU4A7" target="_blank" rel="external">https://pan.baidu.com/s/1boSU4A7</a> 密码：73ck  </p>
+<h6 id="3-2-安装："><a href="#3-2-安装：" class="headerlink" title="3.2 安装："></a>3.2 安装：</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> tar -xzvf cudnn-8.0-linux-x64-v6.0.tgz</span>
+<span class="meta">$</span><span class="bash"> sudo cp cuda/include/cudnn.h /usr/<span class="built_in">local</span>/cuda-8.0/include</span>
+<span class="meta">$</span><span class="bash"> sudo cp cuda/lib64/libcudnn* /usr/<span class="built_in">local</span>/cuda-8.0/lib64</span>
+<span class="meta">$</span><span class="bash"> sudo chmod a+r /usr/<span class="built_in">local</span>/cuda/include/cudnn.h /usr/<span class="built_in">local</span>/cuda-8.0/lib64/libcudnn*</span>
+<span class="meta">$</span><span class="bash"> sudo ln -sf libcudnn.so.6.0.21 libcudnn.so.6  </span>
+<span class="meta">$</span><span class="bash"> sudo ln -sf libcudnn.so.6 libcudnn.so  </span>
+<span class="meta">$</span><span class="bash"> sudo ldconfig</span>
+</code></pre>
+<h4 id="4-安装tensorflow"><a href="#4-安装tensorflow" class="headerlink" title="4 安装tensorflow"></a>4 安装tensorflow</h4><h6 id="4-1-安装"><a href="#4-1-安装" class="headerlink" title="4.1 安装"></a>4.1 安装</h6><pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo apt-get install libcupti-dev</span>
+<span class="meta">$</span><span class="bash"> pip install tensorflow-gpu</span>
+</code></pre>
+<p>如果下载很慢或者出现问题，可能是因为国外源太慢，需要更改pip的源地址。<br>修改/root/.pip/pip.conf文件（没有则创建）。  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /root/.pip/pip.conf</span>
+</code></pre>
+<p>加入以下：  </p>
+<pre><code class="shell">[global] 
+index-url = http://pypi.douban.com/simple 
+trusted-host = pypi.douban.com#没有这句会包warning 
+disable-pip-version-check = true #版本不检查 
+timeout = 120#超时时间设置
+</code></pre>
+<p>然后 esc,:wq保存退出。<br>重新执行：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> pip install tensorflow-gpu</span>
+</code></pre>
+<p>这里会安装一大堆东西，都是tensorflow需要的。如：  </p>
+<pre><code class="shell">Successfully installed backports.weakref-1.0.post1 bleach-1.5.0 enum34-1.1.6 funcsigs-1.0.2 futures-3.1.1 html5lib-0.9999999 markdown-2.6.9 mock-2.0.0 numpy-1.13.3 pbr-3.1.1 protobuf-3.5.0.post1 six-1.11.0 tensorflow-gpu-1.4.0 tensorflow-tensorboard-0.4.0rc3 werkzeug-0.12.2
+</code></pre>
+<h6 id="4-2-验证"><a href="#4-2-验证" class="headerlink" title="4.2 验证"></a>4.2 验证</h6><p>安装完成后，直接在命令行中试用，验证是否能成功使用。  </p>
+<pre><code class="python">$ python
+&gt;&gt;&gt; import tensorflow as tf
+&gt;&gt;&gt; a=tf.constant(5.0)
+&gt;&gt;&gt; b=tf.constant(6.0)
+&gt;&gt;&gt; c=a*b
+&gt;&gt;&gt; sess=tf.Session()
+2017-11-28 21:20:40.953415: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -&gt; (device: 0, name: Tesla K40m, pci bus id: 0000:04:00.0, compute capability: 3.5)
+&gt;&gt;&gt; print(sess.run(c))
+30.0
+&gt;&gt;&gt;
+</code></pre>
+<p>如上即为安装成功，但也可能会出现一些问题。最常见的是  </p>
+<pre><code class="shell">ImportError: libcudnn.so.6: cannot open shared object file: No such file or directory
+</code></pre>
+<p>如果出现类似问题，可以先尝试：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+</code></pre>
+<p>如果还是没解决，可能就是你安装的cudnn版本和tensorflow的版本不能适应，之前我使用cudnn5.1的时候就是这种情况，tensorflow最新的版本1.4.0用不了。<br>你可以选择安装低版本的tensorflow：  </p>
+<pre><code class="shell"><span class="meta">$</span><span class="bash"> pip install tensorflow-gpu==1.2</span>
+</code></pre>
+<p>也可以换一个cudnn（换成提示语句中的cudnn6）。  </p>
+<h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h4><p>tensorflow for gpu的安装对于新手来说真的是大坑一个……  网上搜的教程，有一些是有帮助的，但也有很多特别乱的，看到最多的都是吐槽…….许多人装了一周两周的，十天半个月的都有，有的朋友重装几遍系统都没成功（默哀）。<br>我这里这个步骤，是我拿到新的机器（只有ubuntu16.04系统），然后一遍安装成功的，虽然时间也比较长，查了很多教程，但至少探索出目前这个ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4的版本对应，是可以成功的。<br>另，个人不建议用源码安装，非常繁杂并且很容易失败。  </p>
+<p>最后附上参考的一些教程链接，感谢~</p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/35c7fde85968?from=singlemessage" target="_blank" rel="external">http://www.jianshu.com/p/35c7fde85968?from=singlemessage</a><br><a href="http://blog.csdn.net/dafenqie/article/details/78086390" target="_blank" rel="external">http://blog.csdn.net/dafenqie/article/details/78086390</a><br><a href="http://blog.csdn.net/selous/article/details/53309724" target="_blank" rel="external">http://blog.csdn.net/selous/article/details/53309724</a><br><a href="https://zhuanlan.zhihu.com/p/27890924" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/27890924</a><br><a href="https://www.tensorflow.org/install/install_linux" target="_blank" rel="external">https://www.tensorflow.org/install/install_linux</a>  </p>
+</blockquote>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjf8aypfi000iystwo0eh9zwx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/12/01/BinaryTree1/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    java实现二叉树的创建与四种遍历的递归/非递归
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/11/20/startRoot/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">开启root账户的SSH登录</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+	<div id="commentContainer"></div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/16/zombieandorphanpid/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/03/16/zombieandorphanpid/" class="title">僵尸进程与孤儿进程</a></p>
+                            <p class="item-date"><time datetime="2018-03-16T07:25:00.000Z" itemprop="datePublished">2018-03-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/12/jvm-2/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/12/jvm-2/" class="title">深入理解JVM-Note-Java内存区域与内存溢出异常</a></p>
+                            <p class="item-date"><time datetime="2018-01-12T10:50:00.000Z" itemprop="datePublished">2018-01-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/05/wangluomianshi1/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/05/wangluomianshi1/" class="title">TCP的三次握手与四次挥手</a></p>
+                            <p class="item-date"><time datetime="2018-01-05T02:38:00.000Z" itemprop="datePublished">2018-01-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/01/BinaryTree1/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/12/01/BinaryTree1/" class="title">java实现二叉树的创建与四种遍历的递归/非递归</a></p>
+                            <p class="item-date"><time datetime="2017-12-01T13:59:00.000Z" itemprop="datePublished">2017-12-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/28/tensorflowinstall/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/28/tensorflowinstall/" class="title">ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功</a></p>
+                            <p class="item-date"><time datetime="2017-11-28T14:00:00.000Z" itemprop="datePublished">2017-11-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NIO/">NIO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/install/">install</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/">interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moods/">moods</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pid/">pid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/records/">records</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tree/">tree</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/NIO/" style="font-size: 10px;">NIO</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/install/" style="font-size: 15px;">install</a> <a href="/tags/interview/" style="font-size: 10px;">interview</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jvm/" style="font-size: 10px;">jvm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/moods/" style="font-size: 17.5px;">moods</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/pid/" style="font-size: 10px;">pid</a> <a href="/tags/practice/" style="font-size: 12.5px;">practice</a> <a href="/tags/records/" style="font-size: 10px;">records</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/tree/" style="font-size: 10px;">tree</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 Gracee<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+	<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+	<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+	<script>
+		var gitment = new Gitment({
+			owner: 'yylemon',
+			repo: 'yylemon.github.io',
+			oauth: {
+				client_id: 'c50f49ffa1b2e19d27e3',
+				client_secret: '82a92189db1a239ac6d231a38e2595d363e26f92',
+			},
+		})
+		gitment.render('commentContainer')
+	</script>
+	
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
