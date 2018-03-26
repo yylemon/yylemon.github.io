@@ -3,19 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>开启root账户的SSH登录 | Grace Space</title>
+    <title>Grace Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html   1 安装openssh：xxx@ubuntu:~$ sudo apt-get install openssh">
-<meta name="keywords" content="install">
-<meta property="og:type" content="article">
-<meta property="og:title" content="开启root账户的SSH登录">
-<meta property="og:url" content="http://gracee.xin/2017/11/20/startRoot/index.html">
+    <meta name="description" content="We are all explorers trying to find ourselves.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Grace Space">
+<meta property="og:url" content="http://gracee.xin/categories/index.html">
 <meta property="og:site_name" content="Grace Space">
-<meta property="og:description" content="由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html   1 安装openssh：xxx@ubuntu:~$ sudo apt-get install openssh">
-<meta property="og:updated_time" content="2017-11-29T10:04:28.262Z">
+<meta property="og:description" content="We are all explorers trying to find ourselves.">
+<meta property="og:updated_time" content="2018-03-26T14:07:33.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开启root账户的SSH登录">
-<meta name="twitter:description" content="由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html   1 安装openssh：xxx@ubuntu:~$ sudo apt-get install openssh">
+<meta name="twitter:title" content="Grace Space">
+<meta name="twitter:description" content="We are all explorers trying to find ourselves.">
     
 
     
@@ -184,179 +183,16 @@
 </aside>
 
             
-            <section id="main"><article id="post-startRoot" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-            开启root账户的SSH登录
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/11/20/startRoot/">
-            <time datetime="2017-11-20T14:30:00.000Z" itemprop="datePublished">2017-11-20</time>
-        </a>
+            <section id="main"><section class="layout-wrap">
+    <div class="layout-title">
+        <span></span>
     </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/install/">install</a>
+    <div class="layout-wrap-inner tag-cloud">
+        
+            <a href="/tags/NIO/" style="font-size: 14px;">NIO</a> <a href="/tags/TCP/" style="font-size: 14px;">TCP</a> <a href="/tags/install/" style="font-size: 21px;">install</a> <a href="/tags/interview/" style="font-size: 14px;">interview</a> <a href="/tags/java/" style="font-size: 28px;">java</a> <a href="/tags/jvm/" style="font-size: 14px;">jvm</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/moods/" style="font-size: 24.5px;">moods</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/pid/" style="font-size: 14px;">pid</a> <a href="/tags/practice/" style="font-size: 17.5px;">practice</a> <a href="/tags/records/" style="font-size: 14px;">records</a> <a href="/tags/tensorflow/" style="font-size: 14px;">tensorflow</a> <a href="/tags/tomcat/" style="font-size: 14px;">tomcat</a> <a href="/tags/tree/" style="font-size: 14px;">tree</a>
+        
     </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>由于我习惯用root账户了，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。<br>方法主要借鉴于：<br><a href="https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html" target="_blank" rel="external">https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html</a>  </p>
-<h5 id="1-安装openssh："><a href="#1-安装openssh：" class="headerlink" title="1 安装openssh："></a>1 安装openssh：</h5><pre><code class="shell">xxx@ubuntu:~$ sudo apt-get install openssh-server
-</code></pre>
-<h5 id="2-修改root密码"><a href="#2-修改root密码" class="headerlink" title="2 修改root密码"></a>2 修改root密码</h5><pre><code class="shell">xxx@ubuntu:~$ sudo passwd root
-</code></pre>
-<h5 id="3-切换为root用户，修改config："><a href="#3-切换为root用户，修改config：" class="headerlink" title="3 切换为root用户，修改config："></a>3 切换为root用户，修改config：</h5><pre><code class="shell">xxx@ubuntu:~$ su - root   #切换到root账户
-Password:                 #输入第二步修改的root密码
-root@ubuntu:~# vim /etc/ssh/sshd_config
-</code></pre>
-<p>找到下面这段代码，注释掉“PermitRootLogin prohibit-password”，添加“PermitRootLogin yes”  </p>
-<pre><code class="shell"><span class="meta">#</span><span class="bash"> Authentication: </span>
-LoginGraceTime 120 
-<span class="meta">#</span><span class="bash">PermitRootLogin prohibit-password</span>
-PermitRootLogin yes 
-StrictModes yes
-</code></pre>
-<h5 id="4-重启ssh服务"><a href="#4-重启ssh服务" class="headerlink" title="4 重启ssh服务"></a>4 重启ssh服务</h5><pre><code class="shell">root@ubuntu:~# sudo service ssh restart 
-root@ubuntu:~#
-</code></pre>
-<p>完毕，可以使用root账户直接ssh登录服务器</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjf8b4ljq000dfwtwbfxk9v4c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/11/28/tensorflowinstall/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    ubuntu16.04+cuda8.0+cudnn6+tensorflow(gpu)1.4，一遍成功
-                
-            </div>
-        </a>
-    
-    
-        <a href="/2017/11/12/javatomcatmysqlsetup/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">java+tomcat+mysql环境配置</div>
-        </a>
-    
-</nav>
-
-
-    
-</article>
-
-
-    
-    
-        <section id="comments">
-	<div id="commentContainer"></div>
-</section>
-    
-
-</section>
+</section></section>
             
                 
 <aside id="sidebar">
