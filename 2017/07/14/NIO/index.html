@@ -6,14 +6,14 @@
     <title>Java NIO学习 | Grace Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="一、为什么出现Java NIO由于Java的OutputStream和InputStream没有提供异步I/O的能力，OutputStream上的写操作write()方法会阻塞直至数据被成功写入，InputStream上的读操作read()方法也会阻塞，直到有数据可读，还有ServerSocket的accept()方法也会阻塞直至有客户端进行连接。它们都是阻塞方法，那当服务器需要处理上千个客户请求">
-<meta name="keywords" content="java,NIO,moods">
+<meta name="keywords" content="java,moods,NIO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java NIO学习">
 <meta property="og:url" content="http://gracee.xin/2017/07/14/NIO/index.html">
 <meta property="og:site_name" content="Grace Space">
 <meta property="og:description" content="一、为什么出现Java NIO由于Java的OutputStream和InputStream没有提供异步I/O的能力，OutputStream上的写操作write()方法会阻塞直至数据被成功写入，InputStream上的读操作read()方法也会阻塞，直到有数据可读，还有ServerSocket的accept()方法也会阻塞直至有客户端进行连接。它们都是阻塞方法，那当服务器需要处理上千个客户请求">
 <meta property="og:image" content="http://gracee.xin/images/scenery.JPG">
-<meta property="og:updated_time" content="2018-03-28T09:50:35.465Z">
+<meta property="og:updated_time" content="2018-03-28T09:55:17.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java NIO学习">
 <meta name="twitter:description" content="一、为什么出现Java NIO由于Java的OutputStream和InputStream没有提供异步I/O的能力，OutputStream上的写操作write()方法会阻塞直至数据被成功写入，InputStream上的读操作read()方法也会阻塞，直到有数据可读，还有ServerSocket的accept()方法也会阻塞直至有客户端进行连接。它们都是阻塞方法，那当服务器需要处理上千个客户请求">
@@ -224,9 +224,8 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h4 id="一、为什么出现Java-NIO"><a href="#一、为什么出现Java-NIO" class="headerlink" title="一、为什么出现Java NIO"></a>一、为什么出现Java NIO</h4><p>由于Java的OutputStream和InputStream没有提供异步I/O的能力，OutputStream上的写操作write()方法会阻塞直至数据被成功写入，InputStream上的读操作read()方法也会阻塞，直到有数据可读，还有ServerSocket的accept()方法也会阻塞直至有客户端进行连接。它们都是阻塞方法，那当服务器需要处理上千个客户请求时，往往就需要一个客户对应一个线程，大量的闲置客户端会限制系统可以同时服务的客户端总数，所以JDK1.4引入了Java NIO(New Input/Output)。</p>
-<pre><code><a id="more"></a>
-</code></pre><h4 id="二、Java-NIO-基础"><a href="#二、Java-NIO-基础" class="headerlink" title="二、Java NIO 基础"></a>二、Java NIO 基础</h4><p>非阻塞：NIO引入了选择器（Selector）和通道（Channel）来实现非阻塞，通过表示到设备、文件、网络套接字这种可以执行不同I/O操作的程序组件的开放连接，有的通道允许选择器对它们进行轮询。通道可以注册一个选择器实例，通过该实例的select()方法来询问在一个或一组通道中，哪一个当前需要服务（读、写、接受）。非阻塞指的就是“在一个准备好的通道上进行相应的I/O操作，就不需要等待（阻塞）了”。    </p>
+            <h4 id="一、为什么出现Java-NIO"><a href="#一、为什么出现Java-NIO" class="headerlink" title="一、为什么出现Java NIO"></a>一、为什么出现Java NIO</h4><p>由于Java的OutputStream和InputStream没有提供异步I/O的能力，OutputStream上的写操作write()方法会阻塞直至数据被成功写入，InputStream上的读操作read()方法也会阻塞，直到有数据可读，还有ServerSocket的accept()方法也会阻塞直至有客户端进行连接。它们都是阻塞方法，那当服务器需要处理上千个客户请求时，往往就需要一个客户对应一个线程，大量的闲置客户端会限制系统可以同时服务的客户端总数，所以JDK1.4引入了Java NIO(New Input/Output)。<br><a id="more"></a></p>
+<h4 id="二、Java-NIO-基础"><a href="#二、Java-NIO-基础" class="headerlink" title="二、Java NIO 基础"></a>二、Java NIO 基础</h4><p>非阻塞：NIO引入了选择器（Selector）和通道（Channel）来实现非阻塞，通过表示到设备、文件、网络套接字这种可以执行不同I/O操作的程序组件的开放连接，有的通道允许选择器对它们进行轮询。通道可以注册一个选择器实例，通过该实例的select()方法来询问在一个或一组通道中，哪一个当前需要服务（读、写、接受）。非阻塞指的就是“在一个准备好的通道上进行相应的I/O操作，就不需要等待（阻塞）了”。    </p>
 <p><strong>1.缓冲区</strong>     </p>
 <p>NIO一个主要的特性就是java.nio.Buffer。缓冲区代表了一个有限容量的容器（本质是一个数组），通道Channel使用Buffer实例来传递数据。流和通道的主要区别就是通道在读写数据时，所有的内容都是先放入缓冲区之中，再通过缓冲区取得的，这也说明了为什么通道是双向操作的，而流是单向的。</p>
 <p>缓冲区有几个比较重要的变量：position、limit、capacity等；</p>
@@ -388,7 +387,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/07/14/NIO/" data-id="cjfawy0xv00026otwxbq93dxo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/07/14/NIO/" data-id="cjfax0slv0007bstwrff8d0ae" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

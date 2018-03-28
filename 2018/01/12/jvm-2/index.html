@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://gracee.xin/images/jvm-2-1.png">
 <meta property="og:image" content="http://gracee.xin/images/jvm-2-2.png">
 <meta property="og:image" content="http://gracee.xin/images/jvm-2-3.png">
-<meta property="og:updated_time" content="2018-03-28T09:46:24.166Z">
+<meta property="og:updated_time" content="2018-03-28T09:54:52.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解JVM-Note-Java内存区域与内存溢出异常">
 <meta name="twitter:description" content="《深入理解Java虚拟机》第二章阅读笔记笔记基本只作为记录。">
@@ -226,9 +226,8 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>《深入理解Java虚拟机》第二章阅读笔记<br>笔记基本只作为记录。</p>
-<pre><code><a id="more"></a>
-</code></pre><h4 id="一、jvm运行时数据区域"><a href="#一、jvm运行时数据区域" class="headerlink" title="一、jvm运行时数据区域"></a>一、jvm运行时数据区域</h4><p>灰色区域：是线程共享的数据区<br>白色区域：是线程私有的数据区<br><img src="/images/jvm-2-1.png"><br><strong>1. 程序计数器:当前线程所执行的字节码的行号指示器,线程私有的。</strong>  </p>
+            <p>《深入理解Java虚拟机》第二章阅读笔记<br>笔记基本只作为记录。<br><a id="more"></a></p>
+<h4 id="一、jvm运行时数据区域"><a href="#一、jvm运行时数据区域" class="headerlink" title="一、jvm运行时数据区域"></a>一、jvm运行时数据区域</h4><p>灰色区域：是线程共享的数据区<br>白色区域：是线程私有的数据区<br><img src="/images/jvm-2-1.png"><br><strong>1. 程序计数器:当前线程所执行的字节码的行号指示器,线程私有的。</strong>  </p>
 <p>如果线程正执行的是一个Java方法，<strong>这个计数器记录的是正在执行的虚拟机字节码指令的地址</strong>；<br>如果正在执行的是Native方法，这个计数器值则为空（Undefined）。<br>此内存区域是<strong>唯一一个</strong>在Java虚拟机规范中<strong>没有规定任何OutOfMemoryError情况的区域</strong>。  </p>
 <p><strong>2.Java虚拟机栈：生命周期与线程相同，线程私有的。</strong>  </p>
 <p>虚拟机栈描述的是<strong>Java方法执行的内存模型</strong>：每个方法在执行的同时都会创建一个<strong>栈帧Stack  Frame</strong>用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。<br>虚拟机栈的局部变量表存放了编译器可知的各种基本类型、对象引用、returnAddress类型，其中64位的long和double类型会占用2个slot（局部变量空间），其余只占用1个。方法运行期间局部变量表的大小不会改变。<br>如果线程请求的栈深度大于虚拟机允许的深度，将抛出<strong>StackOverflowError异常</strong>。<br>如果虚拟机栈可以动态扩展，且扩展时无法申请足够的内存，将抛出<strong>OutOfMemoryError异常</strong>。  </p>
@@ -415,7 +414,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjfawy0y400056otw43vo8r1s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjfax0sn9001obstwjwq2aon5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

@@ -14,7 +14,7 @@
 <meta property="og:description" content="三次握手（TCP的连接建立）">
 <meta property="og:image" content="http://gracee.xin/images/network1.jpg">
 <meta property="og:image" content="http://gracee.xin/images/network2.jpg">
-<meta property="og:updated_time" content="2018-03-28T09:49:03.440Z">
+<meta property="og:updated_time" content="2018-03-28T09:54:55.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP的三次握手与四次挥手">
 <meta name="twitter:description" content="三次握手（TCP的连接建立）">
@@ -225,9 +225,8 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h5 id="三次握手（TCP的连接建立）"><a href="#三次握手（TCP的连接建立）" class="headerlink" title="三次握手（TCP的连接建立）"></a>三次握手（TCP的连接建立）</h5><p><img src="/images/network1.jpg" width="75%" height="75%">  </p>
-<pre><code><a id="more"></a>
-</code></pre><p>0.一开始，客户端A和服务器B都是关闭(CLOSED)状态。<br>A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。  </p>
+            <h5 id="三次握手（TCP的连接建立）"><a href="#三次握手（TCP的连接建立）" class="headerlink" title="三次握手（TCP的连接建立）"></a>三次握手（TCP的连接建立）</h5><p><img src="/images/network1.jpg" width="75%" height="75%"><br><a id="more"></a></p>
+<p>0.一开始，客户端A和服务器B都是关闭(CLOSED)状态。<br>A主动打开连接，而B被动打开连接，进入监听(LISTEN)状态。  </p>
 <p>1.<strong>A向B发送连接请求报文段</strong>：将报文段的同步位SYN置为1，并选择一个初始序号seq=x。然后A会进入“同步已发送(SYN-SEND)”状态。<br><strong>(SYN=1的报文段不能携带数据，但会消耗一个序号)</strong>  </p>
 <p>2.B收到连接请求报文段后，如果同意连接，<strong>B会向A发送确认报文段</strong>：将同步位SYN置1，确认位ACK置1，确认号ack=x+1，同时选择一个初始序号seq=y。然后B会进入“同步已接收(SYN-RCVD)”状态。<br><strong>(这个报文段同样要消耗一个序号)</strong>  </p>
 <p>3.A收到B的确认后，还需要向B给出确认。<strong>A向B发送确认报文段</strong>，报文段的ACK位置1，确认号ack=y+1，自己的序号seq=x+1(前面消耗了一个序号)。然后A会进入“已建立连接”状态。B收到确认后，也会进入“已建立连接”状态。<br><strong>(TCP规定ACK报文段可以携带数据，但如果不携带数据，则不消耗序号，所以这里没有携带数据的话，下一个A发出的数据报文段的序号seq=x+1)</strong><br>这时，连接建立完成。</p>
@@ -257,7 +256,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjfawy0yx000j6otwir19iafy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjfax0sm3000bbstwfr3qlvd7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
