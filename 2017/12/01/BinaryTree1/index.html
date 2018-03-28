@@ -5,17 +5,17 @@
     
     <title>java实现二叉树的创建与四种遍历的递归/非递归 | Grace Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。  在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。   其中，后序遍历的非递归方法是来自这篇文章：http://www.jianshu.com/p/49c8cfd07410这篇文章实现递">
+    <meta name="description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。  在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。">
 <meta name="keywords" content="java,tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java实现二叉树的创建与四种遍历的递归&#x2F;非递归">
 <meta property="og:url" content="http://gracee.xin/2017/12/01/BinaryTree1/index.html">
 <meta property="og:site_name" content="Grace Space">
-<meta property="og:description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。  在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。   其中，后序遍历的非递归方法是来自这篇文章：http://www.jianshu.com/p/49c8cfd07410这篇文章实现递">
-<meta property="og:updated_time" content="2018-03-28T09:11:49.361Z">
+<meta property="og:description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。  在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。">
+<meta property="og:updated_time" content="2018-03-28T09:45:13.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java实现二叉树的创建与四种遍历的递归&#x2F;非递归">
-<meta name="twitter:description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。  在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。   其中，后序遍历的非递归方法是来自这篇文章：http://www.jianshu.com/p/49c8cfd07410这篇文章实现递">
+<meta name="twitter:description" content="二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。  在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。">
     
 
     
@@ -156,7 +156,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                12
+                11
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -224,7 +224,8 @@
             
             <p>二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。 </p>
 <p>在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。  </p>
-<p>其中，后序遍历的非递归方法是来自这篇文章：<br><a href="http://www.jianshu.com/p/49c8cfd07410" target="_blank" rel="external">http://www.jianshu.com/p/49c8cfd07410</a><br>这篇文章实现递归遍历二叉树的代码非常整齐，值得学习。  </p>
+<pre><code><a id="more"></a>
+</code></pre><p>其中，后序遍历的非递归方法是来自这篇文章：<br><a href="http://www.jianshu.com/p/49c8cfd07410" target="_blank" rel="external">http://www.jianshu.com/p/49c8cfd07410</a><br>这篇文章实现递归遍历二叉树的代码非常整齐，值得学习。  </p>
 <p>话不多说，上代码。  </p>
 <p><strong><em>TreeNode.java</em></strong>  </p>
 <pre><code class="java"><span class="comment">/**
@@ -241,7 +242,6 @@
     }
 }
 </code></pre>
-<p>  &lt;!— more –&gt;</p>
 <p><strong><em>treeOper.java</em></strong>  </p>
 <pre><code class="java"><span class="keyword">import</span> java.util.LinkedList;
 <span class="keyword">import</span> java.util.Queue;
@@ -487,7 +487,7 @@ Process finished with exit code 0
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjfawko2b000jtwtw7r11vc61" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjfawq9r90007nstw8waa6r32" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -710,7 +710,7 @@ Process finished with exit code 0
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 

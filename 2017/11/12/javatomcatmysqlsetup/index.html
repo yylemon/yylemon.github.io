@@ -5,18 +5,18 @@
     
     <title>java+tomcat+mysql环境配置 | Grace Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==   1.java环境(1)在根目录下新建download和java文件夹   $ mkdir /download $ mkdir /usr/java  (2)下载jdk   下载jdk至/download,jdk地址：http://www.oracle.com/techn">
+    <meta name="description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==">
 <meta name="keywords" content="java,tomcat,mysql,install">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java+tomcat+mysql环境配置">
 <meta property="og:url" content="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/index.html">
 <meta property="og:site_name" content="Grace Space">
-<meta property="og:description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==   1.java环境(1)在根目录下新建download和java文件夹   $ mkdir /download $ mkdir /usr/java  (2)下载jdk   下载jdk至/download,jdk地址：http://www.oracle.com/techn">
+<meta property="og:description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==">
 <meta property="og:image" content="http://gracee.xin/images/tomcat1.png">
-<meta property="og:updated_time" content="2017-11-29T09:02:24.233Z">
+<meta property="og:updated_time" content="2018-03-28T09:45:56.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java+tomcat+mysql环境配置">
-<meta name="twitter:description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==   1.java环境(1)在根目录下新建download和java文件夹   $ mkdir /download $ mkdir /usr/java  (2)下载jdk   下载jdk至/download,jdk地址：http://www.oracle.com/techn">
+<meta name="twitter:description" content="趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。   ==系统：ubuntu1 16.04==">
 <meta name="twitter:image" content="http://gracee.xin/images/tomcat1.png">
     
 
@@ -158,7 +158,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                12
+                11
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -226,72 +226,73 @@
             
             <p><code>趁还有学生优惠的时候，购了一年的阿里云服务器，记录一下基本javaweb的配置。</code>  </p>
 <p>==<strong>系统：ubuntu1 16.04</strong>==  </p>
-<h5 id="1-java环境"><a href="#1-java环境" class="headerlink" title="1.java环境"></a>1.java环境</h5><p><strong>(1)在根目录下新建download和java文件夹</strong>  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> mkdir /download</span>
-<span class="meta">$</span><span class="bash"> mkdir /usr/java</span>
+<pre><code><a id="more"></a>
+</code></pre><h5 id="1-java环境"><a href="#1-java环境" class="headerlink" title="1.java环境"></a>1.java环境</h5><p><strong>(1)在根目录下新建download和java文件夹</strong>  </p>
+<pre><code class="shell"><span class="meta">$</span> mkdir /download
+<span class="meta">$</span> mkdir /usr/java
 </code></pre>
 <p><strong>(2)下载jdk</strong>  </p>
 <p>下载jdk至/download,jdk地址：<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>  </p>
 <p><strong>(3)将jdk解压至/usr/java</strong>  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /download</span>
-<span class="meta">$</span><span class="bash"> tar zxvf jdk-8u144-linux-x64.tar.gz -C /usr/java</span>
+<pre><code class="shell"><span class="meta">$</span> cd /download
+<span class="meta">$</span> tar zxvf jdk-8u144-linux-x64.tar.gz -C /usr/java
 </code></pre>
 <p>修改名称：  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> mv jdk1.8.0_25 jdk1.8</span>
+<pre><code class="shell"><span class="meta">$</span> mv jdk1.8.0_25 jdk1.8
 </code></pre>
 <p><strong>(4)配置环境变量</strong></p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/profile</span>
+<pre><code class="shell"><span class="meta">$</span> vim /etc/profile
 </code></pre>
 <p>在文件末尾加入：  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.8 </span>
-<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> JRE_HOME=<span class="variable">${JAVA_HOME}</span>/jre</span>
-<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> CLASSPATH=.:<span class="variable">${JAVA_HOME}</span>/lib:<span class="variable">${JRE_HOME}</span>/lib  </span>
-<span class="meta">$</span><span class="bash"> <span class="built_in">export</span> PATH=<span class="variable">${JAVA_HOME}</span>/bin:<span class="variable">$PATH</span></span>
+<pre><code class="shell"><span class="meta">$</span> export JAVA_HOME=/usr/java/jdk1.8 
+<span class="meta">$</span> export JRE_HOME=${JAVA_HOME}/jre
+<span class="meta">$</span> export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
+<span class="meta">$</span> export PATH=${JAVA_HOME}/bin:$PATH
 </code></pre>
 <p>使环境变量生效：  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+<pre><code class="shell"><span class="meta">$</span> source /etc/profile
 </code></pre>
 <p>查看java环境  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> java -version</span>
+<pre><code class="shell"><span class="meta">$</span> java -version
 </code></pre>
 <h5 id="2-安装tomcat"><a href="#2-安装tomcat" class="headerlink" title="2.安装tomcat"></a>2.安装tomcat</h5><p><strong>(1)下载tomcat至/download</strong><br><a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">https://tomcat.apache.org/download-90.cgi</a>  </p>
 <p>解压至/usr/java:  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /download</span>
-<span class="meta">$</span><span class="bash"> tar zxvf apache-tomcat-9.0.1.tar.gz -C /usr/java</span>
+<pre><code class="shell"><span class="meta">$</span> cd /download
+<span class="meta">$</span> tar zxvf apache-tomcat-9.0.1.tar.gz -C /usr/java
 </code></pre>
 <p>修改名称：  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> mv apache-tomcat-9.0.1 tomcat9</span>
+<pre><code class="shell"><span class="meta">$</span> mv apache-tomcat-9.0.1 tomcat9
 </code></pre>
 <p><strong>(2)配置环境变量</strong></p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/profile</span>
+<pre><code class="shell"><span class="meta">$</span> vim /etc/profile
 </code></pre>
 <p>在文件末尾加入：</p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> CATALINA_HOME=/usr/java/tomcat9</span>
+<pre><code class="shell"><span class="meta">$</span> export CATALINA_HOME=/usr/java/tomcat9
 </code></pre>
 <p>使环境变量生效：  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span>
+<pre><code class="shell"><span class="meta">$</span> source /etc/profile
 </code></pre>
-<h5 id="3-启动tomcat"><a href="#3-启动tomcat" class="headerlink" title="(3)启动tomcat"></a>(3)启动tomcat</h5><pre><code class="shell"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/java/tomcat9</span>
-<span class="meta">$</span><span class="bash"> ./bin/startup.sh</span>
+<h5 id="3-启动tomcat"><a href="#3-启动tomcat" class="headerlink" title="(3)启动tomcat"></a>(3)启动tomcat</h5><pre><code class="shell"><span class="meta">$</span> cd /usr/java/tomcat9
+<span class="meta">$</span> ./bin/startup.sh
 </code></pre>
 <p>打开浏览器：<a href="http://服务器ip:8080/" target="_blank" rel="external">http://服务器ip:8080/</a><br>可以看到如下界面：<br><img src="/images/tomcat1.png" alt="">  </p>
 <h5 id="3-安装mysql"><a href="#3-安装mysql" class="headerlink" title="3.安装mysql"></a>3.安装mysql</h5><p><strong>(1)安装</strong>  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> apt-get update</span>
-<span class="meta">$</span><span class="bash"> apt-get install mysql-server mysql-client libmysqlclient-dev</span>
+<pre><code class="shell"><span class="meta">$</span> apt-get update
+<span class="meta">$</span> apt-get install mysql-server mysql-client libmysqlclient-dev
 </code></pre>
 <p>在此安装过程中会让你输入root用户(管理MySQL数据库用户，非Linux系统用户)密码，按照要求输入即可。  </p>
 <p><strong>(2)测试安装是否成功</strong>  </p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> sudo netstat -tap | grep mysql</span>
-<span class="meta">$</span><span class="bash"> mysql -u root -p</span>
-<span class="meta">$</span><span class="bash"> service mysql start</span>
-<span class="meta">$</span><span class="bash"> service mysql stop</span>
-<span class="meta">$</span><span class="bash"> service mysql restart</span>
+<pre><code class="shell"><span class="meta">$</span> sudo netstat -tap | grep mysql
+<span class="meta">$</span> mysql -u root -p
+<span class="meta">$</span> service mysql start
+<span class="meta">$</span> service mysql stop
+<span class="meta">$</span> service mysql restart
 </code></pre>
 <p><strong>(3)修改配置文件，方便远程连接</strong></p>
-<pre><code class="shell"><span class="meta">$</span><span class="bash"> vim /etc/mysql/mysql.conf.d/mysqld.cnf</span>
+<pre><code class="shell"><span class="meta">$</span> vim /etc/mysql/mysql.conf.d/mysqld.cnf
 </code></pre>
 <p>将“bind-address = 127.0.0.1”这一行注释掉。  </p>
-<pre><code class="shell"><span class="meta">#</span><span class="bash"><span class="built_in">bind</span>-address = 127.0.0.1</span>
+<pre><code class="shell"><span class="meta">#</span>bind-address = 127.0.0.1
 </code></pre>
 
         
@@ -303,7 +304,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjfawko1m0004twtw9iywo2xs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjfawq9qp0002nstwaae83bxn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -526,7 +527,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
