@@ -227,7 +227,7 @@
 <p>来源：知乎</p>
 <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <p>在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。  </p>
-<h5 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h5><p>Unix进程模型中，进程是按照父进程产生子进程，子进程产生子子进程这样的方式创建出完成各项相互协作功能的进程的。当一个进程完成它的工作终止之后，它的父进程需要调用wait()或者waitpid()系统调用取得子进程的终止状态。如果父进程没有这么做的话，会产生什么后果呢？此时，子进程虽然已经退出了，但是在系统进程表中还为它保留了一些退出状态的信息，如果父进程一直不取得这些退出信息的话，这些进程表项就将一直被占用，此时，这些占着茅坑不拉屎的子进程就成为“僵尸进程”（zombie）。系统进程表是一项有限资源，如果系统进程表被僵尸进程耗尽的话，系统就可能无法创建新的进程。  </p>
+<h5 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h5><p>Unix进程模型中，进程是按照父进程产生子进程，子进程产生子子进程这样的方式创建出完成各项相互协作功能的进程的。&lt;!— more –&gt;<br>当一个进程完成它的工作终止之后，它的父进程需要调用wait()或者waitpid()系统调用取得子进程的终止状态。如果父进程没有这么做的话，会产生什么后果呢？此时，子进程虽然已经退出了，但是在系统进程表中还为它保留了一些退出状态的信息，如果父进程一直不取得这些退出信息的话，这些进程表项就将一直被占用，此时，这些占着茅坑不拉屎的子进程就成为“僵尸进程”（zombie）。系统进程表是一项有限资源，如果系统进程表被僵尸进程耗尽的话，系统就可能无法创建新的进程。  </p>
 <h5 id="那么，孤儿进程又是怎么回事呢？"><a href="#那么，孤儿进程又是怎么回事呢？" class="headerlink" title="那么，孤儿进程又是怎么回事呢？"></a>那么，孤儿进程又是怎么回事呢？</h5><p>孤儿进程是指这样一类进程：在进程还未退出之前，它的父进程就已经退出了，一个没有了父进程的子进程就是一个孤儿进程（orphan）。既然所有进程都必须在退出之后被wait()或waitpid()以释放其遗留在系统中的一些资源，那么应该由谁来处理孤儿进程的善后事宜呢？这个重任就落到了init进程身上，init进程就好像是一个民政局，专门负责处理孤儿进程的善后工作。每当出现一个孤儿进程的时候，内核就把孤儿进程的父进程设置为init，而init进程会循环地wait()它的已经退出的子进程。这样，当一个孤儿进程“凄凉地”结束了其生命周期的时候，init进程就会代表党和政府出面处理它的一切善后工作。  </p>
 <p><strong>这样来看，孤儿进程并不会有什么危害，真正会对系统构成威胁的是僵尸进程。</strong>  </p>
 <p>那么，什么情况下僵尸进程会威胁系统的稳定呢？  </p>
@@ -244,7 +244,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjfavbmfv000lcwtwcaln86wj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjfavlc5j000kwotwwbf67spg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -548,7 +548,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjfavbmf10006cwtwgi0625x7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjfavlc54000bwotwzszvpv93" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -695,7 +695,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjfavbmfs000jcwtwf5cjdz0q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjfavlc5g000jwotwqbmzgfpf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -811,7 +811,7 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做，递归一直都是我的弱项……TT…  </p>
+            <p>二叉树的内容只有在本科进行“数据结构”课程时学习过。二叉树是一种比较特别的数据结构，大多数算法都能用递归去做。 </p>
 <p>在对二叉树进行前序、中序、后序及层次遍历时，递归是最简洁的方法，然而递归的性能一般都是比较低的，所以我们需要考虑用非递归（循环）的方式来实现几种遍历。  </p>
 <p>其中，后序遍历的非递归方法是来自这篇文章：<br><a href="http://www.jianshu.com/p/49c8cfd07410" target="_blank" rel="external">http://www.jianshu.com/p/49c8cfd07410</a><br>这篇文章实现递归遍历二叉树的代码非常整齐，值得学习。  </p>
 <p>话不多说，上代码。  </p>
@@ -830,6 +830,7 @@
     }
 }
 </code></pre>
+<p>  &lt;!— more –&gt;</p>
 <p><strong><em>treeOper.java</em></strong>  </p>
 <pre><code class="java"><span class="keyword">import</span> java.util.LinkedList;
 <span class="keyword">import</span> java.util.Queue;
@@ -1075,7 +1076,7 @@ Process finished with exit code 0
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjfavbmeg0001cwtw31kr1iqy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjfavlc4i0002wotwe806a7vu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1411,7 +1412,7 @@ timeout = 120#超时时间设置
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjfavbmfq000icwtw7apdzoeq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjfavlc5d000gwotwe1dqaw7o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1557,7 +1558,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjfavbmfl000fcwtwmf8u0qjq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjfavlc5a000ewotw6ozteqna" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1752,7 +1753,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjfavbmfa0008cwtwalrtrxpw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjfavlc4y0007wotwofzl4oje" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1885,7 +1886,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjfavbmfc000acwtw59stcf6n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjfavlc500008wotwvp56iamo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -2065,7 +2066,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjfavbmfi000dcwtwngles0xa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjfavlc56000cwotwg3je8kev" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -2198,7 +2199,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjfavbmfe000bcwtwgrdg9wuv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjfavlc520009wotwjj1e3w2c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
