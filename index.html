@@ -226,7 +226,7 @@
 <p>来源：知乎</p>
 <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <p>在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。  </p>
-<h5 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h5><p>Unix进程模型中，进程是按照父进程产生子进程，子进程产生子子进程这样的方式创建出完成各项相互协作功能的进程的。<br></p>
+<h5 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h5><p>Unix进程模型中，进程是按照父进程产生子进程，子进程产生子子进程这样的方式创建出完成各项相互协作功能的进程的。当一个进程完成它的工作终止之后，它的父进程需要调用wait()或者waitpid()系统调用取得子进程的终止状态。如果父进程没有这么做的话，会产生什么后果呢？此时，子进程虽然已经退出了，但是在系统进程表中还为它保留了一些退出状态的信息，如果父进程一直不取得这些退出信息的话，这些进程表项就将一直被占用，此时，这些占着茅坑不拉屎的子进程就成为“僵尸进程”（zombie）。系统进程表是一项有限资源，如果系统进程表被僵尸进程耗尽的话，系统就可能无法创建新的进程。  </p></p>
             <p class="article-more-link">
                 <a href="/2018/03/16/zombieandorphanpid/#more">查看更多</a>
             </p>
@@ -239,7 +239,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjfawdym4000id8twtpmudptg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjfawko29000htwtwpimozxeq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -543,7 +543,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjfawdylg0005d8tw9euan25h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjfawko1v0007twtw3nob9c27" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -690,7 +690,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjfawdym8000ld8twi93j95n0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjfawko26000ftwtwnaofob42" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1071,7 +1071,7 @@ Process finished with exit code 0
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjfawdykw0000d8twn44e9ime" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjfawko2b000jtwtw7r11vc61" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1407,7 +1407,7 @@ timeout = 120#超时时间设置
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjfawdym6000jd8twcu3mc7ck" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjfawko24000etwtwmxgovwmg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1553,7 +1553,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjfawdym1000fd8twteocpakz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjfawko22000ctwtwa3mwizqa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1748,7 +1748,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjfawdyl80002d8tweem76myc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjfawko1m0004twtw9iywo2xs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1881,7 +1881,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjfawdylo0008d8twef8nun1t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjfawko1x0008twtw0byzd0sx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -2061,7 +2061,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjfawdylz000dd8twqu1cu8wy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjfawko21000btwtw9j5pid0t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -2194,7 +2194,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjfawdylw000bd8twsm5ks6yc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjfawko1y0009twtwoaq8wchf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

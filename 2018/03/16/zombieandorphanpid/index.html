@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://gracee.xin/2018/03/16/zombieandorphanpid/index.html">
 <meta property="og:site_name" content="Grace Space">
 <meta property="og:description" content="【转】   作者：郭无心 链接：https://www.zhihu.com/question/26432067/answer/70643183 来源：知乎 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。   什么是僵尸进程？Unix进程模型中，进程是按照父进程产生子进程，子进程">
-<meta property="og:updated_time" content="2018-03-28T09:38:18.052Z">
+<meta property="og:updated_time" content="2018-03-28T09:43:10.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="僵尸进程与孤儿进程">
 <meta name="twitter:description" content="【转】   作者：郭无心 链接：https://www.zhihu.com/question/26432067/answer/70643183 来源：知乎 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。   什么是僵尸进程？Unix进程模型中，进程是按照父进程产生子进程，子进程">
@@ -228,7 +228,8 @@
 <p>来源：知乎</p>
 <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <p>在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。  </p>
-<h5 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h5><p>Unix进程模型中，进程是按照父进程产生子进程，子进程产生子子进程这样的方式创建出完成各项相互协作功能的进程的。<br><a id="more"></a><br>当一个进程完成它的工作终止之后，它的父进程需要调用wait()或者waitpid()系统调用取得子进程的终止状态。如果父进程没有这么做的话，会产生什么后果呢？此时，子进程虽然已经退出了，但是在系统进程表中还为它保留了一些退出状态的信息，如果父进程一直不取得这些退出信息的话，这些进程表项就将一直被占用，此时，这些占着茅坑不拉屎的子进程就成为“僵尸进程”（zombie）。系统进程表是一项有限资源，如果系统进程表被僵尸进程耗尽的话，系统就可能无法创建新的进程。  </p>
+<h5 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h5><p>Unix进程模型中，进程是按照父进程产生子进程，子进程产生子子进程这样的方式创建出完成各项相互协作功能的进程的。当一个进程完成它的工作终止之后，它的父进程需要调用wait()或者waitpid()系统调用取得子进程的终止状态。如果父进程没有这么做的话，会产生什么后果呢？此时，子进程虽然已经退出了，但是在系统进程表中还为它保留了一些退出状态的信息，如果父进程一直不取得这些退出信息的话，这些进程表项就将一直被占用，此时，这些占着茅坑不拉屎的子进程就成为“僵尸进程”（zombie）。系统进程表是一项有限资源，如果系统进程表被僵尸进程耗尽的话，系统就可能无法创建新的进程。  </p>
+  <a id="more"></a>
 <h5 id="那么，孤儿进程又是怎么回事呢？"><a href="#那么，孤儿进程又是怎么回事呢？" class="headerlink" title="那么，孤儿进程又是怎么回事呢？"></a>那么，孤儿进程又是怎么回事呢？</h5><p>孤儿进程是指这样一类进程：在进程还未退出之前，它的父进程就已经退出了，一个没有了父进程的子进程就是一个孤儿进程（orphan）。既然所有进程都必须在退出之后被wait()或waitpid()以释放其遗留在系统中的一些资源，那么应该由谁来处理孤儿进程的善后事宜呢？这个重任就落到了init进程身上，init进程就好像是一个民政局，专门负责处理孤儿进程的善后工作。每当出现一个孤儿进程的时候，内核就把孤儿进程的父进程设置为init，而init进程会循环地wait()它的已经退出的子进程。这样，当一个孤儿进程“凄凉地”结束了其生命周期的时候，init进程就会代表党和政府出面处理它的一切善后工作。  </p>
 <p><strong>这样来看，孤儿进程并不会有什么危害，真正会对系统构成威胁的是僵尸进程。</strong>  </p>
 <p>那么，什么情况下僵尸进程会威胁系统的稳定呢？  </p>
@@ -245,7 +246,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjfawdym4000id8twtpmudptg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjfawko29000htwtwpimozxeq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
