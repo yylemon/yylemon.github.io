@@ -642,7 +642,7 @@ code {
   width: 28.000000000000004%;
   margin: 0 1%;
   display: none;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 @media screen and (min-width: 1200px) {
   #profile {
@@ -650,7 +650,7 @@ code {
   }
 }
 #profile .inner {
-  margin-top: 20px;
+  margin-top: 10px;
   background: #fff;
 }
 #profile .inner .base-info #avatar {
@@ -846,7 +846,7 @@ code {
   }
 }
 .article {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .article-inner {
   overflow: hidden;
@@ -856,7 +856,7 @@ code {
   height: auto;
 }
 .article-header {
-  padding: 20px 20px 0;
+  padding: 10px 10px 0;
 }
 .article-header .article-title {
   display: block;
@@ -916,7 +916,7 @@ a.article-title:hover {
 }
 .article-entry {
   color: #565a5f;
-  padding: 0 20px;
+  padding: 0 10px;
   line-height: 1.6em;
 }
 .article-entry:before,
@@ -1079,7 +1079,7 @@ a.article-title:hover {
   line-height: 1.6em;
   border-top: 1px solid #eceff2;
   padding-top: 1.6em;
-  margin: 0 20px 20px;
+  margin: 0 10px 10px;
 }
 .article-footer:before,
 .article-footer:after {
@@ -1128,7 +1128,7 @@ a.article-title:hover {
 }
 @media screen and (min-width: 1200px) {
   #article-nav {
-    margin: 20px 0;
+    margin: 10px 0;
   }
   #article-nav:before {
     width: 8px;
@@ -1149,7 +1149,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
   display: block;
 }
@@ -1354,8 +1354,8 @@ a.article-title:hover {
   border-radius: 0 !important;
 }
 #comments {
-  padding: 20px;
-  margin: 20px 0;
+  padding: 10px;
+  margin: 10px 0;
 }
 #comments a {
   color: #38b7ea;
@@ -1376,7 +1376,7 @@ a.article-title:hover {
 .archive-tag-wrap,
 .layout-title {
   font-size: 1.4em;
-  margin: 20px 0 20px 0;
+  margin: 10px 0 20px 0;
 }
 @media screen and (max-width: 559px) {
   .archive-year-wrap,
@@ -1542,7 +1542,7 @@ a.article-title:hover {
   content: '#';
 }
 #page-nav {
-  margin: 20px auto;
+  margin: 10px auto;
   text-align: center;
   color: #999;
   overflow: hidden;
@@ -1751,11 +1751,11 @@ a.article-title:hover {
   margin-right: 5px;
 }
 .widget-wrap {
-  margin: 20px 10px;
+  margin: 10px 10px;
 }
 @media screen and (max-width: 559px) {
   .widget-wrap {
-    margin: 20px 20px;
+    margin: 10px 20px;
   }
 }
 .widget-title {
