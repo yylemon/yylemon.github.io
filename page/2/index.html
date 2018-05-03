@@ -17,6 +17,8 @@
     
 
     
+        <link rel="alternate" href="/" title="Grace Space" type="application/atom+xml" />
+    
 
     
 
@@ -52,15 +54,15 @@
             </a>
             <nav id="main-nav">
                 
-                    <a class="main-nav-link" href="/.">首页</a>
+                    <a class="main-nav-link" href="/.">Home</a>
                 
-                    <a class="main-nav-link" href="/archives">归档</a>
+                    <a class="main-nav-link" href="/archives">Archives</a>
                 
-                    <a class="main-nav-link" href="/categories">类别</a>
+                    <a class="main-nav-link" href="/categories">Categories</a>
                 
-                    <a class="main-nav-link" href="/tags">标签</a>
+                    <a class="main-nav-link" href="/tags">Tags</a>
                 
-                    <a class="main-nav-link" href="/about">关于我</a>
+                    <a class="main-nav-link" href="/about">About</a>
                 
             </nav>
             
@@ -68,7 +70,7 @@
                 <nav id="sub-nav">
                     <div class="profile" id="profile-nav">
                         <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar1.JPG" />
+                            <img class="avatar" src="/css/images/avatar.png" />
                             <i class="fa fa-caret-down"></i>
                         </a>
                     </div>
@@ -117,15 +119,15 @@
         <table class="menu outer">
             <tr>
                 
-                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
                 
-                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
                 
-                    <td><a class="main-nav-link" href="/categories">类别</a></td>
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
                 
-                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
                 
-                    <td><a class="main-nav-link" href="/about">关于我</a></td>
+                    <td><a class="main-nav-link" href="/about">About</a></td>
                 
                 <td>
                     
@@ -143,14 +145,14 @@
             
                 
 
-<aside id="profile">
+<aside id="profile" class="profile-fixed">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar1.JPG" />
-            <h2 id="name">Gracee</h2>
-            <h3 id="title">Java &amp; Python</h3>
-            <span id="location"><i class="fa fa-map-marker"></i>Wuhan, China</span>
-            <a id="follow" target="_blank" href="https://github.com/GraceYYJ">关注我</a>
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">PPOffice</h2>
+            <h3 id="title">Web Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Harbin, China</span>
+            <a id="follow" target="_blank" href="https://github.com/ppoffice/">关注我</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
@@ -169,8 +171,32 @@
                     
                     
                     <td>
-                        <a href="https://github.com/GraceYYJ" target="_blank" title="github" class=tooltip>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
                             <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
                         </a>
                     </td>
                     
@@ -233,7 +259,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/07/14/NIO/" data-id="cjgq3j98q00028ctwma5eo31f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/07/14/NIO/" data-id="cjgq593lc0002w8twonezlnc6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -301,8 +327,6 @@
 
             
     
-        <a href="http://gracee.xin/2017/07/14/NIO/#comments" id="sourceId::2017/07/14/NIO/" class="article-comment-link cy_cmt_count">评论</a>
-    
 
         </footer>
     </div>
@@ -315,6 +339,7 @@
         <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </nav>
 </section>
+            
         </div>
         <footer id="footer">
     <div class="outer">
@@ -325,17 +350,6 @@
     </div>
 </footer>
         
-    
-    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytxcgmPt"></script>
-    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
-    <script type="text/javascript">
-    window.changyan.api.config({
-    appid: 'cytxcgmPt',
-    conf: 'c786f4a8ff464060fadb0471845c8d5b'
-    });
-    </script>
-
-
 
 
     
