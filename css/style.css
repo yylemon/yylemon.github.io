@@ -189,7 +189,7 @@ code {
     margin: 0 1%;
   }
 }
-@media screen and (min-width: 800px) and (max-width: 1199px) {
+@media screen and (min-width: 1000px) and (max-width: 1199px) {
   #main {
     width: 100%;
   }
@@ -443,7 +443,7 @@ code {
     display: none;
   }
 }
-@media screen and (min-width: 800px) and (max-width: 1199px) {
+@media screen and (min-width: 1000px) and (max-width: 1199px) {
   #main-nav-mobile {
     display: none;
   }
@@ -1698,7 +1698,7 @@ a.article-title:hover {
     margin: 0 1%;
   }
 }
-@media screen and (min-width: 800px) and (max-width: 1199px) {
+@media screen and (min-width: 1000px) and (max-width: 1199px) {
   #sidebar {
     display: inline;
     float: left;
