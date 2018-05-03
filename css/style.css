@@ -1673,7 +1673,7 @@ a.article-title:hover {
 .widget ol ul,
 .widget ul ol,
 .widget ol ol {
-  margin: 0 20px;
+  margin: 0 0px;
 }
 .widget ul ul,
 .widget ol ul {
@@ -1792,8 +1792,8 @@ a.article-title:hover {
   display: none;
   cursor: pointer;
   text-align: center;
-  width: 60px;
-  height: 60px;
+  width: 0px;
+  height: 0px;
   color: #fff;
   font-size: 50px;
   line-height: 55px;
