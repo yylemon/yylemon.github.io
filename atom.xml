@@ -126,9 +126,9 @@
     </summary>
     
     
-      <category term="install" scheme="http://gracee.xin/tags/install/"/>
-    
       <category term="tensorflow" scheme="http://gracee.xin/tags/tensorflow/"/>
+    
+      <category term="install" scheme="http://gracee.xin/tags/install/"/>
     
   </entry>
   
@@ -171,11 +171,11 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
+      <category term="install" scheme="http://gracee.xin/tags/install/"/>
+    
       <category term="tomcat" scheme="http://gracee.xin/tags/tomcat/"/>
     
       <category term="mysql" scheme="http://gracee.xin/tags/mysql/"/>
-    
-      <category term="install" scheme="http://gracee.xin/tags/install/"/>
     
   </entry>
   
@@ -197,9 +197,9 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
-      <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
-    
       <category term="practice" scheme="http://gracee.xin/tags/practice/"/>
+    
+      <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
     
   </entry>
   
@@ -247,9 +247,9 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
-      <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
-    
       <category term="practice" scheme="http://gracee.xin/tags/practice/"/>
+    
+      <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
     
   </entry>
   
@@ -271,9 +271,9 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
-      <category term="NIO" scheme="http://gracee.xin/tags/NIO/"/>
-    
       <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
+    
+      <category term="NIO" scheme="http://gracee.xin/tags/NIO/"/>
     
   </entry>
   
