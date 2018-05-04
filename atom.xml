@@ -126,9 +126,9 @@
     </summary>
     
     
-      <category term="tensorflow" scheme="http://gracee.xin/tags/tensorflow/"/>
-    
       <category term="install" scheme="http://gracee.xin/tags/install/"/>
+    
+      <category term="tensorflow" scheme="http://gracee.xin/tags/tensorflow/"/>
     
   </entry>
   
@@ -171,11 +171,11 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
-      <category term="install" scheme="http://gracee.xin/tags/install/"/>
-    
       <category term="tomcat" scheme="http://gracee.xin/tags/tomcat/"/>
     
       <category term="mysql" scheme="http://gracee.xin/tags/mysql/"/>
+    
+      <category term="install" scheme="http://gracee.xin/tags/install/"/>
     
   </entry>
   

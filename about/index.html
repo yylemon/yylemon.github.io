@@ -196,6 +196,20 @@
 <p>技术上菜鸡，生活中胆小…但…有一颗成长的心！<br>博客就是用于记录学习和生活的，希望能尽量克服懒惰…<br>在否定中前进，在怀疑中成长，We are all explorers trying to find ourselves.  </p>
 <p><img src="/images/me.jpg" alt=""> </p>
 
+      <script>
+        window.disqusProxy={
+          shortname: 'graceee',
+          username: 'graceee',
+          server: 'timyoung.xin',
+          port: 5209,
+          adminAvatar: '/avatars/admin-avatar.jpg',
+          identifier: 'about/index.html',
+        };
+        window.disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.disqusProxy.identifier;
+        };
+      </script>
         
         </div>
         <footer class="article-footer">
@@ -205,7 +219,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/about/index.html" data-id="cjgrmjunp000wystwubs76jrq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/about/index.html" data-id="cjgrw0i8e0003cktwahxonrzs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -288,7 +302,13 @@
     
     
         <section id="comments">
-    <div id="disqus_thread">
+    
+      <script src="//cdn.bootcss.com/react/16.0.0/umd/react.production.min.js"></script>
+      <script src="//cdn.bootcss.com/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
+      <script src="//cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/blockies-identicon@0.1.0/blockies.min.js"></script>
+      <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+      <div id="disqus_proxy_thread"><script src="/scripts/hexo-disqus-proxy-primary.js" async></script>
         <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 </section>
@@ -320,7 +340,7 @@
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
-</script>
+	</script>
 
 
 

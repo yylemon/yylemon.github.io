@@ -245,6 +245,20 @@
 <li>ANSWER：<br>（1）为了确保A-&gt;B最后发送的ACK报文段能够到达。假设该A向B发送ACK报文段后就立即进入CLOSED状态，而ACK报文段未顺利到达B，在超时未收到A的ACK报文段时，B会重发前面的连接释放报文段，而这时A已经关闭了，这样会导致B无法顺便关闭。<br>（2）防止 “已失效的连接请求报文段”出现在本连接中。A 在发送完最后一个 ACK 报文段后，再经过时间 2MSL，就可以使本连接持续的时间内所产生的所有报文段，都从网络中消失。这样就可以使下一个新的连接中不会出现这种旧的连接请求报文段。</li>
 </ul>
 
+      <script>
+        window.disqusProxy={
+          shortname: 'graceee',
+          username: 'graceee',
+          server: 'timyoung.xin',
+          port: 5209,
+          adminAvatar: '/avatars/admin-avatar.jpg',
+          identifier: '2018/01/05/wangluomianshi1/',
+        };
+        window.disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.disqusProxy.identifier;
+        };
+      </script>
         
         </div>
         <footer class="article-footer">
@@ -254,7 +268,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjgrmjunw0012ystwkrt0bdts" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjgrw0i93000dcktwflwoc641" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -356,7 +370,13 @@
     
     
         <section id="comments">
-    <div id="disqus_thread">
+    
+      <script src="//cdn.bootcss.com/react/16.0.0/umd/react.production.min.js"></script>
+      <script src="//cdn.bootcss.com/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
+      <script src="//cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/blockies-identicon@0.1.0/blockies.min.js"></script>
+      <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+      <div id="disqus_proxy_thread"><script src="/scripts/hexo-disqus-proxy-primary.js" async></script>
         <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 </section>
@@ -388,7 +408,7 @@
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
-</script>
+	</script>
 
 
 
