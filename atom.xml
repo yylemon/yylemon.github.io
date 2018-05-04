@@ -197,9 +197,9 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
-      <category term="practice" scheme="http://gracee.xin/tags/practice/"/>
-    
       <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
+    
+      <category term="practice" scheme="http://gracee.xin/tags/practice/"/>
     
   </entry>
   
@@ -247,9 +247,9 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
-      <category term="practice" scheme="http://gracee.xin/tags/practice/"/>
-    
       <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
+    
+      <category term="practice" scheme="http://gracee.xin/tags/practice/"/>
     
   </entry>
   
@@ -271,9 +271,9 @@
     
       <category term="java" scheme="http://gracee.xin/tags/java/"/>
     
-      <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
-    
       <category term="NIO" scheme="http://gracee.xin/tags/NIO/"/>
+    
+      <category term="moods" scheme="http://gracee.xin/tags/moods/"/>
     
   </entry>
   
