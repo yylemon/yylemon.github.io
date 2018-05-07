@@ -3,19 +3,19 @@
 <head>
     <meta charset="utf-8">
     
-    <title>僵尸进程与孤儿进程 | Grace&#39;s Space</title>
+    <title>设计模式之单例 | Grace&#39;s Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="【转】   作者：郭无心 链接：https://www.zhihu.com/question/26432067/answer/70643183 来源：知乎 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。">
-<meta name="keywords" content="linux,pid">
+    <meta name="description" content="本文是第一篇关于学习设计模式的记录，主要介绍一下单例模式。单例模式属于创建型模式，这种模式的类自己负责创建实例，并且保证只能有一个实例，还要给其他对象提供获取这一实例的方法。单例模式主要应用于要求有且仅有一个实例的类的场景中，比如：资源管理器、计数器、数据库连接池等，如果你了解spring的话，就应该知道，spring默认的bean就都是单例的。那么，如何实现单例模式呢？对于一个类只有一个实例这个">
+<meta name="keywords" content="install">
 <meta property="og:type" content="article">
-<meta property="og:title" content="僵尸进程与孤儿进程">
-<meta property="og:url" content="http://gracee.xin/2018/03/16/zombieandorphanpid/index.html">
+<meta property="og:title" content="设计模式之单例">
+<meta property="og:url" content="http://gracee.xin/2018/04/20/Singleton/index.html">
 <meta property="og:site_name" content="Grace&#39;s Space">
-<meta property="og:description" content="【转】   作者：郭无心 链接：https://www.zhihu.com/question/26432067/answer/70643183 来源：知乎 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。">
-<meta property="og:updated_time" content="2018-03-28T09:53:55.124Z">
+<meta property="og:description" content="本文是第一篇关于学习设计模式的记录，主要介绍一下单例模式。单例模式属于创建型模式，这种模式的类自己负责创建实例，并且保证只能有一个实例，还要给其他对象提供获取这一实例的方法。单例模式主要应用于要求有且仅有一个实例的类的场景中，比如：资源管理器、计数器、数据库连接池等，如果你了解spring的话，就应该知道，spring默认的bean就都是单例的。那么，如何实现单例模式呢？对于一个类只有一个实例这个">
+<meta property="og:updated_time" content="2018-05-07T14:49:37.563Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="僵尸进程与孤儿进程">
-<meta name="twitter:description" content="【转】   作者：郭无心 链接：https://www.zhihu.com/question/26432067/answer/70643183 来源：知乎 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。">
+<meta name="twitter:title" content="设计模式之单例">
+<meta name="twitter:description" content="本文是第一篇关于学习设计模式的记录，主要介绍一下单例模式。单例模式属于创建型模式，这种模式的类自己负责创建实例，并且保证只能有一个实例，还要给其他对象提供获取这一实例的方法。单例模式主要应用于要求有且仅有一个实例的类的场景中，比如：资源管理器、计数器、数据库连接池等，如果你了解spring的话，就应该知道，spring默认的bean就都是单例的。那么，如何实现单例模式呢？对于一个类只有一个实例这个">
     
 
     
@@ -182,7 +182,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-zombieandorphanpid" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-Singleton" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -190,7 +190,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            僵尸进程与孤儿进程
+            设计模式之单例
         </h1>
     
 
@@ -199,8 +199,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/03/16/zombieandorphanpid/">
-            <time datetime="2018-03-16T07:25:00.000Z" itemprop="datePublished">2018-03-16</time>
+        <a href="/2018/04/20/Singleton/">
+            <time datetime="2018-04-20T13:00:00.000Z" itemprop="datePublished">2018-04-20</time>
         </a>
     </div>
 
@@ -209,7 +209,7 @@
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>, <a class="tag-link" href="/tags/pid/">pid</a>
+        <a class="tag-link" href="/tags/install/">install</a>
     </div>
 
                     </div>
@@ -220,19 +220,58 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>【转】  </p>
-<p>作者：郭无心</p>
-<p>链接：<a href="https://www.zhihu.com/question/26432067/answer/70643183" target="_blank" rel="external">https://www.zhihu.com/question/26432067/answer/70643183</a></p>
-<p>来源：知乎</p>
-<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<p>在Unix系统编程中，常常会碰到两个概念：僵尸进程和孤儿进程。话说我以前曾经把这两个概念弄混淆过。<br><a id="more"></a></p>
-<h5 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h5><p>Unix进程模型中，进程是按照父进程产生子进程，子进程产生子子进程这样的方式创建出完成各项相互协作功能的进程的。当一个进程完成它的工作终止之后，它的父进程需要调用wait()或者waitpid()系统调用取得子进程的终止状态。如果父进程没有这么做的话，会产生什么后果呢？此时，子进程虽然已经退出了，但是在系统进程表中还为它保留了一些退出状态的信息，如果父进程一直不取得这些退出信息的话，这些进程表项就将一直被占用，此时，这些占着茅坑不拉屎的子进程就成为“僵尸进程”（zombie）。系统进程表是一项有限资源，如果系统进程表被僵尸进程耗尽的话，系统就可能无法创建新的进程。  </p>
-<h5 id="那么，孤儿进程又是怎么回事呢？"><a href="#那么，孤儿进程又是怎么回事呢？" class="headerlink" title="那么，孤儿进程又是怎么回事呢？"></a>那么，孤儿进程又是怎么回事呢？</h5><p>孤儿进程是指这样一类进程：在进程还未退出之前，它的父进程就已经退出了，一个没有了父进程的子进程就是一个孤儿进程（orphan）。既然所有进程都必须在退出之后被wait()或waitpid()以释放其遗留在系统中的一些资源，那么应该由谁来处理孤儿进程的善后事宜呢？这个重任就落到了init进程身上，init进程就好像是一个民政局，专门负责处理孤儿进程的善后工作。每当出现一个孤儿进程的时候，内核就把孤儿进程的父进程设置为init，而init进程会循环地wait()它的已经退出的子进程。这样，当一个孤儿进程“凄凉地”结束了其生命周期的时候，init进程就会代表党和政府出面处理它的一切善后工作。  </p>
-<p><strong>这样来看，孤儿进程并不会有什么危害，真正会对系统构成威胁的是僵尸进程。</strong>  </p>
-<p>那么，什么情况下僵尸进程会威胁系统的稳定呢？  </p>
-<p>设想有这样一个父进程：它定期的产生一个子进程，这个子进程需要做的事情很少，做完它该做的事情之后就退出了，因此这个子进程的生命周期很短，但是，父进程只管生成新的子进程，至于子进程退出之后的事情，则一概不闻不问，这样，系统运行上一段时间之后，系统中就会存在很多的僵尸进程，倘若用ps命令查看的话，就会看到很多状态为Z的进程。<br>严格地来说，僵尸进程并不是问题的根源，罪魁祸首是产生出大量僵尸进程的那个父进程。  </p>
-<p>因此，当我们寻求如何消灭系统中大量的僵尸进程时，答案就是把产生大量僵尸进程的那个元凶枪毙掉（通过kill发送SIGTERM或者SIGKILL信号）。  </p>
-<p>枪毙了元凶进程之后，它产生的僵尸进程就变成了孤儿进程，这些孤儿进程会被init进程接管，init进程会wait()这些孤儿进程，释放它们占用的系统进程表中的资源，这样，这些已经“僵尸”的孤儿进程就能瞑目而去了。</p>
+            <p>本文是第一篇关于学习设计模式的记录，主要介绍一下单例模式。<br>单例模式属于创建型模式，这种模式的类自己负责创建实例，并且保证只能有一个实例，还要给其他对象提供获取这一实例的方法。<br>单例模式主要应用于要求有且仅有一个实例的类的场景中，比如：资源管理器、计数器、数据库连接池等，如果你了解spring的话，就应该知道，spring默认的bean就都是单例的。<br>那么，如何实现单例模式呢？对于一个类只有一个实例这个定义，我们会很容易想到static修饰符。因为只要用static修饰的成员是类对象共享的，自然就只有一份咯。事实上，我们也就是这样做的。</p>
+<h5 id="1-懒汉式（线程不安全-安全）"><a href="#1-懒汉式（线程不安全-安全）" class="headerlink" title="1 懒汉式（线程不安全/安全）"></a>1 懒汉式（线程不安全/安全）</h5><p>懒汉指的是真正要使用该实例的时候才去初始化它，如果一直没有外部访问，就一直不会去初始化该实例。<br>如下面代码所示，instance只会在第一次访问时被初始化，并且根据getInstance方法是否上锁保证该过程是否是线程安全的。</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singletonlazy</span></span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> Singletonlazy instance;
+    <span class="function"><span class="keyword">private</span> <span class="title">Singletonlazy</span><span class="params">()</span></span>{}
+    <span class="comment">//不加sychronized是基本懒汉式，加了是线程安全的懒汉式</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singletonlazy <span class="title">getInstance</span><span class="params">()</span></span>{
+        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)
+            instance=<span class="keyword">new</span> Singletonlazy();
+        <span class="keyword">return</span> instance;
+    }
+}
+</code></pre>
+<h5 id="2-饿汉式（线程安全）"><a href="#2-饿汉式（线程安全）" class="headerlink" title="2 饿汉式（线程安全）"></a>2 饿汉式（线程安全）</h5><p>和懒汉式相反，饿汉式指的是该单例是在该类一加载时就进行初始化，无论它是否会被访问，这样会造成堆内存的浪费。<br>但也正是因为这样，由于类加载的过程是线程安全的，静态成员在类加载过程的<strong>准备阶段</strong>会进行内存分配，在<strong>初始化阶段</strong>会按我们要求进行真正的初始化(new)，所以饿汉式一定是线程安全的。</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singletonhungry</span></span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> Singletonhungry instance=<span class="keyword">new</span> Singletonhungry();
+    <span class="function"><span class="keyword">private</span> <span class="title">Singletonhungry</span><span class="params">()</span></span>{}
+    <span class="function"><span class="keyword">public</span> Singletonhungry <span class="title">getInstance</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> instance;
+    }
+}
+</code></pre>
+<h5 id="3-双检锁式（线程安全）"><a href="#3-双检锁式（线程安全）" class="headerlink" title="3 双检锁式（线程安全）"></a>3 双检锁式（线程安全）</h5><p>双检锁，顾名思义，就是双重检查锁。其实根据它的实现方法（下面的代码），我理解的是<strong>双重检查（实例是否为空）</strong>和<strong>双重加锁</strong>两个点。<br><strong>为什么要双重检查instance==null？</strong><br>第一次判断可以保证：在实例已经被初始化后，任何线程都不必要参与synchronized锁的竞争，提高程序性能。<br>第二次判断可以保证：多个竞争synchronized锁的线程中，只有第一个进入同步块的能真正去完成初始化操作。等该线程完成后，其他进入同步块的线程不会再进行重复地初始化。<br><strong>为什么要用了synchronized锁，还要用volatile修饰instance对象？</strong><br>因为<strong>instance = new Singleton()并非是一个原子操作</strong>，它涉及到分配堆内存、调用构造函数、将instance指向分配的内存等一系列操作。<br>jvm底层的指令重排序优化可能会将上面的操作指令重排，线程1可能导致instance不为空，但并未进行构造函数初始化，而引起线程2获取到这样的instance而报错。<br>所以我们要给instance加上volatile修饰，因为volatile除了保证可见性这一点外，还能禁止指令重排序；这样可以使得用volatile修饰的变量的赋值操作的指令后面被加上一个StoreLoad内存屏障，保证任何读操作不会被重排序到该内存屏障之前。</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonDoublelock</span></span>{
+    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> SingletonDoublelock instance;
+    <span class="function"><span class="keyword">private</span> <span class="title">SingletonDoublelock</span><span class="params">()</span></span>{}
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonDoublelock <span class="title">getInstance</span><span class="params">()</span></span>{
+        <span class="keyword">if</span>(instance==<span class="keyword">null</span>){
+            <span class="keyword">synchronized</span> (SingletonDoublelock.class){
+                <span class="keyword">if</span>(instance==<span class="keyword">null</span>)
+                    instance=<span class="keyword">new</span> SingletonDoublelock();
+            }
+        }
+        <span class="keyword">return</span> instance;
+    }
+}
+</code></pre>
+<h5 id="4-内部类式（线程安全）"><a href="#4-内部类式（线程安全）" class="headerlink" title="4 内部类式（线程安全）"></a>4 内部类式（线程安全）</h5><p>内部类式和饿汉式保证线程安全的方式其实很类似，但不同的是，内部类方式可以实现延迟初始化。<br>因为外部类加载时内部类并不会被加载，只有显式调用它的getInstance()方法才会去进行内部类的加载和instance的初始化。<br>（关于实例中的final修饰词，我觉得并不是绝对必要的）</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonInnerclass</span></span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>{
+        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();
+    }
+    <span class="function"><span class="keyword">private</span> <span class="title">SingletonInnerclass</span> <span class="params">()</span></span>{}
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> SingletonInnerclass.SingletonHolder.INSTANCE;
+    }
+}
+</code></pre>
+<p>参考链接：菜鸟教程</p>
+<blockquote>
+<p><a href="http://www.runoob.com/design-pattern/singleton-pattern.html" target="_blank" rel="external">http://www.runoob.com/design-pattern/singleton-pattern.html</a>  </p>
+</blockquote>
 
       <script>
         window.disqusProxy={
@@ -241,7 +280,7 @@
           server: '140.82.60.61',
           port: 5209,
           adminAvatar: '/images/IMG_7607.jpg',
-          identifier: '2018/03/16/zombieandorphanpid/',
+          identifier: '2018/04/20/Singleton/',
         };
         window.disqus_config = function () {
           this.page.url = window.location.href;
@@ -257,7 +296,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjgwd4lwq000jz4twbh4k164d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/04/20/Singleton/" data-id="cjgwd4lwu000lz4twtx7rr169" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -325,7 +364,7 @@
 
             
     
-        <a href="http://gracee.xin/2018/03/16/zombieandorphanpid/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2018/03/16/zombieandorphanpid/">评论</a>
+        <a href="http://gracee.xin/2018/04/20/Singleton/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2018/04/20/Singleton/">评论</a>
     
 
         </footer>
@@ -334,19 +373,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/04/20/Singleton/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    设计模式之单例
-                
-            </div>
-        </a>
     
-    
-        <a href="/2018/01/12/jvm-2/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/03/16/zombieandorphanpid/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">深入理解JVM-Note-Java内存区域与内存溢出异常</div>
+            <div class="article-nav-title">僵尸进程与孤儿进程</div>
         </a>
     
 </nav>
@@ -387,9 +417,9 @@
     <script>
     var disqus_config = function () {
         
-            this.page.url = 'http://gracee.xin/2018/03/16/zombieandorphanpid/';
+            this.page.url = 'http://gracee.xin/2018/04/20/Singleton/';
         
-        this.page.identifier = 'zombieandorphanpid';
+        this.page.identifier = 'Singleton';
     };
     (function() { 
         var d = document, s = d.createElement('script');  

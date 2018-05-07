@@ -152,7 +152,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                11
+                12
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -181,6 +181,198 @@
 
             
             <section id="main">
+    <article id="post-Singleton" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/04/20/Singleton/">设计模式之单例</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/04/20/Singleton/">
+            <time datetime="2018-04-20T13:00:00.000Z" itemprop="datePublished">2018-04-20</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/install/">install</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>本文是第一篇关于学习设计模式的记录，主要介绍一下单例模式。<br>单例模式属于创建型模式，这种模式的类自己负责创建实例，并且保证只能有一个实例，还要给其他对象提供获取这一实例的方法。<br>单例模式主要应用于要求有且仅有一个实例的类的场景中，比如：资源管理器、计数器、数据库连接池等，如果你了解spring的话，就应该知道，spring默认的bean就都是单例的。<br>那么，如何实现单例模式呢？对于一个类只有一个实例这个定义，我们会很容易想到static修饰符。因为只要用static修饰的成员是类对象共享的，自然就只有一份咯。事实上，我们也就是这样做的。</p>
+<h5 id="1-懒汉式（线程不安全-安全）"><a href="#1-懒汉式（线程不安全-安全）" class="headerlink" title="1 懒汉式（线程不安全/安全）"></a>1 懒汉式（线程不安全/安全）</h5><p>懒汉指的是真正要使用该实例的时候才去初始化它，如果一直没有外部访问，就一直不会去初始化该实例。<br>如下面代码所示，instance只会在第一次访问时被初始化，并且根据getInstance方法是否上锁保证该过程是否是线程安全的。</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singletonlazy</span></span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> Singletonlazy instance;
+    <span class="function"><span class="keyword">private</span> <span class="title">Singletonlazy</span><span class="params">()</span></span>{}
+    <span class="comment">//不加sychronized是基本懒汉式，加了是线程安全的懒汉式</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singletonlazy <span class="title">getInstance</span><span class="params">()</span></span>{
+        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)
+            instance=<span class="keyword">new</span> Singletonlazy();
+        <span class="keyword">return</span> instance;
+    }
+}
+</code></pre>
+<h5 id="2-饿汉式（线程安全）"><a href="#2-饿汉式（线程安全）" class="headerlink" title="2 饿汉式（线程安全）"></a>2 饿汉式（线程安全）</h5><p>和懒汉式相反，饿汉式指的是该单例是在该类一加载时就进行初始化，无论它是否会被访问，这样会造成堆内存的浪费。<br>但也正是因为这样，由于类加载的过程是线程安全的，静态成员在类加载过程的<strong>准备阶段</strong>会进行内存分配，在<strong>初始化阶段</strong>会按我们要求进行真正的初始化(new)，所以饿汉式一定是线程安全的。</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singletonhungry</span></span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> Singletonhungry instance=<span class="keyword">new</span> Singletonhungry();
+    <span class="function"><span class="keyword">private</span> <span class="title">Singletonhungry</span><span class="params">()</span></span>{}
+    <span class="function"><span class="keyword">public</span> Singletonhungry <span class="title">getInstance</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> instance;
+    }
+}
+</code></pre>
+<h5 id="3-双检锁式（线程安全）"><a href="#3-双检锁式（线程安全）" class="headerlink" title="3 双检锁式（线程安全）"></a>3 双检锁式（线程安全）</h5><p>双检锁，顾名思义，就是双重检查锁。其实根据它的实现方法（下面的代码），我理解的是<strong>双重检查（实例是否为空）</strong>和<strong>双重加锁</strong>两个点。<br><strong>为什么要双重检查instance==null？</strong><br>第一次判断可以保证：在实例已经被初始化后，任何线程都不必要参与synchronized锁的竞争，提高程序性能。<br>第二次判断可以保证：多个竞争synchronized锁的线程中，只有第一个进入同步块的能真正去完成初始化操作。等该线程完成后，其他进入同步块的线程不会再进行重复地初始化。<br><strong>为什么要用了synchronized锁，还要用volatile修饰instance对象？</strong><br>因为<strong>instance = new Singleton()并非是一个原子操作</strong>，它涉及到分配堆内存、调用构造函数、将instance指向分配的内存等一系列操作。<br>jvm底层的指令重排序优化可能会将上面的操作指令重排，线程1可能导致instance不为空，但并未进行构造函数初始化，而引起线程2获取到这样的instance而报错。<br>所以我们要给instance加上volatile修饰，因为volatile除了保证可见性这一点外，还能禁止指令重排序；这样可以使得用volatile修饰的变量的赋值操作的指令后面被加上一个StoreLoad内存屏障，保证任何读操作不会被重排序到该内存屏障之前。</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonDoublelock</span></span>{
+    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> SingletonDoublelock instance;
+    <span class="function"><span class="keyword">private</span> <span class="title">SingletonDoublelock</span><span class="params">()</span></span>{}
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonDoublelock <span class="title">getInstance</span><span class="params">()</span></span>{
+        <span class="keyword">if</span>(instance==<span class="keyword">null</span>){
+            <span class="keyword">synchronized</span> (SingletonDoublelock.class){
+                <span class="keyword">if</span>(instance==<span class="keyword">null</span>)
+                    instance=<span class="keyword">new</span> SingletonDoublelock();
+            }
+        }
+        <span class="keyword">return</span> instance;
+    }
+}
+</code></pre>
+<h5 id="4-内部类式（线程安全）"><a href="#4-内部类式（线程安全）" class="headerlink" title="4 内部类式（线程安全）"></a>4 内部类式（线程安全）</h5><p>内部类式和饿汉式保证线程安全的方式其实很类似，但不同的是，内部类方式可以实现延迟初始化。<br>因为外部类加载时内部类并不会被加载，只有显式调用它的getInstance()方法才会去进行内部类的加载和instance的初始化。<br>（关于实例中的final修饰词，我觉得并不是绝对必要的）</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonInnerclass</span></span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>{
+        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();
+    }
+    <span class="function"><span class="keyword">private</span> <span class="title">SingletonInnerclass</span> <span class="params">()</span></span>{}
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> SingletonInnerclass.SingletonHolder.INSTANCE;
+    }
+}
+</code></pre>
+<p>参考链接：菜鸟教程</p>
+<blockquote>
+<p><a href="http://www.runoob.com/design-pattern/singleton-pattern.html" target="_blank" rel="external">http://www.runoob.com/design-pattern/singleton-pattern.html</a>  </p>
+</blockquote>
+
+      <script>
+        window.disqusProxy={
+          shortname: 'graceee',
+          username: 'graceee',
+          server: '140.82.60.61',
+          port: 5209,
+          adminAvatar: '/images/IMG_7607.jpg',
+          identifier: '2018/04/20/Singleton/',
+        };
+        window.disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.disqusProxy.identifier;
+        };
+      </script>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://gracee.xin/2018/04/20/Singleton/" data-id="cjgwd4lwu000lz4twtx7rr169" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://gracee.xin/2018/04/20/Singleton/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2018/04/20/Singleton/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-zombieandorphanpid" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -236,7 +428,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjgwa9no2000jyotw3a6acqpb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjgwd4lwq000jz4twbh4k164d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -364,7 +556,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjgwa9nnh0005yotwe5gea2dm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjgwd4lvw0007z4tw62ekdzjv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -492,7 +684,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjgwa9no1000iyotw3ultjclc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjgwd4lwg000fz4twbi2mcbz7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -621,7 +813,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjgwa9nmh0000yotwganwopyb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjgwd4lv20000z4twrvscvn50" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -749,7 +941,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjgwa9nny000fyotweflah8om" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjgwd4lwk000iz4twb03ijik9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -877,7 +1069,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjgwa9nnu000byotwa5i8q1aa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjgwd4lwd000dz4tw6hne3qlp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1006,7 +1198,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjgwa9nnk0007yotw3f4ax5pg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjgwd4lvr0005z4twuqqk1pc6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1134,7 +1326,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjgwa9nnq0008yotwwq3kyni7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjgwd4lw3000az4twmjtdyptk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1263,7 +1455,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjgwa9nnx000dyotwcj72o03i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjgwd4lwa000bz4tw8wihif7g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1332,135 +1524,6 @@
             
     
         <a href="http://gracee.xin/2017/09/04/rediscli command/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2017/09/04/rediscli command/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-printListFromTailToHead" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/30/printListFromTailToHead/">从尾到头打印链表</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/30/printListFromTailToHead/">
-            <time datetime="2017-08-30T09:10:14.000Z" itemprop="datePublished">2017-08-30</time>
-        </a>
-    </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/moods/">moods</a>, <a class="tag-link" href="/tags/practice/">practice</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>输入一个链表，从尾到头打印链表每个节点的值。  </p>
-<p><strong>方法1–递归：</strong><br>反向输出链表=每访问到一个节点，先递归输出它后面的节点。<br></p>
-            <p class="article-more-link">
-                <a href="/2017/08/30/printListFromTailToHead/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjgwa9nns000ayotwjkg17mlr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://gracee.xin/2017/08/30/printListFromTailToHead/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2017/08/30/printListFromTailToHead/">评论</a>
     
 
         </footer>
