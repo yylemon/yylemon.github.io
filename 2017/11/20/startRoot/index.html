@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://gracee.xin/2017/11/20/startRoot/index.html">
 <meta property="og:site_name" content="Grace&#39;s Space">
 <meta property="og:description" content="由于我习惯了用root账户，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html">
-<meta property="og:updated_time" content="2018-05-07T13:26:03.207Z">
+<meta property="og:updated_time" content="2018-05-07T13:29:32.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开启root账户的SSH登录">
 <meta name="twitter:description" content="由于我习惯了用root账户，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。方法主要借鉴于：https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html">
@@ -221,24 +221,12 @@
         
             
             <p>由于我习惯了用root账户，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。<br>方法主要借鉴于：<br><a href="https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html" target="_blank" rel="external">https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html</a><br><a id="more"></a></p>
-<h5 id="1-安装openssh："><a href="#1-安装openssh：" class="headerlink" title="1 安装openssh："></a>1 安装openssh：</h5><pre><code class="java">xxx<span class="meta">@ubuntu</span>:~$ sudo apt-get install openssh-server
-</code></pre>
-<h5 id="2-修改root密码"><a href="#2-修改root密码" class="headerlink" title="2 修改root密码"></a>2 修改root密码</h5><pre><code class="shell">xxx@ubuntu:~$ sudo passwd root
-</code></pre>
-<h5 id="3-切换为root用户，修改config："><a href="#3-切换为root用户，修改config：" class="headerlink" title="3 切换为root用户，修改config："></a>3 切换为root用户，修改config：</h5><pre><code class="shell">xxx@ubuntu:~$ su - root   #切换到root账户
-Password:                 #输入第二步修改的root密码
-root@ubuntu:~# vim /etc/ssh/sshd_config
-</code></pre>
+<h5 id="1-安装openssh："><a href="#1-安装openssh：" class="headerlink" title="1 安装openssh："></a>1 安装openssh：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxx@ubuntu:~$ sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<h5 id="2-修改root密码"><a href="#2-修改root密码" class="headerlink" title="2 修改root密码"></a>2 修改root密码</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxx@ubuntu:~$ sudo passwd root</div></pre></td></tr></table></figure>
+<h5 id="3-切换为root用户，修改config："><a href="#3-切换为root用户，修改config：" class="headerlink" title="3 切换为root用户，修改config："></a>3 切换为root用户，修改config：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">xxx@ubuntu:~$ su - root   #切换到root账户</div><div class="line">Password:                 #输入第二步修改的root密码</div><div class="line">root@ubuntu:~# vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
 <p>找到下面这段代码，注释掉“PermitRootLogin prohibit-password”，添加“PermitRootLogin yes”  </p>
-<pre><code class="shell"><span class="meta">#</span> Authentication: 
-LoginGraceTime 120 
-<span class="meta">#</span>PermitRootLogin prohibit-password
-PermitRootLogin yes 
-StrictModes yes
-</code></pre>
-<h5 id="4-重启ssh服务"><a href="#4-重启ssh服务" class="headerlink" title="4 重启ssh服务"></a>4 重启ssh服务</h5><pre><code class="shell">root@ubuntu:~# sudo service ssh restart 
-root@ubuntu:~#
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> Authentication: </div><div class="line">LoginGraceTime 120 </div><div class="line"><span class="meta">#</span>PermitRootLogin prohibit-password</div><div class="line">PermitRootLogin yes </div><div class="line">StrictModes yes</div></pre></td></tr></table></figure>
+<h5 id="4-重启ssh服务"><a href="#4-重启ssh服务" class="headerlink" title="4 重启ssh服务"></a>4 重启ssh服务</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@ubuntu:~# sudo service ssh restart </div><div class="line">root@ubuntu:~#</div></pre></td></tr></table></figure>
 <p>完毕，可以使用root账户直接ssh登录服务器</p>
 
       <script>
@@ -264,7 +252,7 @@ root@ubuntu:~#
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjgwa50ea000d9stw7xgi2boz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjgwa9nnu000byotwa5i8q1aa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
