@@ -152,7 +152,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                15
+                16
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -181,6 +181,134 @@
 
             
             <section id="main">
+    <article id="post-startRoot" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/11/20/startRoot/">开启root账户的SSH登录</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/11/20/startRoot/">
+            <time datetime="2017-11-20T14:30:00.000Z" itemprop="datePublished">2017-11-20</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/install/">install</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>由于我习惯了用root账户，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。<br>方法主要借鉴于：<br><a href="https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html" target="_blank" rel="external">https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html</a><br></p>
+            <p class="article-more-link">
+                <a href="/2017/11/20/startRoot/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjhuoz61r000nu4twt2auqogd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://gracee.xin/2017/11/20/startRoot/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2017/11/20/startRoot/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-javatomcatmysqlsetup" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -232,7 +360,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjhuddbun000fe4twg9rzfjtl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/12/javatomcatmysqlsetup/" data-id="cjhuoz61h000du4tw3e95imhy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -360,7 +488,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjhuddbuh0008e4twx6padf2n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/09/minNumberInRotateArray/" data-id="cjhuoz61l000iu4twpsn0es3h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -489,7 +617,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjhuddbv2000se4tw89vrjoyt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/09/04/rediscli command/" data-id="cjhuoz61q000mu4twxj58ufx7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -618,7 +746,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjhuddbuo000he4twyv45uutf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjhuoz61n000ku4twn06m694m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -746,7 +874,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/07/14/NIO/" data-id="cjhuddbua0005e4twbrowp529" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/07/14/NIO/" data-id="cjhuoz61a0008u4twmeyoug04" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

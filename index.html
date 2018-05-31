@@ -152,7 +152,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                15
+                16
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -231,7 +231,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/05/20/Observepattern/" data-id="cjhuddbtu0000e4tw03ogfkkx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/05/20/Observepattern/" data-id="cjhuoz6160007u4tw3aue7epk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -309,6 +309,135 @@
 
 
 
+    <article id="post-Decoratorpattern" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/05/20/Decoratorpattern/">设计模式之装饰器模式</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/05/20/Decoratorpattern/">
+            <time datetime="2018-05-20T13:20:00.000Z" itemprop="datePublished">2018-05-20</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/designmode/">designmode</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>装饰器模式：我的理解是，用<strong>一个装饰类用继承的方式去装饰一个基本类</strong>，这样装饰后能保持类型的一致，并且<strong>能被多层装饰</strong>。  </p>
+<h5 id="1-买咖啡"><a href="#1-买咖啡" class="headerlink" title="1.买咖啡"></a>1.买咖啡</h5><p>打个容易理解的比方（来自《Head First 设计模式》）：<br>当我们去咖啡店点一杯咖啡时，我们一般除了会告诉店员我们要的咖啡种类和size外，有时还需要加一些我们喜欢的辅料，如奶泡、冰淇淋等。<br>但我们不能把所有的辅料都写死在咖啡基本类属性中，因为这样会导致咖啡的基本类很臃肿，而且不易维护。所以一般我们只为每一种咖啡定义一个基本类，比如拿铁或美式咖啡。<br>对于其他的辅料，我们将它们看做装饰类，当需要的时候，我们才用它们来装饰我们的咖啡。<br>那么很明显，我们需要一个<strong>具体基础类</strong>（被装饰类，如拿铁咖啡），它必须继承一个<strong>抽象的基础类</strong>（如饮品类）；<br></p>
+            <p class="article-more-link">
+                <a href="/2018/05/20/Decoratorpattern/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://gracee.xin/2018/05/20/Decoratorpattern/" data-id="cjhuoz60v0003u4tw11s2vq3n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://gracee.xin/2018/05/20/Decoratorpattern/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2018/05/20/Decoratorpattern/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-Strategypattern" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -360,7 +489,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/05/20/Strategypattern/" data-id="cjhuddbul000de4twz6du8nm5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/05/20/Strategypattern/" data-id="cjhuoz61f000bu4twbok42vr3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -488,7 +617,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/05/02/IOModel/" data-id="cjhuddbuj000be4twpn9bzx7a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/05/02/IOModel/" data-id="cjhuoz6140006u4twtdqex0r2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -616,7 +745,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/04/20/Singleton/" data-id="cjhuddbud0007e4tw5jeie7q1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/04/20/Singleton/" data-id="cjhuoz61c000au4tw0d15cd3b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -749,7 +878,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjhuddbux000oe4twr5loq1uc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/03/16/zombieandorphanpid/" data-id="cjhuoz61z000tu4twodyc1eyb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -877,7 +1006,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjhuddbus000je4twsi5lvutq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/12/jvm-2/" data-id="cjhuoz61i000fu4twsu6qg8q1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1005,7 +1134,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjhuddbuu000le4tw95t0s2y3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/01/05/wangluomianshi1/" data-id="cjhuoz61x000ru4tw32uh3iy1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1134,7 +1263,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjhuddbu10002e4tw0pmmtosa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/12/01/BinaryTree1/" data-id="cjhuoz60o0001u4twuwrh4lp9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1262,7 +1391,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjhuddbuz000pe4twxdwbl9g4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2017/11/28/tensorflowinstall/" data-id="cjhuoz61t000ou4tw6j7m95i7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1331,134 +1460,6 @@
             
     
         <a href="http://gracee.xin/2017/11/28/tensorflowinstall/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2017/11/28/tensorflowinstall/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-startRoot" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/11/20/startRoot/">开启root账户的SSH登录</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/11/20/startRoot/">
-            <time datetime="2017-11-20T14:30:00.000Z" itemprop="datePublished">2017-11-20</time>
-        </a>
-    </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/install/">install</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>由于我习惯了用root账户，实验室新来的服务器，给的一个用户名dell的登陆方式，当然是可以登录后切换的，但也设置一下允许直接使用root登录。<br>方法主要借鉴于：<br><a href="https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html" target="_blank" rel="external">https://jingyan.baidu.com/article/d2b1d102abf7975c7f37d450.html</a><br></p>
-            <p class="article-more-link">
-                <a href="/2017/11/20/startRoot/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://gracee.xin/2017/11/20/startRoot/" data-id="cjhuddbv1000re4twes0rqynm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://gracee.xin/2017/11/20/startRoot/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2017/11/20/startRoot/">评论</a>
     
 
         </footer>
