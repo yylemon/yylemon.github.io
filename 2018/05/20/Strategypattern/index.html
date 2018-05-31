@@ -5,17 +5,17 @@
     
     <title>设计模式之策略模式 | Grace&#39;s Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context 12345678910111213141">
+    <meta name="description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context">
 <meta name="keywords" content="designmode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式之策略模式">
 <meta property="og:url" content="http://gracee.xin/2018/05/20/Strategypattern/index.html">
 <meta property="og:site_name" content="Grace&#39;s Space">
-<meta property="og:description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context 12345678910111213141">
-<meta property="og:updated_time" content="2018-05-31T08:14:51.816Z">
+<meta property="og:description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context">
+<meta property="og:updated_time" content="2018-05-31T09:59:59.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式之策略模式">
-<meta name="twitter:description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context 12345678910111213141">
+<meta name="twitter:description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context">
     
 
     
@@ -154,7 +154,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                14
+                15
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -221,7 +221,7 @@
         
             
             <p>策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。<br>应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。  </p>
-<p>这里给出一个示例代码：<br>接口：Strategy<br>不同的实现类：OperationAdd、OperationSubstract、OperationMultiply<br>负责执行传入策略的类：Context</p>
+<p>这里给出一个示例代码：<br>接口：Strategy<br>不同的实现类：OperationAdd、OperationSubstract、OperationMultiply<br>负责执行传入策略的类：Context<br><a id="more"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 测试策略模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">strategypattern</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Context context = <span class="keyword">new</span> Context(<span class="keyword">new</span> OperationAdd());</div><div class="line">        System.out.println(<span class="string">"10 + 5 = "</span> + context.executeStrategy(<span class="number">10</span>, <span class="number">5</span>));</div><div class="line">        context = <span class="keyword">new</span> Context(<span class="keyword">new</span> OperationSubstract());</div><div class="line">        System.out.println(<span class="string">"10 - 5 = "</span> + context.executeStrategy(<span class="number">10</span>, <span class="number">5</span>));</div><div class="line">        context = <span class="keyword">new</span> Context(<span class="keyword">new</span> OperationMultiply());</div><div class="line">        System.out.println(<span class="string">"10 * 5 = "</span> + context.executeStrategy(<span class="number">10</span>, <span class="number">5</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 策略接口和算法族</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationAdd</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num1 + num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationSubstract</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num1 - num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationMultiply</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num1 * num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 执行策略的类,类中有一个和接口方法类似的方法，  </div><div class="line"> 根据构造方法传入具体策略来设定使用什么策略</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> Strategy strategy;</div><div class="line">    Context(Strategy strategy)&#123;</div><div class="line">        <span class="keyword">this</span>.strategy=strategy;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">executeStrategy</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> strategy.doOperation(num1,num2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>参考链接：菜鸟教程</p>
 <blockquote>
@@ -251,7 +251,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2018/05/20/Strategypattern/" data-id="cjhu9rse2000vlctwb32nf4y1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/05/20/Strategypattern/" data-id="cjhuddbul000de4twz6du8nm5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -327,6 +327,15 @@
     
         
 <nav id="article-nav">
+    
+        <a href="/2018/05/20/Observepattern/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    设计模式之观察者模式
+                
+            </div>
+        </a>
     
     
         <a href="/2018/05/02/IOModel/" id="article-nav-older" class="article-nav-link-wrap">
