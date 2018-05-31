@@ -3,21 +3,19 @@
 <head>
     <meta charset="utf-8">
     
-    <title>从尾到头打印链表 | Grace&#39;s Space</title>
+    <title>设计模式之策略模式 | Grace&#39;s Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="题目描述输入一个链表，从尾到头打印链表每个节点的值。   方法1–递归：反向输出链表=每访问到一个节点，先递归输出它后面的节点。">
-<meta name="keywords" content="java,moods,practice">
+    <meta name="description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context 12345678910111213141">
+<meta name="keywords" content="designmode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从尾到头打印链表">
-<meta property="og:url" content="http://gracee.xin/2017/08/30/printListFromTailToHead/index.html">
+<meta property="og:title" content="设计模式之策略模式">
+<meta property="og:url" content="http://gracee.xin/2018/05/20/Strategypattern/index.html">
 <meta property="og:site_name" content="Grace&#39;s Space">
-<meta property="og:description" content="题目描述输入一个链表，从尾到头打印链表每个节点的值。   方法1–递归：反向输出链表=每访问到一个节点，先递归输出它后面的节点。">
-<meta property="og:image" content="http://gracee.xin/images/sea2.JPG">
-<meta property="og:updated_time" content="2018-03-28T09:55:13.596Z">
+<meta property="og:description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context 12345678910111213141">
+<meta property="og:updated_time" content="2018-05-31T08:14:51.816Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从尾到头打印链表">
-<meta name="twitter:description" content="题目描述输入一个链表，从尾到头打印链表每个节点的值。   方法1–递归：反向输出链表=每访问到一个节点，先递归输出它后面的节点。">
-<meta name="twitter:image" content="http://gracee.xin/images/sea2.JPG">
+<meta name="twitter:title" content="设计模式之策略模式">
+<meta name="twitter:description" content="策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。   这里给出一个示例代码：接口：Strategy不同的实现类：OperationAdd、OperationSubstract、OperationMultiply负责执行传入策略的类：Context 12345678910111213141">
     
 
     
@@ -184,7 +182,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-printListFromTailToHead" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-Strategypattern" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -192,7 +190,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            从尾到头打印链表
+            设计模式之策略模式
         </h1>
     
 
@@ -201,8 +199,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/08/30/printListFromTailToHead/">
-            <time datetime="2017-08-30T09:10:14.000Z" itemprop="datePublished">2017-08-30</time>
+        <a href="/2018/05/20/Strategypattern/">
+            <time datetime="2018-05-20T13:20:00.000Z" itemprop="datePublished">2018-05-20</time>
         </a>
     </div>
 
@@ -211,7 +209,7 @@
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/moods/">moods</a>, <a class="tag-link" href="/tags/practice/">practice</a>
+        <a class="tag-link" href="/tags/designmode/">designmode</a>
     </div>
 
                     </div>
@@ -222,13 +220,12 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>输入一个链表，从尾到头打印链表每个节点的值。  </p>
-<p><strong>方法1–递归：</strong><br>反向输出链表=每访问到一个节点，先递归输出它后面的节点。<br><a id="more"></a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="comment">//链表结构定义</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    ListNode next= <span class="keyword">null</span>;</div><div class="line">    ListNode(<span class="keyword">int</span> val)&#123;</div><div class="line">        <span class="keyword">this</span>.val=val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">ArrayList&lt;Integer&gt; arrayList=<span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(listNode!=<span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">this</span>.printListFromTailToHead(listNode.next);</div><div class="line">            arrayList.add(listNode.val);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> arrayList;</div><div class="line">    &#125;</div><div class="line"><span class="comment">//test[1,2]</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        ListNode Node=<span class="keyword">new</span> ListNode(<span class="number">1</span>);</div><div class="line">        Node.next=<span class="keyword">new</span> ListNode(<span class="number">2</span>);</div><div class="line">        System.out.println(<span class="keyword">new</span> printReverseLinklist().printListFromTailToHead(Node));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>方法1–使用Stack：</strong><br>1.遍历链表，将每个节点入栈<br>2.从栈顶逐个弹出<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Stack;</div><div class="line"><span class="comment">//链表结构定义</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    ListNode next= <span class="keyword">null</span>;</div><div class="line">    ListNode(<span class="keyword">int</span> val)&#123;</div><div class="line">        <span class="keyword">this</span>.val=val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">ArrayList&lt;Integer&gt; arrayList=<span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</div><div class="line">        Stack&lt;Integer&gt; stack=<span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        ListNode p=listNode;</div><div class="line">        <span class="keyword">while</span>(p!=<span class="keyword">null</span>)&#123;</div><div class="line">            stack.push(p.val);<span class="comment">//遍历入栈</span></div><div class="line">            p=p.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!stack.empty())&#123;</div><div class="line">            arrayList.add(stack.pop());<span class="comment">//出栈</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> arrayList;</div><div class="line">    &#125;</div><div class="line"><span class="comment">//test[1,2]</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        ListNode Node=<span class="keyword">new</span> ListNode(<span class="number">1</span>);</div><div class="line">        Node.next=<span class="keyword">new</span> ListNode(<span class="number">2</span>);</div><div class="line">        System.out.println(<span class="keyword">new</span> printReverseLinklist().printListFromTailToHead(Node));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="/images/sea2.JPG" alt=""></p>
+            <p>策略模式：定义一系列的算法（算法族），将它们都封装起来，使它们之间可以相互替换。<br>应用场景：比如对不同的类对象要采用不同的算法，对不同级别的的用户的商品折扣不同。  </p>
+<p>这里给出一个示例代码：<br>接口：Strategy<br>不同的实现类：OperationAdd、OperationSubstract、OperationMultiply<br>负责执行传入策略的类：Context</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 测试策略模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">strategypattern</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Context context = <span class="keyword">new</span> Context(<span class="keyword">new</span> OperationAdd());</div><div class="line">        System.out.println(<span class="string">"10 + 5 = "</span> + context.executeStrategy(<span class="number">10</span>, <span class="number">5</span>));</div><div class="line">        context = <span class="keyword">new</span> Context(<span class="keyword">new</span> OperationSubstract());</div><div class="line">        System.out.println(<span class="string">"10 - 5 = "</span> + context.executeStrategy(<span class="number">10</span>, <span class="number">5</span>));</div><div class="line">        context = <span class="keyword">new</span> Context(<span class="keyword">new</span> OperationMultiply());</div><div class="line">        System.out.println(<span class="string">"10 * 5 = "</span> + context.executeStrategy(<span class="number">10</span>, <span class="number">5</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 策略接口和算法族</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationAdd</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num1 + num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationSubstract</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num1 - num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationMultiply</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doOperation</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num1 * num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 执行策略的类,类中有一个和接口方法类似的方法，  </div><div class="line"> 根据构造方法传入具体策略来设定使用什么策略</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> Strategy strategy;</div><div class="line">    Context(Strategy strategy)&#123;</div><div class="line">        <span class="keyword">this</span>.strategy=strategy;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">executeStrategy</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> strategy.doOperation(num1,num2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考链接：菜鸟教程</p>
 <blockquote>
-<p>参考书籍：《剑指offer》</p>
+<p><a href="http://www.runoob.com/design-pattern/strategy-pattern.html" target="_blank" rel="external">http://www.runoob.com/design-pattern/strategy-pattern.html</a></p>
 </blockquote>
 
       <script>
@@ -238,7 +235,7 @@
           server: '140.82.60.61',
           port: 5209,
           adminAvatar: '/images/IMG_7607.jpg',
-          identifier: '2017/08/30/printListFromTailToHead/',
+          identifier: '2018/05/20/Strategypattern/',
         };
         window.disqus_config = function () {
           this.page.url = window.location.href;
@@ -254,7 +251,7 @@
 
 </div>
 
-    <a data-url="http://gracee.xin/2017/08/30/printListFromTailToHead/" data-id="cjhu9rsdu000rlctwigt58cml" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gracee.xin/2018/05/20/Strategypattern/" data-id="cjhu9rse2000vlctwb32nf4y1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -322,7 +319,7 @@
 
             
     
-        <a href="http://gracee.xin/2017/08/30/printListFromTailToHead/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2017/08/30/printListFromTailToHead/">评论</a>
+        <a href="http://gracee.xin/2018/05/20/Strategypattern/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gracee.xin/2018/05/20/Strategypattern/">评论</a>
     
 
         </footer>
@@ -331,19 +328,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/09/04/rediscli command/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    redis-cli操作（命令）
-                
-            </div>
-        </a>
     
-    
-        <a href="/2017/07/14/NIO/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/05/02/IOModel/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Java NIO学习</div>
+            <div class="article-nav-title">阻塞IO/非阻塞IO/同步IO/异步IO</div>
         </a>
     
 </nav>
@@ -384,9 +372,9 @@
     <script>
     var disqus_config = function () {
         
-            this.page.url = 'http://gracee.xin/2017/08/30/printListFromTailToHead/';
+            this.page.url = 'http://gracee.xin/2018/05/20/Strategypattern/';
         
-        this.page.identifier = 'printListFromTailToHead';
+        this.page.identifier = 'Strategypattern';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
